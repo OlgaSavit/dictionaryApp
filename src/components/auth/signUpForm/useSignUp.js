@@ -44,6 +44,7 @@ const useSignUp = () => {
   }
   const handleSubmit = async values => {
     if (isValid) {
+      console.log('val', values)
       const formData = {
         name: values?.username,
         email: values.email,
@@ -63,8 +64,8 @@ const useSignUp = () => {
           }
         }
       } catch (err) {
-        toast.show(err.response.data.message)
-        console.log('kk', err.response.data.message)
+        // toast.show(err.response.data.message)
+        console.log('kk1', err)
       } finally {
         setIsLoading(false)
       }
