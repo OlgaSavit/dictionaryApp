@@ -1,0 +1,48 @@
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
+.icon-girl-after-before-0 {
+  width: 0.3017578125em;
+}
+
+.icon-girl-after-before-1 {
+  width: 0.1630859375em;
+}
+
+.icon-man-after-before-0 {
+  width: 0.3251953125em;
+}
+
+.icon-man-after-before-1 {
+  width: 0.1708984375em;
+}
+
+.icon-today {
+  width: 1.0419921875em;
+}
+
+.icon-abonement {
+  width: 1.0419921875em;
+}
+
+.icon-woman {
+  width: 0.7041015625em;
+}
+
+.icon-man {
+  width: 0.72265625em;
+}
