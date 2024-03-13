@@ -1,15 +1,26 @@
 export default {
   auth: {
     signInLabel: 'Вхід',
-    signUpLabel: 'Реєстрація'
+    signUpLabel: 'Реєстрація',
+    successRegister: 'Реєстрація пройшла успішно!',
+    successLogin: 'Успішний вхід!'
   },
   texts: {
     forgotPassword: 'Забули пароль',
     tasks: 'Задачі',
     createTask: 'Створити задачу',
-    editTask: 'Редагувати задачу'
+    editTask: 'Редагувати задачу',
+    settings: 'Налаштування',
+    language: 'Мова',
+    nightMode: 'Нічний режим',
+    confirmLogout: 'Підтвердити вихід',
+    myTopics: 'Мої теми'
   },
-  buttons: {},
+  buttons: {
+    logout: 'Вихід',
+    confirm: 'Підтвердити',
+    cancel: 'Скасувати'
+  },
   fields: {
     username: 'Ім’я',
     email: 'Електронна пошта',
@@ -25,5 +36,11 @@ export default {
     shortPassword:
       'Пароль надто короткий - має містити мінімум {{count}} символів',
     passwordsNotMatch: 'Паролі не співпадають'
+  },
+  tabBar: {
+    home: 'Мої теми',
+    topic: 'Теми',
+    savedTopic: 'Збережені теми',
+    settings: '...'
   }
 }

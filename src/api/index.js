@@ -1,15 +1,7 @@
 import axios from 'axios'
 import store from '@/store/store'
 import {BASE_URL} from '@/config/env'
-
-let isAlreadyFetchingAccessToken = false
-let subscribers = []
-const onAccessTokenFetched = accessToken => {
-  subscribers = subscribers.filter(callback => callback(accessToken))
-}
-const addSubscriber = callback => {
-  subscribers.push(callback)
-}
+import {setAuthStatus} from '@/store/slices/authSlice'
 
 const http = axios.create({
   //TODO will change when api will be
@@ -22,39 +14,38 @@ const http = axios.create({
 const {dispatch} = store
 
 // //TODO will change when api will be
-// http.interceptors.request.use(
-//   config => {
-//     const {
-//       auth: {user_token}
-//       // ['Accept-Language']: {language}
-//     } = store.getState()
-//     if (!!user_token) {
-//       config.headers.Authorization = `Bearer ${user_token}`
-//     }
-//     // if (!!language) {
-//     //   config.headers['Accept-Language'] = language
-//     // }
-//     return config
-//   },
-//   error => {
-//     // Handle request errors here
-//     return Promise.reject(error)
-//   }
-// )
+http.interceptors.request.use(
+  config => {
+    const {
+      auth: {user_token},
+      language: {language}
+    } = store.getState()
+    if (!!user_token) {
+      config.headers.Authorization = `Bearer ${user_token}`
+    }
+    if (!!language) {
+      config.headers['Accept-Language'] = language
+    }
+    return config
+  },
+  error => {
+    // Handle request errors here
+    return Promise.reject(error)
+  }
+)
 
-// http.interceptors.response.use(
-//   response => response,
-//   async error => {
-//     const {config, response} = error
-//     console.log('err', config)
-//     const {
-//       auth: {refresh_user_token, user_token}
-//     } = store.getState()
-//     if (user_token) {
-//     }
-//
-//     return Promise.reject(response?.data?.errors)
-//   }
-// )
+http.interceptors.response.use(
+  response => response,
+  async error => {
+    const {config, response} = error
+    if (response?.status === 422) {
+      dispatch(setAuthStatus(false))
+    }
+    return Promise.reject({
+      status: response?.status,
+      message: response?.data?.message
+    })
+  }
+)
 
 export default http

@@ -6,6 +6,9 @@ import {getValidationRules} from './validation'
 import routerNameList from '@/navigation/routerNameList'
 import {useTranslation} from 'react-i18next'
 import {useToast} from 'react-native-toast-notifications'
+import {userLoginRequest} from '@/api/requests/auth'
+import {setAuthStatus, setUserToken} from '@/store/slices/authSlice'
+import {ToastTypes} from '@/constants/general'
 
 const useSignIn = () => {
   const toast = useToast()
@@ -45,10 +48,24 @@ const useSignIn = () => {
       }
       try {
         setIsLoading(true)
-        //TODO add api
-        toast.show('Success login')
+        let resp = await userLoginRequest(data)
+        if (resp?.status === 200) {
+          if (resp?.data?.token) {
+            toast.show('Success login', {type: ToastTypes.success})
+            dispatch(setUserToken(resp?.data?.token))
+            dispatch(setAuthStatus(true))
+            navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: 'PrivateScreens'
+                }
+              ]
+            })
+          }
+        }
       } catch (err) {
-        setDataErrors(err)
+        toast.show(err.message, {type: ToastTypes.danger})
       } finally {
         setIsLoading(false)
       }

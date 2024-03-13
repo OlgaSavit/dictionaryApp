@@ -14,7 +14,7 @@ import PrivateScreens from './PrivateScreens'
 const Stack = createNativeStackNavigator()
 
 const Navigation = () => {
-  const isAuthenticated = false
+  const {isAuthenticated} = useSelector(store => store.auth)
   const {theme} = useSelector(store => store.theme)
 
   useEffect(() => {

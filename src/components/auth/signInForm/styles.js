@@ -23,7 +23,8 @@ export const stylessheet = theme =>
       alignItems: 'center'
     },
     linkBtn: {
-      textDecorationLine: 'underline'
+      textDecorationLine: 'underline',
+      color: Colors[theme].colors.DBDTextColor
     },
     errorText: {
       fontSize: 10,

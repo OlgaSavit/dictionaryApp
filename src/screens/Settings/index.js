@@ -28,14 +28,14 @@ const Settings = ({navigation}) => {
     return [
       {
         id: 1,
-        title: 'settingsList.language',
+        title: 'texts.language',
         value: langObj[language],
         link: 'LanguageScreen'
       },
       {id: 4, title: 'fields.password', link: 'NewPasswordScreen'},
       {
         id: 5,
-        title: 'settingsList.nightMode',
+        title: 'texts.nightMode',
         onPress: () => {},
         type: 'switch'
       }
@@ -79,9 +79,6 @@ const Settings = ({navigation}) => {
       <View style={styles.wrapperItem} key={item.id}>
         <Text style={styles.title}>{t(item.title)}</Text>
         <Text style={styles.valueText}>{t(item.value)}</Text>
-        <Text style={styles.valueText} testID={'themeText'}>
-          {theme === themeTypes.dark ? 'dark' : 'light'}
-        </Text>
         <View style={styles.wrapperArrowRight}>
           <SwitchComponent
             isOn={theme === themeTypes.dark}
@@ -92,7 +89,7 @@ const Settings = ({navigation}) => {
     )
   }
   const handleLogoutPress = () => {
-    Alert.alert(t('settingsList.confirmLogout'), '', [
+    Alert.alert(t('texts.confirmLogout'), '', [
       {
         text: t('buttons.cancel'),
         onPress: () => {},
@@ -116,7 +113,7 @@ const Settings = ({navigation}) => {
   return (
     <Layout>
       <View style={styles.mainWrapper}>
-        <TopNavigation title={t('personalMenu.settings')} />
+        <TopNavigation title={t('texts.settings')} />
         <View>
           <View style={styles.wrapperList}>
             {settingList.map(item => {

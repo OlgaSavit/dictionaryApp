@@ -7,6 +7,7 @@ import routerNameList from '@/navigation/routerNameList'
 import {useTranslation} from 'react-i18next'
 import {userSignUpRequest} from '@/api/requests/auth'
 import {useToast} from 'react-native-toast-notifications'
+import {ToastTypes} from '@/constants/general'
 
 const useSignUp = () => {
   const {t} = useTranslation()
@@ -44,7 +45,6 @@ const useSignUp = () => {
   }
   const handleSubmit = async values => {
     if (isValid) {
-      console.log('val', values)
       const formData = {
         name: values?.username,
         email: values.email,
@@ -55,17 +55,11 @@ const useSignUp = () => {
         setIsLoading(true)
         let resp = await userSignUpRequest(formData)
         if (resp?.status === 201) {
-          toast.show('Register is succes')
-          if (resp?.errors?.length) {
-            toast.show('Error')
-          } else {
-            toast.show('Success register')
-            navigation.navigate(routerNameList.signIn)
-          }
+          toast.show(t('auth.successRegister'), {type: ToastTypes.success})
+          navigation.navigate(routerNameList.signIn)
         }
       } catch (err) {
-        // toast.show(err.response.data.message)
-        console.log('kk1', err)
+        toast.show(err?.message, {type: ToastTypes.danger})
       } finally {
         setIsLoading(false)
       }
