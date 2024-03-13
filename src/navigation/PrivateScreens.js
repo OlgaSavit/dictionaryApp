@@ -20,6 +20,21 @@ const PrivateScreens = ({navigation}) => {
   return (
     <Stack.Navigator initialRouteName={routeName ?? 'HomeScreen'}>
       <Stack.Screen
+        name={routerNameList?.home}
+        options={{headerShown: false}}
+        component={HomeScreen}
+      />
+      <Stack.Screen
+        name={routerNameList?.settings}
+        options={{headerShown: false}}
+        component={Settings}
+      />
+      <Stack.Screen
+        name={routerNameList?.language}
+        options={{headerShown: false}}
+        component={LanguageScreen}
+      />
+      <Stack.Screen
         name={routerNameList?.tasks}
         options={{headerShown: false}}
         component={TasksScreen}

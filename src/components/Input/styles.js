@@ -8,7 +8,7 @@ export const stylessheet = theme =>
       justifyContent: 'space-between',
       borderWidth: 1,
       borderColor: Colors[theme]?.colors.gray,
-      backgroundColor: Colors[theme]?.colors.commonWhite
+      backgroundColor: Colors[theme]?.colors.appBackground
     },
     wrapperInputDisabled: {
       opacity: 0.5
@@ -18,14 +18,15 @@ export const stylessheet = theme =>
     },
     label: {
       fontSize: 12,
-      marginBottom: 4
+      marginBottom: 4,
+      color: Colors[theme].colors.dark
     },
     input: {
       flex: 1,
       paddingVertical: 10,
       paddingHorizontal: 12,
       maxHeight: 40,
-      backgroundColor: Colors[theme]?.colors.commonWhite,
+      backgroundColor: Colors[theme]?.colors.appBackground,
       color: Colors[theme]?.colors.dark
     },
     wrapperInputFocus: {
@@ -34,7 +35,7 @@ export const stylessheet = theme =>
     togglePasswordIcon: {
       paddingRight: 10,
       paddingLeft: 5,
-      backgroundColor: Colors[theme]?.colors.commonWhite
+      backgroundColor: Colors[theme]?.colors.appBackground
     },
     textInputStyle: {
       fontSize: 14,

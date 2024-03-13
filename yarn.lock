@@ -6266,7 +6266,7 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   "version" "18.2.0"
 
-"react-native-flipper@>=0.100.0":
+"react-native-flipper@^0.212.0", "react-native-flipper@>=0.100.0":
   "integrity" "sha512-bDRfIgE3v/jjEEdnvGP0T6maDD+bXhDAQ/SZUYTKd/CQ6YIU1c0EF+e0urU62LNMv6XEFQKz226McdddyVhYZA=="
   "resolved" "https://registry.npmjs.org/react-native-flipper/-/react-native-flipper-0.212.0.tgz"
   "version" "0.212.0"

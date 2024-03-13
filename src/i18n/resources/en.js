@@ -1,15 +1,22 @@
 export default {
   auth: {
     signInLabel: 'Sign In',
-    signUpLabel: 'Sign Up'
+    signUpLabel: 'Sign Up',
+    successRegister: 'Registration was successful!',
+    successLogin: 'Successful login!'
   },
   texts: {
     forgotPassword: 'Forgot password',
     tasks: 'Tasks',
     createTask: 'Create Task',
-    editTask: 'Edit Task'
+    editTask: 'Edit Task',
+    settings: 'Settings',
+    language: 'Language',
+    nightMode: 'Night Mode',
+    confirmLogout: 'Confirm Logout',
+    myTopics: 'My Topics'
   },
-  buttons: {},
+  buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {
     username: 'Name',
     email: 'E-mail',
@@ -25,5 +32,11 @@ export default {
     shortPassword:
       'Password too short - must contain at least {{count}} characters',
     passwordsNotMatch: 'Passwords do not match'
+  },
+  tabBar: {
+    home: 'My topics',
+    topic: 'Topics',
+    savedTopic: 'Saved Topic',
+    settings: '...'
   }
 }
