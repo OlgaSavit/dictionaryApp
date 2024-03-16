@@ -10,7 +10,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <Layout bottomBarShow={true}>
       <View style={{paddingHorizontal: 16}}>
-        <TopNavigation title={t('texts.myTopics')} />
+        <TopNavigation title={t('texts.myTopics')} showBack={false} />
         <Text testID={'homeScreen'}>Dictionary</Text>
       </View>
     </Layout>

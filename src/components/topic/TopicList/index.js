@@ -3,27 +3,34 @@ import {stylessheet} from './styles'
 import {View} from 'react-native'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
-import TaskItem from '@/components/tasks/TasksList/TasksItem'
 import {FlatList} from 'react-native-gesture-handler'
+import TopicItem from '@/components/topic/TopicList/TopicItem'
 
 const initialProps = {
-  list: []
+  list: [],
+  onChangePage: () => {}
 }
-const TasksList = props => {
+const TopicList = props => {
   const {theme} = useSelector(store => store.theme || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
-  const {list} = {...initialProps, ...props}
+  const {list, onChangePage, ...rest} = {...initialProps, ...props}
   return (
-    <View>
+    <View style={{paddingTop: 20}}>
       <FlatList
         data={list}
         renderItem={({item, index}) => (
-          <TaskItem item={item} order={index + 1} />
+          <TopicItem item={item} order={index + 1} />
         )}
+        onEndReached={() => {
+          onChangePage()
+        }}
         keyExtractor={item => item.id}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{paddingBottom: 50}}
+        {...rest}
       />
     </View>
   )
 }
-export default TasksList
+export default TopicList

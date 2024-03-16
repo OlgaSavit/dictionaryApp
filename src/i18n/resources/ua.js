@@ -14,7 +14,9 @@ export default {
     language: 'Мова',
     nightMode: 'Нічний режим',
     confirmLogout: 'Підтвердити вихід',
-    myTopics: 'Мої теми'
+    myTopics: 'Мої теми',
+    allTopics: 'Всі теми',
+    loading: 'Завантаження'
   },
   buttons: {
     logout: 'Вихід',

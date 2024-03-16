@@ -9,6 +9,7 @@ import LanguageScreen from '../screens/Settings/LanguageScreen'
 import routerNameList from '@/navigation/routerNameList'
 import TasksScreen from '@/screens/tasks/TasksScreen'
 import TaskFormScreen from '@/screens/tasks/TaskFormScreen'
+import TopicListScreen from '@/screens/topics/TopicListScreen'
 
 // <-- SCREENS END -->
 
@@ -33,6 +34,11 @@ const PrivateScreens = ({navigation}) => {
         name={routerNameList?.language}
         options={{headerShown: false}}
         component={LanguageScreen}
+      />
+      <Stack.Screen
+        name={routerNameList?.topicList}
+        options={{headerShown: false}}
+        component={TopicListScreen}
       />
       <Stack.Screen
         name={routerNameList?.tasks}

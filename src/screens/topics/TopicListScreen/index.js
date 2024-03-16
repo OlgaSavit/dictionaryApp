@@ -9,8 +9,10 @@ import {useNavigation} from '@react-navigation/native'
 import CustomButton, {ButtonTypes} from '@/components/Button'
 import Icon from '@/components/Icon'
 import Colors from '@/constants/theme'
-import TasksList from '@/components/tasks/TasksList'
 import routerNameList from '@/navigation/routerNameList'
+import TopicList from '@/components/topic/TopicList'
+import {useTopicList} from '@/screens/topics/TopicListScreen/useTopicList'
+import LoadingView from '@/components/LoadingView'
 
 const mocDataList = [
   {
@@ -45,11 +47,13 @@ const mocDataList = [
   }
 ]
 
-const TasksScreen = () => {
+const TopicListScreen = () => {
   const {theme} = useSelector(store => store.theme || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
   const navigation = useNavigation()
+  const {allTopicList, isLoading, onChangePage} = useTopicList()
+
   const renderRightBtn = useMemo(() => {
     return (
       <View style={styles.wrapperAddIcon}>
@@ -64,17 +68,20 @@ const TasksScreen = () => {
     )
   }, [])
   return (
-    <Layout scrollType={scrollTypes.view}>
+    <Layout bottomBarShow={true} scrollType={scrollTypes.view}>
       <View style={styles.mainWrapper}>
         <TopNavigation
           customRightBtn={renderRightBtn}
-          showBack={false}
           isShowLogo={false}
-          title={t('texts.tasks')}
+          title={t('texts.allTopics')}
         />
-        <TasksList list={mocDataList} />
+        {isLoading ? (
+          <LoadingView />
+        ) : (
+          <TopicList list={allTopicList} onChangePage={onChangePage} />
+        )}
       </View>
     </Layout>
   )
 }
-export default TasksScreen
+export default TopicListScreen

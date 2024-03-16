@@ -14,7 +14,9 @@ export default {
     language: 'Language',
     nightMode: 'Night Mode',
     confirmLogout: 'Confirm Logout',
-    myTopics: 'My Topics'
+    myTopics: 'My Topics',
+    allTopics: 'All topics',
+    loading: 'Loading'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {

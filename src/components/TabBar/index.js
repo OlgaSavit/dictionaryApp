@@ -18,9 +18,9 @@ const tabBarList = [
   },
   {
     name: 'tabBar.topic',
-    route: '',
+    route: routerNameList.topicList,
     icon: 'list',
-    screens: [],
+    screens: [routerNameList.topicList],
     indicator: false
   },
   {

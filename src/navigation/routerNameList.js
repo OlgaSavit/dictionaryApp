@@ -11,6 +11,8 @@ const routerNameList = {
   language: 'LanguageScreen',
 
   //private
+  topicList: 'TopicListScreen',
+  topicForm: 'TopicFormScreen',
   tasks: 'TasksScreen',
   tasksForm: 'TaskFormScreen'
 }
