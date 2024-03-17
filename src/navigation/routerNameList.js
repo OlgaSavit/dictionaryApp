@@ -12,6 +12,7 @@ const routerNameList = {
 
   //private
   topicList: 'TopicListScreen',
+  topicView: 'TopicViewScreen',
   topicForm: 'TopicFormScreen',
   tasks: 'TasksScreen',
   tasksForm: 'TaskFormScreen'

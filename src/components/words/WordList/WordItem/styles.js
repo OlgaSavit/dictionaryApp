@@ -23,6 +23,12 @@ export const stylessheet = theme =>
       fontSize: 18,
       fontWeight: '600',
       flex: 1,
+      color: Colors[theme].colors.blue_100
+    },
+    translation: {
+      fontSize: 16,
+      fontWeight: '600',
+      flex: 1,
       color: Colors[theme].colors.dark
     },
     description: {

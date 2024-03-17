@@ -11,7 +11,7 @@ const initialProps = {
   order: null
 }
 
-const TopicItem = props => {
+const WordItem = props => {
   const {theme} = useSelector(store => store.theme || {})
   const {t} = useTranslation()
   const navigation = useNavigation()
@@ -21,38 +21,23 @@ const TopicItem = props => {
   const goToEditTask = item => {
     navigation.navigate(routerNameList?.tasksForm, {currentTask: item})
   }
-  const goToTopic = () => {
-    navigation.navigate(routerNameList?.topicView, {topicId: item?.id})
-  }
-  const normalizedTitle = useMemo(() => {
-    let arr = item.title.split('/')
-    return {
-      mainTitle: arr?.length ? arr[0] : null,
-      secondaryTitle: arr.length === 2 ? arr[1] : null
-    }
-  }, [item?.title])
 
   return (
-    <TouchableOpacity onPress={goToTopic} style={styles.mainWrapper}>
+    <View style={styles.mainWrapper}>
       <View style={styles.contentWrapper}>
         <View style={styles.wrapperTopBlock}>
           <Text style={styles.numberText}>{`${order}. `}</Text>
           <View style={styles.wrapperTitle}>
-            <Text style={styles.title}>{normalizedTitle?.mainTitle}</Text>
-            <Text style={styles.secondaryTitle}>
-              {normalizedTitle.secondaryTitle}
-            </Text>
+            <Text style={styles.title}>{item?.word}</Text>
+            <Text style={styles.secondaryTitle}>{item?.wordPhonetic}</Text>
+            <Text style={styles.translation}>{item?.wordTranslate}</Text>
           </View>
         </View>
         <Text style={styles.description}>{item?.description}</Text>
       </View>
       <View style={styles.wrapperCountBlock}>
         <Text style={[styles.countText, styles.countTextAll]}>
-          {item?.wordsCount}
-        </Text>
-        <Text style={styles.countText}>/</Text>
-        <Text style={[styles.countText, styles.countTextDone]}>
-          {item?.wordsDoneCount}
+          {item?.status}
         </Text>
       </View>
 
@@ -66,7 +51,7 @@ const TopicItem = props => {
       {/*    <Icon name="trash" size={22} color={Colors[theme].colors.red} />*/}
       {/*  </TouchableOpacity>*/}
       {/*</View>*/}
-    </TouchableOpacity>
+    </View>
   )
 }
-export default TopicItem
+export default WordItem

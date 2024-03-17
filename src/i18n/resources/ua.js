@@ -16,7 +16,8 @@ export default {
     confirmLogout: 'Підтвердити вихід',
     myTopics: 'Мої теми',
     allTopics: 'Всі теми',
-    loading: 'Завантаження'
+    loading: 'Завантаження',
+    words: 'Слова'
   },
   buttons: {
     logout: 'Вихід',

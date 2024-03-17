@@ -10,16 +10,16 @@ import CustomButton, {ButtonTypes} from '@/components/Button'
 import Icon from '@/components/Icon'
 import Colors from '@/constants/theme'
 import routerNameList from '@/navigation/routerNameList'
-import TopicList from '@/components/topic/TopicList'
-import {useTopicList} from '@/screens/topics/TopicListScreen/useTopicList'
 import LoadingView from '@/components/LoadingView'
+import {useWordsListByTopic} from '@/screens/topics/TopicViewScreen/useWordsListByTopic'
+import WordList from '@/components/words/WordList'
 
-const TopicListScreen = () => {
+const TopicViewScreen = () => {
   const {theme} = useSelector(store => store.theme || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
   const navigation = useNavigation()
-  const {allTopicList, isLoading, onChangePage} = useTopicList()
+  const {topicItem, isLoading} = useWordsListByTopic()
 
   const renderRightBtn = useMemo(() => {
     return (
@@ -40,15 +40,11 @@ const TopicListScreen = () => {
         <TopNavigation
           customRightBtn={renderRightBtn}
           isShowLogo={false}
-          title={t('texts.allTopics')}
+          title={topicItem?.title}
         />
-        {isLoading ? (
-          <LoadingView />
-        ) : (
-          <TopicList list={allTopicList} onChangePage={onChangePage} />
-        )}
+        {isLoading ? <LoadingView /> : <WordList list={topicItem?.words} />}
       </View>
     </Layout>
   )
 }
-export default TopicListScreen
+export default TopicViewScreen

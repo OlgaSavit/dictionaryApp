@@ -16,7 +16,8 @@ export default {
     confirmLogout: 'Confirm Logout',
     myTopics: 'My Topics',
     allTopics: 'All topics',
-    loading: 'Loading'
+    loading: 'Loading',
+    words: 'Words'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {

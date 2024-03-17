@@ -10,3 +10,8 @@ export const getAllTopicRequest = ({
   http.get('/dictionary/topics', {
     params: {page, perPage, langDirect, search, onlyMy}
   })
+
+export const getWordsByTopicRequest = ({topicId, langDirect = 'en-uk'}) =>
+  http.get(`/dictionary/topics/${topicId}`, {
+    params: {langDirect}
+  })
