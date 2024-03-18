@@ -31,7 +31,8 @@ export default {
     rePassword: 'Повторіть пароль',
     confirmPassword: 'Підтвердіть пароль',
     title: 'Назва',
-    description: 'Опис'
+    description: 'Опис',
+    order: 'Порядок'
   },
   validationErrors: {
     emailIncorrect: 'Значення "Email" невалідне',
@@ -45,5 +46,14 @@ export default {
     topic: 'Теми',
     savedTopic: 'Збережені теми',
     settings: '...'
+  },
+  topic: {
+    createTopic: 'Створити тему',
+    successCreateTopic: 'Тема успішно створена'
+  },
+  wordsMode: {
+    default: 'Стандартний',
+    word: 'Слово',
+    translation: 'Переклад'
   }
 }

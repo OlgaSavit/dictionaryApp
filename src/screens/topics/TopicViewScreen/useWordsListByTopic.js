@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {getWordsByTopicRequest} from '@/api/requests/topic'
-import {ToastTypes} from '@/constants/general'
+import {ToastTypes, WordModeTypes} from '@/constants/general'
 import {useToast} from 'react-native-toast-notifications'
 import {useRoute} from '@react-navigation/native'
 
@@ -10,6 +10,7 @@ const useWordsListByTopic = () => {
   const {topicId} = router.params || {}
   const [topicItem, setTopicItem] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [wordMode, setWordMode] = useState(WordModeTypes.default)
 
   const fetchWordsByTopicId = async ({topicId}) => {
     setIsLoading(true)
@@ -27,6 +28,9 @@ const useWordsListByTopic = () => {
   useEffect(() => {
     fetchWordsByTopicId({topicId})
   }, [topicId])
-  return {isLoading, topicItem}
+  const onChangeMode = mode => {
+    setWordMode(mode)
+  }
+  return {isLoading, topicItem, wordMode, onChangeMode}
 }
 export {useWordsListByTopic}

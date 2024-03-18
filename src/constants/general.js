@@ -29,4 +29,10 @@ const WordStatusList = [
     label: WordStatusTypes.done
   }
 ]
-export {ToastTypes, WordStatusTypes, WordStatusList}
+const WordModeTypes = {
+  default: 'default',
+  translation: 'translation',
+  word: 'word'
+}
+
+export {ToastTypes, WordStatusTypes, WordStatusList, WordModeTypes}

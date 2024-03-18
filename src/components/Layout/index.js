@@ -1,20 +1,20 @@
-import React, {useMemo} from 'react';
-import {stylessheet} from './styles';
-import {useSelector} from 'react-redux';
-import TabBarComponent from '../../components/TabBar';
-import Colors, {themeTypes} from '../../constants/theme';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import React, {useMemo} from 'react'
+import {stylessheet} from './styles'
+import {useSelector} from 'react-redux'
+import TabBarComponent from '../../components/TabBar'
+import Colors, {themeTypes} from '../../constants/theme'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {
   Platform,
   StatusBar,
   View,
   KeyboardAvoidingView,
-  ScrollView,
-} from 'react-native';
+  ScrollView
+} from 'react-native'
 export const scrollTypes = {
   scrollView: 'scrollView',
-  view: 'view',
-};
+  view: 'view'
+}
 const initialProps = {
   styleContainer: {},
   statusBarTheme: null,
@@ -25,8 +25,8 @@ const initialProps = {
   scrollType: scrollTypes.scrollView,
   notification: null,
   bottomSheetComponent: null,
-  bottomSheetComponentBg: false,
-};
+  bottomSheetComponentBg: false
+}
 
 const Layout = props => {
   const {
@@ -41,22 +41,22 @@ const Layout = props => {
     scrollType,
     notification,
     bottomSheetComponent,
-    bottomSheetComponentBg,
+    bottomSheetComponentBg
   } = {
     ...initialProps,
-    ...props,
-  };
-  const {theme} = useSelector(store => store.theme || {});
+    ...props
+  }
+  const {theme} = useSelector(store => store.theme || {})
 
-  const insets = useSafeAreaInsets();
+  const insets = useSafeAreaInsets()
 
-  const styles = stylessheet(theme);
+  const styles = stylessheet(theme)
   const barTheme = useMemo(() => {
     if (typeof statusBarTheme !== 'undefined' && !!statusBarTheme) {
-      return statusBarTheme;
+      return statusBarTheme
     }
-    return theme;
-  }, [statusBarTheme, theme]);
+    return theme
+  }, [statusBarTheme, theme])
   const renderScrollComponent = () => {
     return scrollType === scrollTypes.scrollView ? (
       <ScrollView
@@ -73,8 +73,8 @@ const Layout = props => {
         {...scrollOptions}>
         {children}
       </View>
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -95,10 +95,10 @@ const Layout = props => {
           styles.layoutContainer,
           {
             paddingTop: insets.top || StatusBar.currentHeight,
-            paddingBottom: insets.bottom,
+            paddingBottom: insets.bottom
           },
           bottomSheetComponentBg && styles.bottomSheetComponentBg,
-          styleContainer,
+          styleContainer
         ]}>
         {notification}
         <KeyboardAvoidingView
@@ -111,6 +111,6 @@ const Layout = props => {
         </KeyboardAvoidingView>
       </View>
     </>
-  );
-};
-export default Layout;
+  )
+}
+export default Layout

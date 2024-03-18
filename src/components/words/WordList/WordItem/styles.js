@@ -23,19 +23,22 @@ export const stylessheet = theme =>
       fontSize: 18,
       fontWeight: '600',
       flex: 1,
-      color: Colors[theme].colors.blue_100
+      color: Colors[theme].colors.blue_100,
+      zIndex: -1
     },
     translation: {
       fontSize: 16,
       fontWeight: '600',
       flex: 1,
-      color: Colors[theme].colors.dark
+      color: Colors[theme].colors.dark,
+      zIndex: -1
     },
     description: {
       color: Colors[theme].colors.gray
     },
     secondaryTitle: {
-      color: Colors[theme].colors.gray
+      color: Colors[theme].colors.gray,
+      zIndex: -1
     },
     contentWrapper: {
       flex: 1
@@ -65,5 +68,10 @@ export const stylessheet = theme =>
     },
     countTextDone: {
       color: Colors[theme].colors.green
+    },
+    blurStyle: {
+      flex: 1,
+      zIndex: 2,
+      opacity: 0.4
     }
   })

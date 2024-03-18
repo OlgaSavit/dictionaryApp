@@ -5,10 +5,14 @@ import {useTranslation} from 'react-i18next'
 import {useNavigation} from '@react-navigation/native'
 import {useSelector} from 'react-redux'
 import routerNameList from '@/navigation/routerNameList'
+import {WordModeTypes} from '@/constants/general'
+import {Blurhash} from 'react-native-blurhash'
+import Colors from '@/constants/theme'
 
 const initialProps = {
   item: null,
-  order: null
+  order: null,
+  wordMode: WordModeTypes.default
 }
 
 const WordItem = props => {
@@ -16,22 +20,44 @@ const WordItem = props => {
   const {t} = useTranslation()
   const navigation = useNavigation()
   const styles = stylessheet(theme)
-  const {item, order} = {...initialProps, ...props}
+  const {item, order, wordMode} = {...initialProps, ...props}
 
   const goToEditTask = item => {
     navigation.navigate(routerNameList?.tasksForm, {currentTask: item})
+  }
+  const renderModeContent = mode => {
+    return (
+      <View style={styles.wrapperTitle}>
+        <Blurhash
+          blurhash={
+            mode === WordModeTypes.translation
+              ? 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.'
+              : null
+          }
+          style={mode === WordModeTypes.translation && styles.blurStyle}>
+          <Text style={styles.title}>{item?.word}</Text>
+          <Text style={styles.secondaryTitle}>{item?.wordPhonetic}</Text>
+        </Blurhash>
+        <View>
+          <Blurhash
+            blurhash={
+              mode === WordModeTypes.word
+                ? 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.'
+                : null
+            }
+            style={mode === WordModeTypes.word && styles.blurStyle}>
+            <Text style={[styles.translation]}>{item?.wordTranslate}</Text>
+          </Blurhash>
+        </View>
+      </View>
+    )
   }
 
   return (
     <View style={styles.mainWrapper}>
       <View style={styles.contentWrapper}>
         <View style={styles.wrapperTopBlock}>
-          <Text style={styles.numberText}>{`${order}. `}</Text>
-          <View style={styles.wrapperTitle}>
-            <Text style={styles.title}>{item?.word}</Text>
-            <Text style={styles.secondaryTitle}>{item?.wordPhonetic}</Text>
-            <Text style={styles.translation}>{item?.wordTranslate}</Text>
-          </View>
+          {renderModeContent(wordMode)}
         </View>
         <Text style={styles.description}>{item?.description}</Text>
       </View>

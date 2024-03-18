@@ -36,7 +36,6 @@ const TopicItem = props => {
     <TouchableOpacity onPress={goToTopic} style={styles.mainWrapper}>
       <View style={styles.contentWrapper}>
         <View style={styles.wrapperTopBlock}>
-          <Text style={styles.numberText}>{`${order}. `}</Text>
           <View style={styles.wrapperTitle}>
             <Text style={styles.title}>{normalizedTitle?.mainTitle}</Text>
             <Text style={styles.secondaryTitle}>
@@ -44,7 +43,6 @@ const TopicItem = props => {
             </Text>
           </View>
         </View>
-        <Text style={styles.description}>{item?.description}</Text>
       </View>
       <View style={styles.wrapperCountBlock}>
         <Text style={[styles.countText, styles.countTextAll]}>

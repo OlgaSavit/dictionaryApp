@@ -15,3 +15,5 @@ export const getWordsByTopicRequest = ({topicId, langDirect = 'en-uk'}) =>
   http.get(`/dictionary/topics/${topicId}`, {
     params: {langDirect}
   })
+
+export const createTopicRequest = data => http.post(`/dictionary/topics`, data)

@@ -26,7 +26,7 @@ const TopicListScreen = () => {
       <View style={styles.wrapperAddIcon}>
         <CustomButton
           onPress={() => {
-            navigation.navigate(routerNameList?.tasksForm)
+            navigation.navigate(routerNameList?.topicForm)
           }}
           btnType={ButtonTypes.roundBtn}>
           <Icon name={'close'} size={12} color={Colors[theme].colors.dark} />

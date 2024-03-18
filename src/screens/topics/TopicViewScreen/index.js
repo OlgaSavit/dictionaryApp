@@ -19,7 +19,7 @@ const TopicViewScreen = () => {
   const {t} = useTranslation()
   const styles = stylessheet(theme)
   const navigation = useNavigation()
-  const {topicItem, isLoading} = useWordsListByTopic()
+  const {topicItem, isLoading, wordMode, onChangeMode} = useWordsListByTopic()
 
   const renderRightBtn = useMemo(() => {
     return (
@@ -42,7 +42,15 @@ const TopicViewScreen = () => {
           isShowLogo={false}
           title={topicItem?.title}
         />
-        {isLoading ? <LoadingView /> : <WordList list={topicItem?.words} />}
+        {isLoading ? (
+          <LoadingView />
+        ) : (
+          <WordList
+            list={topicItem?.words}
+            wordMode={wordMode}
+            onChangeMode={onChangeMode}
+          />
+        )}
       </View>
     </Layout>
   )

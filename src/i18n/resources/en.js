@@ -27,7 +27,8 @@ export default {
     rePassword: 'Repeat your password',
     confirmPassword: 'Confirm Password',
     title: 'Title',
-    description: 'Description'
+    description: 'Description',
+    order: 'Order'
   },
   validationErrors: {
     emailIncorrect: 'The value "Email" is invalid',
@@ -41,5 +42,14 @@ export default {
     topic: 'Topics',
     savedTopic: 'Saved Topic',
     settings: '...'
+  },
+  topic: {
+    createTopic: 'Create Topic',
+    successCreateTopic: 'Topic successfully created'
+  },
+  wordsMode: {
+    default: 'Standard',
+    word: 'Word',
+    translation: 'Translation'
   }
 }

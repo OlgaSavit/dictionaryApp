@@ -7,26 +7,8 @@ export const stylessheet = theme =>
       flex: 1,
       marginTop: 12
     },
-    wrapperContent: {gap: 12, flex: 1},
-    wrapperPasswordSection: {
-      gap: 12
-    },
-    inputStyle: {
-      maxHeight: 40
-    },
-    wrapperLinkBtn: {
-      marginBottom: 16,
-      flexDirection: 'row',
-      justifyContent: 'flex-end'
-    },
-    wrapperBottomBlock: {
-      alignItems: 'center'
-    },
-    linkBtn: {
-      textDecorationLine: 'underline'
-    },
-    errorText: {
-      fontSize: 10,
-      color: Colors[theme]?.colors.red
+    wrapperFlatList: {
+      zIndex: -1,
+      marginTop: 20
     }
   })

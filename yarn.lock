@@ -1575,6 +1575,11 @@
   dependencies:
     "merge-options" "^3.0.4"
 
+"@react-native-community/blur@^4.4.0":
+  "integrity" "sha512-P+xdT2LIq1ewOsF3zx7C0nu4dj7nxl2NVTsMXEzRDjM3bWMdrrEbTRA7uwPV5ngn7/BXIommBPlT/JW4SAedrw=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/blur/-/blur-4.4.0.tgz"
+  "version" "4.4.0"
+
 "@react-native-community/cli-clean@11.3.7":
   "integrity" "sha512-twtsv54ohcRyWVzPXL3F9VHGb4Qhn3slqqRs3wEuRzjR7cTmV2TIO2b1VhaqF4HlCgNd+cGuirvLtK2JJyaxMg=="
   "resolved" "https://registry.npmjs.org/@react-native-community/cli-clean/-/cli-clean-11.3.7.tgz"
@@ -6274,6 +6279,11 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   "version" "18.2.0"
 
+"react-native-blurhash@^2.0.2":
+  "integrity" "sha512-qUakbrKgvHynV/clCWh/Zj3p/s+/ED3eyoLFPgSlyrYmnZTtKC/9925l/NvF8ydIhOQpe7zgdEzFwbhpXlvQiQ=="
+  "resolved" "https://registry.npmjs.org/react-native-blurhash/-/react-native-blurhash-2.0.2.tgz"
+  "version" "2.0.2"
+
 "react-native-dropdown-picker@^5.4.6":
   "integrity" "sha512-T1XBHbE++M6aRU3wFYw3MvcOuabhWZ29RK/Ivdls2r1ZkZ62iEBZknLUPeVLMX3x6iUxj4Zgr3X2DGlEGXeHsA=="
   "resolved" "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.6.tgz"
@@ -6365,7 +6375,7 @@
   "resolved" "https://registry.npmjs.org/react-native-toast-notifications/-/react-native-toast-notifications-3.4.0.tgz"
   "version" "3.4.0"
 
-"react-native@*", "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@>=0.47.1", "react-native@>=0.57.0", "react-native@>=0.59", "react-native@>=0.63.0", "react-native@>=0.70.0", "react-native@>0.62.0", "react-native@0.72.5":
+"react-native@*", "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@>=0.47.1", "react-native@>=0.57.0", "react-native@>=0.59", "react-native@>=0.60.0-rc.0 <1.0.x", "react-native@>=0.63.0", "react-native@>=0.70.0", "react-native@>0.62.0", "react-native@0.72.5":
   "integrity" "sha512-oIewslu5DBwOmo7x5rdzZlZXCqDIna0R4dUwVpfmVteORYLr4yaZo5wQnMeR+H7x54GaMhmgeqp0ZpULtulJFg=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.72.5.tgz"
   "version" "0.72.5"
@@ -6441,7 +6451,7 @@
     "react-shallow-renderer" "^16.15.0"
     "scheduler" "^0.23.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.2.0", "react@>= 16.8.0", "react@>=16.8", "react@>=16.8.0", "react@>=17.0.0", "react@>=18.1.0", "react@18.2.0":
+"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.2.0", "react@>= 16.8.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.8.1", "react@>=17.0.0", "react@>=18.1.0", "react@18.2.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

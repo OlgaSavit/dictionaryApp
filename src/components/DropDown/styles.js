@@ -4,6 +4,6 @@ import Colors from '@/constants/theme'
 export const stylessheet = theme =>
   StyleSheet.create({
     wrapperDropDown: {
-      width: 100
+      zIndex: 9999
     }
   })

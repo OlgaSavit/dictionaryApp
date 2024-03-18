@@ -19,9 +19,7 @@ const TopicList = props => {
     <View style={{paddingTop: 20}}>
       <FlatList
         data={list}
-        renderItem={({item, index}) => (
-          <TopicItem item={item} order={index + 1} />
-        )}
+        renderItem={({item, index}) => <TopicItem item={item} />}
         onEndReached={() => {
           onChangePage()
         }}

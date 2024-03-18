@@ -1,9 +1,10 @@
 import {useDispatch, useSelector} from 'react-redux'
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {appendAllTopicList, getAllTopicList} from '@/store/slices/topicSlice'
+import {useFocusEffect} from '@react-navigation/native'
 
 const initialPage = 1
-const initialPerPage = 12
+const initialPerPage = 15
 
 const useTopicList = () => {
   const dispatch = useDispatch()
@@ -22,9 +23,12 @@ const useTopicList = () => {
   const appendTopicList = data => {
     dispatch(appendAllTopicList(data))
   }
-  useEffect(() => {
-    fetchAllTopicList({page: 1, perPage: initialPerPage})
-  }, [initialPerPage])
+  useFocusEffect(
+    useCallback(() => {
+      setPage(1)
+      fetchAllTopicList({page: 1, perPage: initialPerPage})
+    }, [])
+  )
   const onChangePage = () => {
     let newPage = page + 1
     if (!isLoading && newPage <= allTopicListMeta?.last_page) {
