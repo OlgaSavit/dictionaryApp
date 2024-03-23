@@ -37,6 +37,7 @@ export const stylessheet = theme =>
     wrapperButtons: {
       flex: 1 / 4,
       flexDirection: 'row',
+      justifyContent: 'flex-end',
       alignItems: 'center'
     },
     wrapperActionBtn: {

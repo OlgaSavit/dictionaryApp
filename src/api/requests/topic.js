@@ -15,5 +15,7 @@ export const getWordsByTopicRequest = ({topicId, langDirect = 'en-uk'}) =>
   http.get(`/dictionary/topics/${topicId}`, {
     params: {langDirect}
   })
+export const deleteTopicById = topicId =>
+  http.delete(`/dictionary/topics/${topicId}`)
 
 export const createTopicRequest = data => http.post(`/dictionary/topics`, data)

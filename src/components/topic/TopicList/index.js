@@ -8,18 +8,24 @@ import TopicItem from '@/components/topic/TopicList/TopicItem'
 
 const initialProps = {
   list: [],
-  onChangePage: () => {}
+  onChangePage: () => {},
+  onUpdateTopicList: () => {}
 }
 const TopicList = props => {
   const {theme} = useSelector(store => store.theme || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
-  const {list, onChangePage, ...rest} = {...initialProps, ...props}
+  const {list, onChangePage, onUpdateTopicList, ...rest} = {
+    ...initialProps,
+    ...props
+  }
   return (
     <View style={{paddingTop: 20}}>
       <FlatList
         data={list}
-        renderItem={({item, index}) => <TopicItem item={item} />}
+        renderItem={({item, index}) => (
+          <TopicItem item={item} onUpdateTopicList={onUpdateTopicList} />
+        )}
         onEndReached={() => {
           onChangePage()
         }}

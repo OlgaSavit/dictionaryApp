@@ -16,24 +16,29 @@ import WordList from '@/components/words/WordList'
 
 const TopicViewScreen = () => {
   const {theme} = useSelector(store => store.theme || {})
+  const {userInfo} = useSelector(store => store.user || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
   const navigation = useNavigation()
   const {topicItem, isLoading, wordMode, onChangeMode} = useWordsListByTopic()
-
   const renderRightBtn = useMemo(() => {
-    return (
-      <View style={styles.wrapperAddIcon}>
-        <CustomButton
-          onPress={() => {
-            navigation.navigate(routerNameList?.tasksForm)
-          }}
-          btnType={ButtonTypes.roundBtn}>
-          <Icon name={'close'} size={12} color={Colors[theme].colors.dark} />
-        </CustomButton>
-      </View>
-    )
-  }, [])
+    if (userInfo?.id === topicItem?.userId) {
+      return (
+        <View style={styles.wrapperAddIcon}>
+          <CustomButton
+            onPress={() => {
+              navigation.navigate(routerNameList?.wordForm, {
+                currentTopicId: topicItem?.id
+              })
+            }}
+            btnType={ButtonTypes.roundBtn}>
+            <Icon name={'close'} size={12} color={Colors[theme].colors.dark} />
+          </CustomButton>
+        </View>
+      )
+    }
+    return null
+  }, [topicItem])
   return (
     <Layout bottomBarShow={true} scrollType={scrollTypes.view}>
       <View style={styles.mainWrapper}>

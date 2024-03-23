@@ -13,9 +13,10 @@ const useTopicList = () => {
   )
   const [page, setPage] = useState(initialPage)
   const [isLoading, setIsLoading] = useState(false)
+  const [isFirstTime, setIsFirstTime] = useState(true)
 
   const fetchAllTopicList = data => {
-    setIsLoading(true)
+    isFirstTime && setIsLoading(true)
     dispatch(getAllTopicList(data)).finally(() => {
       setIsLoading(false)
     })
@@ -27,8 +28,13 @@ const useTopicList = () => {
     useCallback(() => {
       setPage(1)
       fetchAllTopicList({page: 1, perPage: initialPerPage})
+      setIsFirstTime(false)
     }, [])
   )
+  const onUpdateTopicList = () => {
+    setPage(1)
+    fetchAllTopicList({page: 1, perPage: initialPerPage})
+  }
   const onChangePage = () => {
     let newPage = page + 1
     if (!isLoading && newPage <= allTopicListMeta?.last_page) {
@@ -39,6 +45,6 @@ const useTopicList = () => {
       setPage(newPage)
     }
   }
-  return {allTopicList, isLoading, onChangePage}
+  return {allTopicList, isLoading, onChangePage, onUpdateTopicList}
 }
 export {useTopicList}

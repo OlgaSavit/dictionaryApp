@@ -17,7 +17,8 @@ export default {
     myTopics: 'Мої теми',
     allTopics: 'Всі теми',
     loading: 'Завантаження',
-    words: 'Слова'
+    words: 'Слова',
+    removeTopic: 'Видалити тему "{{title}}"'
   },
   buttons: {
     logout: 'Вихід',
@@ -32,7 +33,11 @@ export default {
     confirmPassword: 'Підтвердіть пароль',
     title: 'Назва',
     description: 'Опис',
-    order: 'Порядок'
+    order: 'Порядок',
+    word: 'Слово',
+    wordTranslate: 'Переклад',
+    wordPhonetic: 'Транскрипція',
+    topicList: 'Теми'
   },
   validationErrors: {
     emailIncorrect: 'Значення "Email" невалідне',
@@ -55,5 +60,9 @@ export default {
     default: 'Стандартний',
     word: 'Слово',
     translation: 'Переклад'
+  },
+  words: {
+    createWord: 'Створити слово',
+    editWord: 'Редагувати слово'
   }
 }

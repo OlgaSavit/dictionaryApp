@@ -1,13 +1,14 @@
-import React, {useMemo} from 'react'
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import {stylessheet} from './styles'
 import {View, TouchableOpacity, Text} from 'react-native'
 import {useTranslation} from 'react-i18next'
 import {useNavigation} from '@react-navigation/native'
 import {useSelector} from 'react-redux'
 import routerNameList from '@/navigation/routerNameList'
-import {WordModeTypes} from '@/constants/general'
+import {ToastTypes, WordModeTypes, WordStatusList} from '@/constants/general'
 import {Blurhash} from 'react-native-blurhash'
-import Colors from '@/constants/theme'
+import {userChangeWordStatusRequest} from '@/api/requests/word'
+import {useToast} from 'react-native-toast-notifications'
 
 const initialProps = {
   item: null,
@@ -21,9 +22,35 @@ const WordItem = props => {
   const navigation = useNavigation()
   const styles = stylessheet(theme)
   const {item, order, wordMode} = {...initialProps, ...props}
+  const [currentWordStatus, setCurrentWordStattus] = useState(item?.status)
+  const [isLoadingChangeStatus, setIsLoadingChangeStatus] = useState(false)
+  const toast = useToast()
 
-  const goToEditTask = item => {
-    navigation.navigate(routerNameList?.tasksForm, {currentTask: item})
+  useEffect(() => {
+    setCurrentWordStattus(item?.status)
+  }, [item?.status])
+
+  const onChangeWordStatus = useCallback(() => {
+    const statusId = WordStatusList.findIndex(
+      item => item.value === currentWordStatus
+    )
+    const newStatusId =
+      statusId + 1 <= WordStatusList?.length - 1 ? statusId + 1 : 0
+    const newStatusVal = WordStatusList[newStatusId]?.value
+    onChangeStatusAction({wordId: item?.id, status: newStatusVal})
+  }, [currentWordStatus, item])
+  const onChangeStatusAction = async ({wordId, status}) => {
+    setIsLoadingChangeStatus(true)
+    try {
+      const response = await userChangeWordStatusRequest({wordId, status})
+      if (response.status === 200) {
+        setCurrentWordStattus(status)
+      }
+    } catch (err) {
+      toast.show(err?.message, {type: ToastTypes.danger})
+    } finally {
+      setIsLoadingChangeStatus(false)
+    }
   }
   const renderModeContent = mode => {
     return (
@@ -61,22 +88,14 @@ const WordItem = props => {
         </View>
         <Text style={styles.description}>{item?.description}</Text>
       </View>
-      <View style={styles.wrapperCountBlock}>
-        <Text style={[styles.countText, styles.countTextAll]}>
-          {item?.status}
+      <TouchableOpacity
+        disabled={isLoadingChangeStatus}
+        onPress={() => onChangeWordStatus(currentWordStatus)}
+        style={styles.wrapperStatusBtn}>
+        <Text style={[styles.countText, styles[currentWordStatus]]}>
+          {currentWordStatus}
         </Text>
-      </View>
-
-      {/*<View style={styles.wrapperButtons}>*/}
-      {/*  <TouchableOpacity*/}
-      {/*    onPress={() => goToEditTask(item)}*/}
-      {/*    style={styles.wrapperActionBtn}>*/}
-      {/*    <Icon name={'edit'} size={22} color={Colors[theme].colors.gray_100} />*/}
-      {/*  </TouchableOpacity>*/}
-      {/*  <TouchableOpacity style={styles.wrapperActionBtn}>*/}
-      {/*    <Icon name="trash" size={22} color={Colors[theme].colors.red} />*/}
-      {/*  </TouchableOpacity>*/}
-      {/*</View>*/}
+      </TouchableOpacity>
     </View>
   )
 }

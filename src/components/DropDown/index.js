@@ -14,7 +14,7 @@ const initialProps = {
 const DropDown = props => {
   const {theme} = useSelector(store => store.theme)
   const styles = stylessheet(theme)
-  const {items, selectedValue, onSelectValue, disabled} = {
+  const {items, selectedValue, onSelectValue, disabled, ...rest} = {
     ...initialProps,
     ...props
   }
@@ -34,6 +34,7 @@ const DropDown = props => {
         onSelectItem={onSelectValue}
         disabled={disabled}
         zIndex={100}
+        {...rest}
       />
     </View>
   )

@@ -14,6 +14,7 @@ const routerNameList = {
   topicList: 'TopicListScreen',
   topicView: 'TopicViewScreen',
   topicForm: 'TopicFormScreen',
+  wordForm: 'WordFormScreen',
   tasks: 'TasksScreen',
   tasksForm: 'TaskFormScreen'
 }

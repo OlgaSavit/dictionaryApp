@@ -17,7 +17,8 @@ export default {
     myTopics: 'My Topics',
     allTopics: 'All topics',
     loading: 'Loading',
-    words: 'Words'
+    words: 'Words',
+    removeTopic: 'Remove topic "{{title}}"'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {
@@ -28,7 +29,11 @@ export default {
     confirmPassword: 'Confirm Password',
     title: 'Title',
     description: 'Description',
-    order: 'Order'
+    order: 'Order',
+    word: 'Word',
+    wordTranslate: 'Translation',
+    wordPhonetic: 'Transcription',
+    topicList: 'Topics'
   },
   validationErrors: {
     emailIncorrect: 'The value "Email" is invalid',
@@ -51,5 +56,9 @@ export default {
     default: 'Standard',
     word: 'Word',
     translation: 'Translation'
+  },
+  words: {
+    createWord: 'Create Word',
+    editWord: 'Edit Word'
   }
 }

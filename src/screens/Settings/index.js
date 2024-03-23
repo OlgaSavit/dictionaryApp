@@ -10,6 +10,7 @@ import {Alert, Text, TouchableOpacity, View} from 'react-native'
 import SwitchComponent from '../../components/SwitchComponent'
 import TopNavigation from '../../components/navigation/TopNavigation'
 import changeNavigationBarColor from 'react-native-navigation-bar-color'
+import {setUserInfo} from '@/store/slices/userSlice'
 
 const Settings = ({navigation}) => {
   const {theme} = useSelector(store => store.theme || {})
@@ -98,6 +99,7 @@ const Settings = ({navigation}) => {
       {
         text: t('buttons.confirm'),
         onPress: () => {
+          dispatch(setUserInfo(null))
           navigation.reset({
             index: 0,
             routes: [

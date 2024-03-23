@@ -1,8 +1,8 @@
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {getWordsByTopicRequest} from '@/api/requests/topic'
 import {ToastTypes, WordModeTypes} from '@/constants/general'
 import {useToast} from 'react-native-toast-notifications'
-import {useRoute} from '@react-navigation/native'
+import {useFocusEffect, useRoute} from '@react-navigation/native'
 
 const useWordsListByTopic = () => {
   const toast = useToast()
@@ -25,9 +25,11 @@ const useWordsListByTopic = () => {
       setIsLoading(false)
     }
   }
-  useEffect(() => {
-    fetchWordsByTopicId({topicId})
-  }, [topicId])
+  useFocusEffect(
+    useCallback(() => {
+      fetchWordsByTopicId({topicId})
+    }, [topicId])
+  )
   const onChangeMode = mode => {
     setWordMode(mode)
   }

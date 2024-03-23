@@ -54,7 +54,7 @@ export const stylessheet = theme =>
       alignItems: 'center',
       justifyContent: 'flex-start'
     },
-    wrapperCountBlock: {
+    wrapperStatusBtn: {
       flexDirection: 'row',
       alignItems: 'flex-start',
       gap: 2
@@ -62,6 +62,18 @@ export const stylessheet = theme =>
     countText: {
       fontSize: 16,
       color: Colors[theme].colors.gray
+    },
+    new: {
+      color: Colors[theme].colors.red
+    },
+    write: {
+      color: Colors[theme].colors.blue_100
+    },
+    done: {
+      color: Colors[theme].colors.green
+    },
+    translate: {
+      color: Colors[theme].colors.yellow
     },
     countTextAll: {
       color: Colors[theme].colors.blue_100

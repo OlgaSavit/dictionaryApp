@@ -1,28 +1,57 @@
 import React, {useMemo} from 'react'
 import {stylessheet} from './styles'
-import {View, TouchableOpacity, Text} from 'react-native'
+import {View, TouchableOpacity, Text, Alert} from 'react-native'
 import {useTranslation} from 'react-i18next'
 import {useNavigation} from '@react-navigation/native'
 import {useSelector} from 'react-redux'
 import routerNameList from '@/navigation/routerNameList'
+import Colors from '@/constants/theme'
+import Icon from '@/components/Icon'
+import {deleteTopicById} from '@/api/requests/topic'
+import {setUserInfo} from '@/store/slices/userSlice'
 
 const initialProps = {
   item: null,
-  order: null
+  order: null,
+  onUpdateTopicList: () => {}
 }
 
 const TopicItem = props => {
   const {theme} = useSelector(store => store.theme || {})
+  const {userInfo} = useSelector(store => store.user || {})
   const {t} = useTranslation()
   const navigation = useNavigation()
   const styles = stylessheet(theme)
-  const {item, order} = {...initialProps, ...props}
+  const {item, order, onUpdateTopicList} = {...initialProps, ...props}
 
   const goToEditTask = item => {
     navigation.navigate(routerNameList?.tasksForm, {currentTask: item})
   }
   const goToTopic = () => {
     navigation.navigate(routerNameList?.topicView, {topicId: item?.id})
+  }
+  const removeTopic = async () => {
+    try {
+      const response = await deleteTopicById(item?.id)
+      if (response?.status === 200) {
+        onUpdateTopicList()
+      }
+    } catch (e) {}
+  }
+  const handleRemoveTopicPress = () => {
+    Alert.alert(t('texts.removeTopic', {title: item?.title}), '', [
+      {
+        text: t('buttons.cancel'),
+        onPress: () => {},
+        style: 'cancel'
+      },
+      {
+        text: t('buttons.confirm'),
+        onPress: () => {
+          removeTopic()
+        }
+      }
+    ])
   }
   const normalizedTitle = useMemo(() => {
     let arr = item.title.split('/')
@@ -54,16 +83,20 @@ const TopicItem = props => {
         </Text>
       </View>
 
-      {/*<View style={styles.wrapperButtons}>*/}
-      {/*  <TouchableOpacity*/}
-      {/*    onPress={() => goToEditTask(item)}*/}
-      {/*    style={styles.wrapperActionBtn}>*/}
-      {/*    <Icon name={'edit'} size={22} color={Colors[theme].colors.gray_100} />*/}
-      {/*  </TouchableOpacity>*/}
-      {/*  <TouchableOpacity style={styles.wrapperActionBtn}>*/}
-      {/*    <Icon name="trash" size={22} color={Colors[theme].colors.red} />*/}
-      {/*  </TouchableOpacity>*/}
-      {/*</View>*/}
+      <View style={styles.wrapperButtons}>
+        {/*<TouchableOpacity*/}
+        {/*  onPress={() => goToEditTask(item)}*/}
+        {/*  style={styles.wrapperActionBtn}>*/}
+        {/*  <Icon name={'edit'} size={22} color={Colors[theme].colors.gray_100} />*/}
+        {/*</TouchableOpacity>*/}
+        {userInfo?.id === item?.userId && (
+          <TouchableOpacity
+            onPress={handleRemoveTopicPress}
+            style={styles.wrapperActionBtn}>
+            <Icon name="trash" size={22} color={Colors[theme].colors.red} />
+          </TouchableOpacity>
+        )}
+      </View>
     </TouchableOpacity>
   )
 }

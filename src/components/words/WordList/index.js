@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {stylessheet} from './styles'
 import {View} from 'react-native'
 import {useTranslation} from 'react-i18next'
@@ -11,13 +11,17 @@ import {WordModeTypes} from '@/constants/general'
 const initialProps = {
   list: [],
   wordMode: WordModeTypes.default,
-  onChangeMode: () => {}
+  onChangeMode: () => {},
+  onUpdateTopic: () => {}
 }
 const WordList = props => {
   const {theme} = useSelector(store => store.theme || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
-  const {list, onChangeMode, wordMode, ...rest} = {...initialProps, ...props}
+  const {list, onChangeMode, wordMode, onUpdateTopic, ...rest} = {
+    ...initialProps,
+    ...props
+  }
   return (
     <View style={styles.mainWrapper}>
       <WordMode onChangeMode={onChangeMode} wordMode={wordMode} />

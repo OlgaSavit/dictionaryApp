@@ -19,7 +19,8 @@ const TopicListScreen = () => {
   const {t} = useTranslation()
   const styles = stylessheet(theme)
   const navigation = useNavigation()
-  const {allTopicList, isLoading, onChangePage} = useTopicList()
+  const {allTopicList, isLoading, onChangePage, onUpdateTopicList} =
+    useTopicList()
 
   const renderRightBtn = useMemo(() => {
     return (
@@ -45,7 +46,11 @@ const TopicListScreen = () => {
         {isLoading ? (
           <LoadingView />
         ) : (
-          <TopicList list={allTopicList} onChangePage={onChangePage} />
+          <TopicList
+            list={allTopicList}
+            onChangePage={onChangePage}
+            onUpdateTopicList={onUpdateTopicList}
+          />
         )}
       </View>
     </Layout>

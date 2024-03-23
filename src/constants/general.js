@@ -34,5 +34,4 @@ const WordModeTypes = {
   translation: 'translation',
   word: 'word'
 }
-
 export {ToastTypes, WordStatusTypes, WordStatusList, WordModeTypes}

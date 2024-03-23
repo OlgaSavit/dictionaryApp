@@ -1,28 +1,33 @@
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {useNavigation} from '@react-navigation/native'
 import {useEffect, useState} from 'react'
 import {useFormik} from 'formik'
 import {getValidationRules} from './validation'
-import routerNameList from '@/navigation/routerNameList'
 import {useTranslation} from 'react-i18next'
 import {useToast} from 'react-native-toast-notifications'
-import {userLoginRequest} from '@/api/requests/auth'
-import {setAuthStatus, setUserToken} from '@/store/slices/authSlice'
+import {onInputOnlyNumber} from '@/utils/normalize'
 import {ToastTypes} from '@/constants/general'
-import {getUserInfo} from '@/store/slices/userSlice'
+import routerNameList from '@/navigation/routerNameList'
+import {createWordRequest} from '@/api/requests/word'
 
-const useSignIn = () => {
+const useWordForm = ({currentWord, currentTopicId}) => {
   const toast = useToast()
   const {t} = useTranslation()
   const dispatch = useDispatch()
   const navigation = useNavigation()
+  const {langDirect} = useSelector(store => store.global || {})
   const formikInitialValues = {
-    email: '',
-    password: ''
+    word: currentWord ? currentWord?.word : '',
+    wordTranslate: currentWord ? currentWord?.wordTranslate : '',
+    wordPhonetic: currentWord ? currentWord?.wordPhonetic : '',
+    langDirect: currentWord ? currentWord.langDirect : langDirect,
+    topicIds: currentTopicId ? [currentTopicId] : null
   }
   const [isFormChanged, setIsFormChanged] = useState({
-    email: false,
-    password: false
+    word: false,
+    wordTranslate: false,
+    wordPhonetic: false,
+    langDirect: false
   })
   const [isLoading, setIsLoading] = useState(false)
   const [dataErrors, setDataErrors] = useState({})
@@ -41,41 +46,39 @@ const useSignIn = () => {
       navigation.navigate(path)
     }
   }
+
   const handleSubmit = async values => {
     if (isValid) {
       const data = {
-        email: values.email,
-        password: values.password
+        word: values.word,
+        wordTranslate: values.wordTranslate,
+        wordPhonetic: values?.wordPhonetic ? values?.wordPhonetic : undefined,
+        langDirect: values.langDirect,
+        topicIds: values?.topicIds
       }
       try {
         setIsLoading(true)
-        let resp = await userLoginRequest(data)
-        if (resp?.status === 200) {
-          if (resp?.data?.token) {
-            toast.show('Success login', {type: ToastTypes.success})
-            dispatch(setUserToken(resp?.data?.token))
-            dispatch(setAuthStatus(true))
-            dispatch(getUserInfo())
-            navigation.reset({
-              index: 0,
-              routes: [
-                {
-                  name: 'PrivateScreens'
-                }
-              ]
-            })
-          }
+        const response = await createWordRequest(data)
+        if (response.status === 201) {
+          toast.show(t('topic.successCreateTopic'), {type: ToastTypes.success})
+          navigation.navigate(routerNameList.topicView, {
+            topicId: currentTopicId
+          })
         }
       } catch (err) {
-        toast.show(err.message, {type: ToastTypes.danger})
+        toast.show(err?.message, {type: ToastTypes.danger})
       } finally {
         setIsLoading(false)
       }
     }
   }
-  const onChangeInput = ({value, name}) => {
+  const onChangeInput = ({value, name, isOnlyNumber = false}) => {
+    let val = value
+    if (isOnlyNumber) {
+      val = onInputOnlyNumber(value)
+    }
     setDataErrors({...dataErrors, [name]: null})
-    setFieldValue([name], value)
+    setFieldValue([name], val)
     setIsFormChanged({...isFormChanged, [name]: true})
   }
   return {
@@ -84,10 +87,11 @@ const useSignIn = () => {
     errors,
     isFormChanged,
     isValidForm,
+    langDirect,
     handleSubmit,
     onChangeInput,
     goToScreen,
     isLoading
   }
 }
-export {useSignIn}
+export {useWordForm}
