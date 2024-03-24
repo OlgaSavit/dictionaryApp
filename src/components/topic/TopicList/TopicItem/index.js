@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react'
+import React, {useMemo, useState} from 'react'
 import {stylessheet} from './styles'
 import {View, TouchableOpacity, Text, Alert} from 'react-native'
 import {useTranslation} from 'react-i18next'
@@ -8,7 +8,8 @@ import routerNameList from '@/navigation/routerNameList'
 import Colors from '@/constants/theme'
 import Icon from '@/components/Icon'
 import {deleteTopicById} from '@/api/requests/topic'
-import {setUserInfo} from '@/store/slices/userSlice'
+import {useToast} from 'react-native-toast-notifications'
+import {ToastTypes} from '@/constants/general'
 
 const initialProps = {
   item: null,
@@ -17,12 +18,14 @@ const initialProps = {
 }
 
 const TopicItem = props => {
+  const toast = useToast()
   const {theme} = useSelector(store => store.theme || {})
   const {userInfo} = useSelector(store => store.user || {})
   const {t} = useTranslation()
   const navigation = useNavigation()
   const styles = stylessheet(theme)
-  const {item, order, onUpdateTopicList} = {...initialProps, ...props}
+  const {item, onUpdateTopicList} = {...initialProps, ...props}
+  const [isRemoveLoading, setIsRemoveLoading] = useState(false)
 
   const goToEditTask = item => {
     navigation.navigate(routerNameList?.tasksForm, {currentTask: item})
@@ -31,15 +34,20 @@ const TopicItem = props => {
     navigation.navigate(routerNameList?.topicView, {topicId: item?.id})
   }
   const removeTopic = async () => {
+    setIsRemoveLoading(true)
     try {
       const response = await deleteTopicById(item?.id)
       if (response?.status === 200) {
         onUpdateTopicList()
       }
-    } catch (e) {}
+    } catch (err) {
+      toast.show(err.message, {type: ToastTypes.danger})
+    } finally {
+      setIsRemoveLoading(false)
+    }
   }
   const handleRemoveTopicPress = () => {
-    Alert.alert(t('texts.removeTopic', {title: item?.title}), '', [
+    Alert.alert(`${t('texts.removeTopic')}:"${item?.title}"`, '', [
       {
         text: t('buttons.cancel'),
         onPress: () => {},
@@ -62,7 +70,14 @@ const TopicItem = props => {
   }, [item?.title])
 
   return (
-    <TouchableOpacity onPress={goToTopic} style={styles.mainWrapper}>
+    <TouchableOpacity
+      onPress={goToTopic}
+      disabled={isRemoveLoading}
+      style={
+        isRemoveLoading
+          ? [styles.mainWrapper, styles.disabledItem]
+          : [styles.mainWrapper]
+      }>
       <View style={styles.contentWrapper}>
         <View style={styles.wrapperTopBlock}>
           <View style={styles.wrapperTitle}>
@@ -91,6 +106,7 @@ const TopicItem = props => {
         {/*</TouchableOpacity>*/}
         {userInfo?.id === item?.userId && (
           <TouchableOpacity
+            disabled={isRemoveLoading}
             onPress={handleRemoveTopicPress}
             style={styles.wrapperActionBtn}>
             <Icon name="trash" size={22} color={Colors[theme].colors.red} />

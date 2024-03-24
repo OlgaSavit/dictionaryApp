@@ -14,7 +14,7 @@ const useTopicList = () => {
   const [page, setPage] = useState(initialPage)
   const [isLoading, setIsLoading] = useState(false)
   const [isFirstTime, setIsFirstTime] = useState(true)
-
+  console.log('isFirstTime', isFirstTime)
   const fetchAllTopicList = data => {
     isFirstTime && setIsLoading(true)
     dispatch(getAllTopicList(data)).finally(() => {
@@ -29,7 +29,7 @@ const useTopicList = () => {
       setPage(1)
       fetchAllTopicList({page: 1, perPage: initialPerPage})
       setIsFirstTime(false)
-    }, [])
+    }, [isFirstTime])
   )
   const onUpdateTopicList = () => {
     setPage(1)

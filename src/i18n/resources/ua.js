@@ -18,7 +18,7 @@ export default {
     allTopics: 'Всі теми',
     loading: 'Завантаження',
     words: 'Слова',
-    removeTopic: 'Видалити тему "{{title}}"'
+    removeTopic: 'Видалити тему'
   },
   buttons: {
     logout: 'Вихід',

@@ -10,6 +10,9 @@ export const stylessheet = theme =>
       gap: 8,
       marginBottom: 10
     },
+    disabledItem: {
+      opacity: 0.5
+    },
     wrapperTopBlock: {
       flexDirection: 'row',
       gap: 10

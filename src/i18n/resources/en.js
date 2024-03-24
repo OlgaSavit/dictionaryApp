@@ -18,7 +18,7 @@ export default {
     allTopics: 'All topics',
     loading: 'Loading',
     words: 'Words',
-    removeTopic: 'Remove topic "{{title}}"'
+    removeTopic: 'Remove topic'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {
