@@ -73,11 +73,7 @@ const TopicItem = props => {
     <TouchableOpacity
       onPress={goToTopic}
       disabled={isRemoveLoading}
-      style={
-        isRemoveLoading
-          ? [styles.mainWrapper, styles.disabledItem]
-          : [styles.mainWrapper]
-      }>
+      style={[styles.mainWrapper]}>
       <View style={styles.contentWrapper}>
         <View style={styles.wrapperTopBlock}>
           <View style={styles.wrapperTitle}>

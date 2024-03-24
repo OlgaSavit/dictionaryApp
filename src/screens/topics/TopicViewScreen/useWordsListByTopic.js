@@ -11,9 +11,9 @@ const useWordsListByTopic = () => {
   const [topicItem, setTopicItem] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [wordMode, setWordMode] = useState(WordModeTypes.default)
-
+  const [isFirstTime, setIsFirstTime] = useState(true)
   const fetchWordsByTopicId = async ({topicId}) => {
-    setIsLoading(true)
+    isFirstTime && setIsLoading(true)
     try {
       const response = await getWordsByTopicRequest({topicId})
       if (response.status === 200) {
@@ -28,11 +28,15 @@ const useWordsListByTopic = () => {
   useFocusEffect(
     useCallback(() => {
       fetchWordsByTopicId({topicId})
+      setIsFirstTime(false)
     }, [topicId])
   )
+  const onUpdateWordsByTopic = () => {
+    fetchWordsByTopicId({topicId})
+  }
   const onChangeMode = mode => {
     setWordMode(mode)
   }
-  return {isLoading, topicItem, wordMode, onChangeMode}
+  return {isLoading, topicItem, wordMode, onChangeMode, onUpdateWordsByTopic}
 }
 export {useWordsListByTopic}

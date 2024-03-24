@@ -12,13 +12,13 @@ const initialProps = {
   list: [],
   wordMode: WordModeTypes.default,
   onChangeMode: () => {},
-  onUpdateTopic: () => {}
+  onUpdateWordsByTopic: () => {}
 }
 const WordList = props => {
   const {theme} = useSelector(store => store.theme || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
-  const {list, onChangeMode, wordMode, onUpdateTopic, ...rest} = {
+  const {list, onChangeMode, wordMode, onUpdateWordsByTopic, ...rest} = {
     ...initialProps,
     ...props
   }
@@ -29,7 +29,11 @@ const WordList = props => {
         <FlatList
           data={list}
           renderItem={({item, index}) => (
-            <WordItem item={item} order={index + 1} wordMode={wordMode} />
+            <WordItem
+              item={item}
+              wordMode={wordMode}
+              onUpdateWordsByTopic={onUpdateWordsByTopic}
+            />
           )}
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}

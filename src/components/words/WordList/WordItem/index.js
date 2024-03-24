@@ -1,19 +1,24 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import {stylessheet} from './styles'
-import {View, TouchableOpacity, Text} from 'react-native'
+import {View, TouchableOpacity, Text, Alert} from 'react-native'
 import {useTranslation} from 'react-i18next'
 import {useNavigation} from '@react-navigation/native'
 import {useSelector} from 'react-redux'
-import routerNameList from '@/navigation/routerNameList'
 import {ToastTypes, WordModeTypes, WordStatusList} from '@/constants/general'
 import {Blurhash} from 'react-native-blurhash'
-import {userChangeWordStatusRequest} from '@/api/requests/word'
+import {
+  deleteWordByIdRequest,
+  userChangeWordStatusRequest
+} from '@/api/requests/word'
 import {useToast} from 'react-native-toast-notifications'
+import Icon from '@/components/Icon'
+import Colors from '@/constants/theme'
 
 const initialProps = {
   item: null,
   order: null,
-  wordMode: WordModeTypes.default
+  wordMode: WordModeTypes.default,
+  onUpdateWordsByTopic: () => {}
 }
 
 const WordItem = props => {
@@ -21,9 +26,13 @@ const WordItem = props => {
   const {t} = useTranslation()
   const navigation = useNavigation()
   const styles = stylessheet(theme)
-  const {item, order, wordMode} = {...initialProps, ...props}
+  const {item, order, wordMode, onUpdateWordsByTopic} = {
+    ...initialProps,
+    ...props
+  }
   const [currentWordStatus, setCurrentWordStattus] = useState(item?.status)
   const [isLoadingChangeStatus, setIsLoadingChangeStatus] = useState(false)
+  const [isRemoveLoading, setIsRemoveLoading] = useState(false)
   const toast = useToast()
 
   useEffect(() => {
@@ -51,6 +60,34 @@ const WordItem = props => {
     } finally {
       setIsLoadingChangeStatus(false)
     }
+  }
+  const removeTopic = async () => {
+    setIsRemoveLoading(true)
+    try {
+      const response = await deleteWordByIdRequest(item?.id)
+      if (response?.status === 200) {
+        onUpdateWordsByTopic()
+      }
+    } catch (err) {
+      toast.show(err.message, {type: ToastTypes.danger})
+    } finally {
+      setIsRemoveLoading(false)
+    }
+  }
+  const handleRemoveWordPress = () => {
+    Alert.alert(`${t('texts.removeWord')}:"${item?.word}"`, '', [
+      {
+        text: t('buttons.cancel'),
+        onPress: () => {},
+        style: 'cancel'
+      },
+      {
+        text: t('buttons.confirm'),
+        onPress: () => {
+          removeTopic()
+        }
+      }
+    ])
   }
   const renderModeContent = mode => {
     return (
@@ -81,7 +118,7 @@ const WordItem = props => {
   }
 
   return (
-    <View style={styles.mainWrapper}>
+    <View style={[styles.mainWrapper]}>
       <View style={styles.contentWrapper}>
         <View style={styles.wrapperTopBlock}>
           {renderModeContent(wordMode)}
@@ -96,6 +133,14 @@ const WordItem = props => {
           {currentWordStatus}
         </Text>
       </TouchableOpacity>
+      <View style={styles.wrapperButtons}>
+        <TouchableOpacity
+          disabled={isRemoveLoading}
+          onPress={handleRemoveWordPress}
+          style={styles.wrapperActionBtn}>
+          <Icon name="trash" size={22} color={Colors[theme].colors.red} />
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }

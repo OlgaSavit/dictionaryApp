@@ -20,7 +20,8 @@ const TopicViewScreen = () => {
   const {t} = useTranslation()
   const styles = stylessheet(theme)
   const navigation = useNavigation()
-  const {topicItem, isLoading, wordMode, onChangeMode} = useWordsListByTopic()
+  const {topicItem, isLoading, wordMode, onChangeMode, onUpdateWordsByTopic} =
+    useWordsListByTopic()
   const renderRightBtn = useMemo(() => {
     if (userInfo?.id === topicItem?.userId) {
       return (
@@ -54,6 +55,7 @@ const TopicViewScreen = () => {
             list={topicItem?.words}
             wordMode={wordMode}
             onChangeMode={onChangeMode}
+            onUpdateWordsByTopic={onUpdateWordsByTopic}
           />
         )}
       </View>

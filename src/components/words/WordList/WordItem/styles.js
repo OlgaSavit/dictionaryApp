@@ -10,6 +10,9 @@ export const stylessheet = theme =>
       gap: 8,
       marginBottom: 10
     },
+    disableItem: {
+      opacity: 0.5
+    },
     wrapperTopBlock: {
       flexDirection: 'row',
       gap: 10
@@ -44,15 +47,14 @@ export const stylessheet = theme =>
       flex: 1
     },
     wrapperButtons: {
-      flex: 1 / 4,
       flexDirection: 'row',
-      alignItems: 'center'
+      alignItems: 'flex-start'
     },
     wrapperActionBtn: {
       width: 40,
       height: 40,
       alignItems: 'center',
-      justifyContent: 'flex-start'
+      justifyContent: 'center'
     },
     wrapperStatusBtn: {
       flexDirection: 'row',
