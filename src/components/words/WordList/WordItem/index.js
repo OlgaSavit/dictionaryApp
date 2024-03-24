@@ -18,7 +18,8 @@ const initialProps = {
   item: null,
   order: null,
   wordMode: WordModeTypes.default,
-  onUpdateWordsByTopic: () => {}
+  onUpdateWordsByTopic: () => {},
+  topicItem: null
 }
 
 const WordItem = props => {
@@ -26,7 +27,8 @@ const WordItem = props => {
   const {t} = useTranslation()
   const navigation = useNavigation()
   const styles = stylessheet(theme)
-  const {item, order, wordMode, onUpdateWordsByTopic} = {
+  const {userInfo} = useSelector(store => store.user || {})
+  const {item, order, wordMode, topicItem, onUpdateWordsByTopic} = {
     ...initialProps,
     ...props
   }
@@ -134,12 +136,14 @@ const WordItem = props => {
         </Text>
       </TouchableOpacity>
       <View style={styles.wrapperButtons}>
-        <TouchableOpacity
-          disabled={isRemoveLoading}
-          onPress={handleRemoveWordPress}
-          style={styles.wrapperActionBtn}>
-          <Icon name="trash" size={22} color={Colors[theme].colors.red} />
-        </TouchableOpacity>
+        {topicItem?.userId === userInfo?.id && (
+          <TouchableOpacity
+            disabled={isRemoveLoading}
+            onPress={handleRemoveWordPress}
+            style={styles.wrapperActionBtn}>
+            <Icon name="trash" size={22} color={Colors[theme].colors.red} />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   )

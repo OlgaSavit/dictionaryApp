@@ -53,6 +53,7 @@ const TopicViewScreen = () => {
         ) : (
           <WordList
             list={topicItem?.words}
+            topicItem={topicItem}
             wordMode={wordMode}
             onChangeMode={onChangeMode}
             onUpdateWordsByTopic={onUpdateWordsByTopic}
