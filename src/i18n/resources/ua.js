@@ -18,7 +18,9 @@ export default {
     allTopics: 'Всі теми',
     loading: 'Завантаження',
     words: 'Слова',
-    removeTopic: 'Видалити тему'
+    removeTopic: 'Видалити тему',
+    search: 'Пошук',
+    selectedItems: 'Обрано тем: {{count}} '
   },
   buttons: {
     logout: 'Вихід',

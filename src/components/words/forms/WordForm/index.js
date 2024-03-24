@@ -10,12 +10,12 @@ import DropDown from '@/components/DropDown'
 import {useWordForm} from '@/components/words/forms/WordForm/useWordForm'
 
 const initialValues = {
-  currentTopicId: null,
+  topicItem: null,
   currentWord: null
 }
 
 const WordForm = props => {
-  const {currentTopicId, currentWord} = {...initialValues, ...props}
+  const {topicItem, currentWord} = {...initialValues, ...props}
   const {theme} = useSelector(store => store.theme || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
@@ -29,8 +29,12 @@ const WordForm = props => {
     langDirect,
     handleSubmit,
     onChangeInput,
-    goToScreen
-  } = useWordForm({currentWord, currentTopicId})
+    onAddLoadTopicToList,
+    onChangeMultiInput,
+    goToScreen,
+    onLoadTopicList,
+    topicList
+  } = useWordForm({currentWord, topicItem})
   return (
     <View style={styles.mainWrapper}>
       <Formik onSubmit={handleSubmit}>
@@ -105,11 +109,15 @@ const WordForm = props => {
             </View>
             <View style={styles.wrapperInput}>
               <DropDown
+                multiple={true}
                 placeholder={t('fields.topicList')}
+                selectedValue={values.topicIds}
                 onSelectValue={val => {
-                  onChangeInput({value: val?.value, name: 'langDirect'})
+                  onChangeMultiInput({items: val, name: 'topicIds'})
                 }}
-                items={[]}
+                searchable={true}
+                onFetchList={onAddLoadTopicToList}
+                items={topicList}
               />
             </View>
           </View>

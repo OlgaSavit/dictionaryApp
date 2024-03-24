@@ -28,7 +28,7 @@ const TopicViewScreen = () => {
           <CustomButton
             onPress={() => {
               navigation.navigate(routerNameList?.wordForm, {
-                currentTopicId: topicItem?.id
+                topicItem: topicItem
               })
             }}
             btnType={ButtonTypes.roundBtn}>

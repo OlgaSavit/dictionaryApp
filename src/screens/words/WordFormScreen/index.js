@@ -13,7 +13,7 @@ const WordFormScreen = () => {
   const {theme} = useSelector(store => store.theme || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
-  const {currentTopicId, currentWord} = router?.params || {}
+  const {topicItem, currentWord} = router?.params || {}
   return (
     <Layout scrollType={scrollTypes.view}>
       <View style={styles.mainWrapper}>
@@ -21,7 +21,7 @@ const WordFormScreen = () => {
           showBack={true}
           title={currentWord ? t('words.editWord') : t('words.createWord')}
         />
-        <WordForm currentTopicId={currentTopicId} currentWord={currentWord} />
+        <WordForm topicItem={topicItem} currentWord={currentWord} />
       </View>
     </Layout>
   )

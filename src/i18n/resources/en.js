@@ -18,7 +18,9 @@ export default {
     allTopics: 'All topics',
     loading: 'Loading',
     words: 'Words',
-    removeTopic: 'Remove topic'
+    removeTopic: 'Remove topic',
+    search: 'Search',
+    selectedItems: 'Selected topics: {{count}}'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {
