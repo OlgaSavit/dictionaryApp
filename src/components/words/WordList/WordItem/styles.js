@@ -48,7 +48,7 @@ export const stylessheet = theme =>
     },
     wrapperButtons: {
       flexDirection: 'row',
-      alignItems: 'flex-start'
+      alignItems: 'center'
     },
     wrapperActionBtn: {
       width: 40,
@@ -58,7 +58,7 @@ export const stylessheet = theme =>
     },
     wrapperStatusBtn: {
       flexDirection: 'row',
-      alignItems: 'flex-start',
+      alignItems: 'center',
       gap: 2
     },
     countText: {

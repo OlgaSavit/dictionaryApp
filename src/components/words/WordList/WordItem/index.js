@@ -13,6 +13,8 @@ import {
 import {useToast} from 'react-native-toast-notifications'
 import Icon from '@/components/Icon'
 import Colors from '@/constants/theme'
+import {createSound, playSound} from '@/utils/playSound'
+import SoundBtn from '@/components/Sound'
 
 const initialProps = {
   item: null,
@@ -36,7 +38,31 @@ const WordItem = props => {
   const [isLoadingChangeStatus, setIsLoadingChangeStatus] = useState(false)
   const [isRemoveLoading, setIsRemoveLoading] = useState(false)
   const toast = useToast()
-
+  const [playing, setPlaying] = useState()
+  const audio = useMemo(() => {
+    if (item?.voice) {
+      return createSound(item.voice)
+    }
+    return null
+  }, [item.voice])
+  console.log('audio', audio)
+  const playPause = () => {
+    if (audio.isPlaying()) {
+      audio.pause()
+      setPlaying(false)
+    } else {
+      setPlaying(true)
+      audio.play(success => {
+        if (success) {
+          setPlaying(false)
+          console.log('successfully finished playing')
+        } else {
+          setPlaying(false)
+          console.log('playback failed due to audio decoding errors')
+        }
+      })
+    }
+  }
   useEffect(() => {
     setCurrentWordStattus(item?.status)
   }, [item?.status])
@@ -136,6 +162,8 @@ const WordItem = props => {
         </Text>
       </TouchableOpacity>
       <View style={styles.wrapperButtons}>
+        {item.voice && <SoundBtn soundUrl={item?.voice} />}
+
         {topicItem?.userId === userInfo?.id && (
           <TouchableOpacity
             disabled={isRemoveLoading}
