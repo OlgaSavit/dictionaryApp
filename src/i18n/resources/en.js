@@ -20,7 +20,9 @@ export default {
     words: 'Words',
     removeTopic: 'Remove topic',
     search: 'Search',
-    selectedItems: 'Selected topics: {{count}}'
+    selectedItems: 'Selected topics: {{count}}',
+    successEdit: 'Changes saved successfully',
+    removeWord: 'Remove word'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {
@@ -61,6 +63,7 @@ export default {
   },
   words: {
     createWord: 'Create Word',
-    editWord: 'Edit Word'
+    editWord: 'Edit Word',
+    successCreate: 'Word successfully created'
   }
 }

@@ -28,5 +28,15 @@ export const stylessheet = theme =>
     errorText: {
       fontSize: 10,
       color: Colors[theme]?.colors.red
+    },
+    voiceBlock: {
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      // width: '100%',
+      paddingVertical: 8
+    },
+    label: {
+      fontSize: 14
     }
   })

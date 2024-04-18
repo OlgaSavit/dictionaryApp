@@ -20,7 +20,9 @@ export default {
     words: 'Слова',
     removeTopic: 'Видалити тему',
     search: 'Пошук',
-    selectedItems: 'Обрано тем: {{count}} '
+    selectedItems: 'Обрано тем: {{count}} ',
+    successEdit: 'Зміни успішно збережено',
+    removeWord: 'Видалити слово'
   },
   buttons: {
     logout: 'Вихід',
@@ -65,6 +67,7 @@ export default {
   },
   words: {
     createWord: 'Створити слово',
-    editWord: 'Редагувати слово'
+    editWord: 'Редагувати слово',
+    successCreate: 'Слово успішно створено'
   }
 }

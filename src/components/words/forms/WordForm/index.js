@@ -8,6 +8,7 @@ import CustomButton from '@/components/Button'
 import {useSelector} from 'react-redux'
 import DropDown from '@/components/DropDown'
 import {useWordForm} from '@/components/words/forms/WordForm/useWordForm'
+import SwitchComponent from '@/components/SwitchComponent'
 
 const initialValues = {
   topicItem: null,
@@ -31,6 +32,9 @@ const WordForm = props => {
     onChangeInput,
     onAddLoadTopicToList,
     onChangeMultiInput,
+    isDisabledBtn,
+    addVoice,
+    onChangeAddVoice,
     goToScreen,
     onLoadTopicList,
     topicList
@@ -120,9 +124,18 @@ const WordForm = props => {
                 items={topicList}
               />
             </View>
+            <View style={styles.voiceBlock}>
+              <Text style={styles.label}>Add voice</Text>
+              <SwitchComponent
+                isOn={addVoice}
+                onChange={val => {
+                  onChangeAddVoice(val)
+                }}
+              />
+            </View>
           </View>
           <CustomButton
-            disabled={!isValidForm || isLoading}
+            disabled={isDisabledBtn()}
             onPress={() => handleSubmit(values)}>
             <Text>Save</Text>
           </CustomButton>

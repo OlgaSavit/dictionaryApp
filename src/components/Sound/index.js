@@ -40,7 +40,7 @@ const SoundBtn = props => {
     <TouchableOpacity style={styles.voiceBtn} onPress={playPause}>
       <Icon
         color={Colors[theme].colors.gray_100}
-        size={16}
+        size={30}
         name={playing ? 'pause-filled' : 'play'}
       />
     </TouchableOpacity>

@@ -8,7 +8,8 @@ export const stylessheet = theme =>
       flexDirection: 'row',
       justifyContent: 'space-between',
       gap: 8,
-      marginBottom: 10
+      marginBottom: 10,
+      backgroundColor: Colors[theme].colors.commonWhite
     },
     disableItem: {
       opacity: 0.5
@@ -48,7 +49,9 @@ export const stylessheet = theme =>
     },
     wrapperButtons: {
       flexDirection: 'row',
-      alignItems: 'center'
+      alignItems: 'center',
+      flex: 1 / 2,
+      justifyContent: 'center'
     },
     wrapperActionBtn: {
       width: 40,
@@ -59,7 +62,9 @@ export const stylessheet = theme =>
     wrapperStatusBtn: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 2
+      justifyContent: 'flex-end',
+      gap: 2,
+      flex: 1 / 2
     },
     countText: {
       fontSize: 16,

@@ -8,14 +8,20 @@ import {useToast} from 'react-native-toast-notifications'
 import {onInputOnlyNumber} from '@/utils/normalize'
 import {ToastTypes} from '@/constants/general'
 import routerNameList from '@/navigation/routerNameList'
-import {createWordRequest} from '@/api/requests/word'
+import {
+  createWordRequest,
+  editWordRequest,
+  wordVoiceGenerate,
+  wordVoiceGenerateRequest
+} from '@/api/requests/word'
 import {appendAllTopicList, getAllTopicList} from '@/store/slices/topicSlice'
-
+import _isEqual from 'lodash/isEqual'
 const useWordForm = ({currentWord, topicItem}) => {
   const toast = useToast()
   const {t} = useTranslation()
   const dispatch = useDispatch()
   const navigation = useNavigation()
+  const [addVoice, setAddVoice] = useState(false)
   const {langDirect} = useSelector(store => store.global || {})
   const {allTopicList, allTopicListMeta} = useSelector(
     state => state.topic || {}
@@ -62,6 +68,20 @@ const useWordForm = ({currentWord, topicItem}) => {
     setTopicList([currentTopic, ...newList])
   }, [allTopicList, topicItem])
 
+  const isDisabledBtn = () => {
+    if (!isValidForm || isLoading) {
+      return true
+    }
+    if (_isEqual(formikInitialValues, values)) {
+      return true
+    } else {
+      return false
+    }
+  }
+  const onChangeAddVoice = val => {
+    setAddVoice(val)
+  }
+
   const onLoadTopicList = (page = 1) => {
     dispatch(getAllTopicList({page: page, onlyMy: 1, perPage: 10}))
   }
@@ -92,18 +112,54 @@ const useWordForm = ({currentWord, topicItem}) => {
       }
       try {
         setIsLoading(true)
-        const response = await createWordRequest(data)
-        if (response.status === 201) {
-          toast.show(t('topic.successCreateTopic'), {type: ToastTypes.success})
-          navigation.navigate(routerNameList.topicView, {
-            topicId: topicItem?.id
-          })
+        if (currentWord) {
+          const response = await editWordRequest(data, currentWord.id)
+          if (response.status === 200) {
+            toast.show(t('texts.successEdit'), {
+              type: ToastTypes.success
+            })
+            navigation.navigate(routerNameList.topicView, {
+              topicId: topicItem?.id
+            })
+          }
+        } else {
+          const response = await createWordRequest(data)
+          if (response.status === 201) {
+            if (addVoice) {
+              //TODO change when api will be changed
+              // const idNewWord = response?.config.data.word
+              // onWordVoiceGenerate(1663)
+            } else {
+              toast.show(t('words.successCreate'), {
+                type: ToastTypes.success
+              })
+              navigation.navigate(routerNameList.topicView, {
+                topicId: topicItem?.id
+              })
+            }
+          }
         }
       } catch (err) {
         toast.show(err?.message, {type: ToastTypes.danger})
       } finally {
         setIsLoading(false)
       }
+    }
+  }
+
+  const onWordVoiceGenerate = async id => {
+    try {
+      const response = await wordVoiceGenerateRequest(id)
+      if (response.status === 200) {
+        toast.show(t('words.successCreate'), {
+          type: ToastTypes.success
+        })
+        navigation.navigate(routerNameList.topicView, {
+          topicId: topicItem?.id
+        })
+      }
+    } catch (err) {
+      toast.show(err?.message, {type: ToastTypes.danger})
     }
   }
   const onChangeInput = ({value, name, isOnlyNumber = false}) => {
@@ -118,7 +174,6 @@ const useWordForm = ({currentWord, topicItem}) => {
   const onChangeMultiInput = ({items, name}) => {
     setDataErrors({...dataErrors, [name]: null})
     let values = items?.map(item => item.value)
-    console.log('items', [name], values)
     setFieldValue([name], values)
     setIsFormChanged({...isFormChanged, [name]: true})
   }
@@ -136,7 +191,10 @@ const useWordForm = ({currentWord, topicItem}) => {
     topicList,
     onLoadTopicList,
     onAddLoadTopicToList,
-    onChangeMultiInput
+    onChangeMultiInput,
+    isDisabledBtn,
+    onChangeAddVoice,
+    addVoice
   }
 }
 export {useWordForm}

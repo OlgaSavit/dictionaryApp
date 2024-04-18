@@ -15,6 +15,8 @@ import Icon from '@/components/Icon'
 import Colors from '@/constants/theme'
 import {createSound, playSound} from '@/utils/playSound'
 import SoundBtn from '@/components/Sound'
+import SwipeComponent from '@/components/SwipeComponent'
+import routerNameList from '@/navigation/routerNameList'
 
 const initialProps = {
   item: null,
@@ -45,24 +47,6 @@ const WordItem = props => {
     }
     return null
   }, [item.voice])
-  console.log('audio', audio)
-  const playPause = () => {
-    if (audio.isPlaying()) {
-      audio.pause()
-      setPlaying(false)
-    } else {
-      setPlaying(true)
-      audio.play(success => {
-        if (success) {
-          setPlaying(false)
-          console.log('successfully finished playing')
-        } else {
-          setPlaying(false)
-          console.log('playback failed due to audio decoding errors')
-        }
-      })
-    }
-  }
   useEffect(() => {
     setCurrentWordStattus(item?.status)
   }, [item?.status])
@@ -117,6 +101,12 @@ const WordItem = props => {
       }
     ])
   }
+  const onEditWordPress = () => {
+    navigation.navigate(routerNameList?.wordForm, {
+      topicItem: topicItem,
+      currentWord: item
+    })
+  }
   const renderModeContent = mode => {
     return (
       <View style={styles.wrapperTitle}>
@@ -144,36 +134,53 @@ const WordItem = props => {
       </View>
     )
   }
-
-  return (
-    <View style={[styles.mainWrapper]}>
-      <View style={styles.contentWrapper}>
-        <View style={styles.wrapperTopBlock}>
-          {renderModeContent(wordMode)}
-        </View>
-        <Text style={styles.description}>{item?.description}</Text>
-      </View>
-      <TouchableOpacity
-        disabled={isLoadingChangeStatus}
-        onPress={() => onChangeWordStatus(currentWordStatus)}
-        style={styles.wrapperStatusBtn}>
-        <Text style={[styles.countText, styles[currentWordStatus]]}>
-          {currentWordStatus}
-        </Text>
-      </TouchableOpacity>
-      <View style={styles.wrapperButtons}>
-        {item.voice && <SoundBtn soundUrl={item?.voice} />}
-
-        {topicItem?.userId === userInfo?.id && (
+  const renderRightActions = () => {
+    if (topicItem?.userId === userInfo?.id) {
+      return (
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}>
+          <TouchableOpacity
+            onPress={onEditWordPress}
+            style={styles.wrapperActionBtn}>
+            <Icon name="edit" size={22} color={Colors[theme].colors.dark_300} />
+          </TouchableOpacity>
           <TouchableOpacity
             disabled={isRemoveLoading}
             onPress={handleRemoveWordPress}
             style={styles.wrapperActionBtn}>
             <Icon name="trash" size={22} color={Colors[theme].colors.red} />
           </TouchableOpacity>
-        )}
+        </View>
+      )
+    }
+    return <></>
+  }
+
+  return (
+    <SwipeComponent renderRightActions={renderRightActions}>
+      <View style={[styles.mainWrapper]}>
+        <View style={styles.contentWrapper}>
+          <View style={styles.wrapperTopBlock}>
+            {renderModeContent(wordMode)}
+          </View>
+          <Text style={styles.description}>{item?.description}</Text>
+        </View>
+        <View style={styles.wrapperButtons}>
+          {item.voice && <SoundBtn soundUrl={item?.voice} />}
+        </View>
+        <TouchableOpacity
+          disabled={isLoadingChangeStatus}
+          onPress={() => onChangeWordStatus(currentWordStatus)}
+          style={styles.wrapperStatusBtn}>
+          <Text style={[styles.countText, styles[currentWordStatus]]}>
+            {currentWordStatus}
+          </Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </SwipeComponent>
   )
 }
 export default WordItem

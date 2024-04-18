@@ -10,6 +10,7 @@ import Icon from '@/components/Icon'
 import {deleteTopicById} from '@/api/requests/topic'
 import {useToast} from 'react-native-toast-notifications'
 import {ToastTypes} from '@/constants/general'
+import SwipeComponent from '@/components/SwipeComponent'
 
 const initialProps = {
   item: null,
@@ -68,48 +69,52 @@ const TopicItem = props => {
       secondaryTitle: arr.length === 2 ? arr[1] : null
     }
   }, [item?.title])
-
-  return (
-    <TouchableOpacity
-      onPress={goToTopic}
-      disabled={isRemoveLoading}
-      style={[styles.mainWrapper]}>
-      <View style={styles.contentWrapper}>
-        <View style={styles.wrapperTopBlock}>
-          <View style={styles.wrapperTitle}>
-            <Text style={styles.title}>{normalizedTitle?.mainTitle}</Text>
-            <Text style={styles.secondaryTitle}>
-              {normalizedTitle.secondaryTitle}
-            </Text>
-          </View>
-        </View>
-      </View>
-      <View style={styles.wrapperCountBlock}>
-        <Text style={[styles.countText, styles.countTextAll]}>
-          {item?.wordsCount}
-        </Text>
-        <Text style={styles.countText}>/</Text>
-        <Text style={[styles.countText, styles.countTextDone]}>
-          {item?.wordsDoneCount}
-        </Text>
-      </View>
-
-      <View style={styles.wrapperButtons}>
-        {/*<TouchableOpacity*/}
-        {/*  onPress={() => goToEditTask(item)}*/}
-        {/*  style={styles.wrapperActionBtn}>*/}
-        {/*  <Icon name={'edit'} size={22} color={Colors[theme].colors.gray_100} />*/}
-        {/*</TouchableOpacity>*/}
-        {userInfo?.id === item?.userId && (
+  const renderRightActions = () => {
+    if (item?.userId === userInfo?.id) {
+      return (
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}>
           <TouchableOpacity
             disabled={isRemoveLoading}
             onPress={handleRemoveTopicPress}
             style={styles.wrapperActionBtn}>
             <Icon name="trash" size={22} color={Colors[theme].colors.red} />
           </TouchableOpacity>
-        )}
-      </View>
-    </TouchableOpacity>
+        </View>
+      )
+    }
+    return <></>
+  }
+  return (
+    <SwipeComponent renderRightActions={renderRightActions}>
+      <TouchableOpacity
+        onPress={goToTopic}
+        disabled={isRemoveLoading}
+        style={[styles.mainWrapper]}>
+        <View style={styles.contentWrapper}>
+          <View style={styles.wrapperTopBlock}>
+            <View style={styles.wrapperTitle}>
+              <Text style={styles.title}>{normalizedTitle?.mainTitle}</Text>
+              <Text style={styles.secondaryTitle}>
+                {normalizedTitle.secondaryTitle}
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.wrapperCountBlock}>
+          <Text style={[styles.countText, styles.countTextAll]}>
+            {item?.wordsCount}
+          </Text>
+          <Text style={styles.countText}>/</Text>
+          <Text style={[styles.countText, styles.countTextDone]}>
+            {item?.wordsDoneCount}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </SwipeComponent>
   )
 }
 export default TopicItem
