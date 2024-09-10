@@ -25,16 +25,37 @@ const TopicViewScreen = () => {
   const renderRightBtn = useMemo(() => {
     if (userInfo?.id === topicItem?.userId) {
       return (
-        <View style={styles.wrapperAddIcon}>
-          <CustomButton
-            onPress={() => {
-              navigation.navigate(routerNameList?.wordForm, {
-                topicItem: topicItem
-              })
-            }}
-            btnType={ButtonTypes.roundBtn}>
-            <Icon name={'close'} size={12} color={Colors[theme].colors.dark} />
-          </CustomButton>
+        <View style={styles.wrapperRightBtns}>
+          <View style={styles.wrapperAddIcon}>
+            <CustomButton
+              onPress={() => {
+                navigation.navigate(routerNameList?.wordForm, {
+                  topicItem: topicItem
+                })
+              }}
+              btnType={ButtonTypes.roundBtn}>
+              <Icon
+                name={'close'}
+                size={12}
+                color={Colors[theme].colors.dark}
+              />
+            </CustomButton>
+          </View>
+          <View style={styles.wrapperAddIconNormal}>
+            <CustomButton
+              onPress={() => {
+                navigation.navigate(routerNameList?.lern, {
+                  list: topicItem?.words
+                })
+              }}
+              btnType={ButtonTypes.roundBtn}>
+              <Icon
+                name={'usefulFacts'}
+                size={12}
+                color={Colors[theme].colors.green}
+              />
+            </CustomButton>
+          </View>
         </View>
       )
     }

@@ -6,10 +6,18 @@ export const stylessheet = theme =>
       flex: 1,
       paddingHorizontal: 16
     },
+    wrapperRightBtns: {
+      flexDirection: 'row',
+      gap: 10
+    },
     wrapperAddIcon: {
       width: 40,
       height: 40,
       transform: [{rotateZ: '45deg'}]
+    },
+    wrapperAddIconNormal: {
+      width: 40,
+      height: 40
     },
     plusBtnText: {
       fontSize: 30,

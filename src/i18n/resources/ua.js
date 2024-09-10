@@ -25,7 +25,8 @@ export default {
     removeWord: 'Видалити слово',
     wordIsInDictionary:
       'Це слово є у вашому словнику, приєднати його до цього словника?',
-    dictionary: 'Словник'
+    dictionary: 'Словник',
+    learnWords: 'Вивчення слів'
   },
   buttons: {
     logout: 'Вихід',
@@ -72,7 +73,9 @@ export default {
   words: {
     createWord: 'Створити слово',
     editWord: 'Редагувати слово',
-    successCreate: 'Слово успішно створено'
+    successCreate: 'Слово успішно створено',
+    successEdit: 'Слово успішно відредаговано',
+    successAdd: 'Слово успішно додано'
   },
   resultsView: {
     results: 'Результати',

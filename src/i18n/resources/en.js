@@ -25,7 +25,8 @@ export default {
     removeWord: 'Remove word',
     wordIsInDictionary:
       'This word is in your dictionary, attach it to this dictionary?',
-    dictionary: 'Словник'
+    dictionary: 'Словник',
+    learnWords: 'Learn Words'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {
@@ -68,7 +69,9 @@ export default {
   words: {
     createWord: 'Create Word',
     editWord: 'Edit Word',
-    successCreate: 'Word successfully created'
+    successCreate: 'Word successfully created',
+    successEdit: 'Word successfully edited',
+    successAdd: 'Word successfully added'
   },
   resultsView: {
     results: 'Results',

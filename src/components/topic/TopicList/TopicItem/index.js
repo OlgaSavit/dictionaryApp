@@ -88,7 +88,6 @@ const TopicItem = props => {
     }
     return <></>
   }
-  console.log('item', item)
   return (
     <SwipeComponent renderRightActions={renderRightActions}>
       <TouchableOpacity

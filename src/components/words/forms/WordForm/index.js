@@ -34,7 +34,6 @@ const WordForm = props => {
     onAddLoadTopicToList,
     onChangeMultiInput,
     isDisabledBtn,
-    addVoice,
     onChangeAddVoice,
     goToScreen,
     onLoadTopicList,
@@ -147,7 +146,7 @@ const WordForm = props => {
             <View style={styles.voiceBlock}>
               <Text style={styles.label}>Add voice</Text>
               <SwitchComponent
-                isOn={addVoice}
+                isOn={values.voice}
                 onChange={val => {
                   onChangeAddVoice(val)
                 }}
