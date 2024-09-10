@@ -6,7 +6,7 @@ import {useFocusEffect} from '@react-navigation/native'
 const initialPage = 1
 const initialPerPage = 15
 
-const useTopicList = () => {
+const useTopicList = myTopic => {
   const dispatch = useDispatch()
   const {allTopicList, allTopicListMeta} = useSelector(
     state => state.topic || {}
@@ -26,13 +26,13 @@ const useTopicList = () => {
   useFocusEffect(
     useCallback(() => {
       setPage(1)
-      fetchAllTopicList({page: 1, perPage: initialPerPage})
+      fetchAllTopicList({page: 1, perPage: initialPerPage, onlyMy: myTopic})
       setIsFirstTime(false)
     }, [isFirstTime])
   )
   const onUpdateTopicList = () => {
     setPage(1)
-    fetchAllTopicList({page: 1, perPage: initialPerPage})
+    fetchAllTopicList({page: 1, perPage: initialPerPage, onlyMy: myTopic})
   }
   const onChangePage = () => {
     let newPage = page + 1

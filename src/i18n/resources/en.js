@@ -22,7 +22,10 @@ export default {
     search: 'Search',
     selectedItems: 'Selected topics: {{count}}',
     successEdit: 'Changes saved successfully',
-    removeWord: 'Remove word'
+    removeWord: 'Remove word',
+    wordIsInDictionary:
+      'This word is in your dictionary, attach it to this dictionary?',
+    dictionary: 'Словник'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {
@@ -47,7 +50,8 @@ export default {
     passwordsNotMatch: 'Passwords do not match'
   },
   tabBar: {
-    home: 'My topics',
+    home: 'Home',
+    myTopic: 'My topics',
     topic: 'Topics',
     savedTopic: 'Saved Topic',
     settings: '...'
@@ -65,5 +69,18 @@ export default {
     createWord: 'Create Word',
     editWord: 'Edit Word',
     successCreate: 'Word successfully created'
+  },
+  resultsView: {
+    results: 'Results',
+    myResults: 'My results',
+    totalWords: 'Total my words',
+    testedWords: 'Tested words',
+    doneWords: 'Words Done',
+    translatedWords: 'Words Translate',
+    writeWords: 'Words wrote',
+    topUsers: 'Top {{count}} users',
+    user: 'User',
+    done: 'Done',
+    tested: 'Tested'
   }
 }

@@ -22,7 +22,10 @@ export default {
     search: 'Пошук',
     selectedItems: 'Обрано тем: {{count}} ',
     successEdit: 'Зміни успішно збережено',
-    removeWord: 'Видалити слово'
+    removeWord: 'Видалити слово',
+    wordIsInDictionary:
+      'Це слово є у вашому словнику, приєднати його до цього словника?',
+    dictionary: 'Словник'
   },
   buttons: {
     logout: 'Вихід',
@@ -51,7 +54,8 @@ export default {
     passwordsNotMatch: 'Паролі не співпадають'
   },
   tabBar: {
-    home: 'Мої теми',
+    home: 'Головна',
+    myTopic: 'Мої теми',
     topic: 'Теми',
     savedTopic: 'Збережені теми',
     settings: '...'
@@ -69,5 +73,18 @@ export default {
     createWord: 'Створити слово',
     editWord: 'Редагувати слово',
     successCreate: 'Слово успішно створено'
+  },
+  resultsView: {
+    results: 'Результати',
+    myResults: 'Мої результати',
+    totalWords: 'Усього моїх слів',
+    testedWords: 'Перевірені слова',
+    doneWords: 'Слова зроблені',
+    translatedWords: 'Перекладені слова',
+    writeWords: 'Слова написані',
+    topUsers: 'Топ {{count}} користувачів',
+    user: 'Юзер',
+    done: 'Готово',
+    tested: 'Перевір.'
   }
 }

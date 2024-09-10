@@ -34,4 +34,14 @@ const WordModeTypes = {
   translation: 'translation',
   word: 'word'
 }
-export {ToastTypes, WordStatusTypes, WordStatusList, WordModeTypes}
+const TranslateOptions = {
+  targetLang: 'uk',
+  sourceLang: 'en'
+}
+export {
+  ToastTypes,
+  WordStatusTypes,
+  WordStatusList,
+  WordModeTypes,
+  TranslateOptions
+}

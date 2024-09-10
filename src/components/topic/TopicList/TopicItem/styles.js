@@ -63,5 +63,8 @@ export const stylessheet = theme =>
     },
     countTextDone: {
       color: Colors[theme].colors.green
+    },
+    countTextOrange: {
+      color: Colors[theme].colors.yellow
     }
   })

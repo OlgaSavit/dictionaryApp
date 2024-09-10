@@ -6,23 +6,27 @@ import {getValidationRules} from './validation'
 import {useTranslation} from 'react-i18next'
 import {useToast} from 'react-native-toast-notifications'
 import {onInputOnlyNumber} from '@/utils/normalize'
-import {ToastTypes} from '@/constants/general'
+import {ToastTypes, TranslateOptions} from '@/constants/general'
 import routerNameList from '@/navigation/routerNameList'
 import {
+  attachWordRequest,
   createWordRequest,
   editWordRequest,
-  wordVoiceGenerate,
+  wordTranslateGenerateRequest,
   wordVoiceGenerateRequest
 } from '@/api/requests/word'
 import {appendAllTopicList, getAllTopicList} from '@/store/slices/topicSlice'
 import _isEqual from 'lodash/isEqual'
+import {Alert} from 'react-native'
 const useWordForm = ({currentWord, topicItem}) => {
   const toast = useToast()
   const {t} = useTranslation()
   const dispatch = useDispatch()
   const navigation = useNavigation()
-  const [addVoice, setAddVoice] = useState(false)
-  const {langDirect} = useSelector(store => store.global || {})
+  const [addVoice, setAddVoice] = useState(true)
+  const {langDirect, routeName} = useSelector(store => store.global || {})
+  const [isTranslationLoading, setIsTranslationLoading] = useState(false)
+
   const {allTopicList, allTopicListMeta} = useSelector(
     state => state.topic || {}
   )
@@ -56,6 +60,7 @@ const useWordForm = ({currentWord, topicItem}) => {
   useEffect(() => {
     validateForm(values)
     setIsValidForm(isValid)
+    setIsLoading(false)
   }, [values, errors, isValid])
   useEffect(() => {
     let currentTopic = {value: topicItem?.id, label: topicItem.title}
@@ -100,6 +105,14 @@ const useWordForm = ({currentWord, topicItem}) => {
       navigation.navigate(path)
     }
   }
+  const onSuccessCreated = id => {
+    toast.show(t('words.successCreate'), {
+      type: ToastTypes.success
+    })
+    navigation.navigate(routerNameList.topicView, {
+      topicId: id
+    })
+  }
 
   const handleSubmit = async values => {
     if (isValid) {
@@ -115,35 +128,57 @@ const useWordForm = ({currentWord, topicItem}) => {
         if (currentWord) {
           const response = await editWordRequest(data, currentWord.id)
           if (response.status === 200) {
-            toast.show(t('texts.successEdit'), {
-              type: ToastTypes.success
-            })
-            navigation.navigate(routerNameList.topicView, {
-              topicId: topicItem?.id
-            })
-          }
+            onSuccessCreated(topicItem?.id)
+            setIsLoading(false)
+          } else setIsLoading(false)
         } else {
           const response = await createWordRequest(data)
-          if (response.status === 201) {
+          if (response.status === 201 || response.status === 200) {
             if (addVoice) {
-              //TODO change when api will be changed
-              // const idNewWord = response?.config.data.word
-              // onWordVoiceGenerate(1663)
+              const newWordId = response.data?.data?.id
+              onWordVoiceGenerate(newWordId)
             } else {
-              toast.show(t('words.successCreate'), {
-                type: ToastTypes.success
-              })
-              navigation.navigate(routerNameList.topicView, {
-                topicId: topicItem?.id
-              })
+              onSuccessCreated(topicItem?.id)
+              setIsLoading(false)
             }
+          } else {
+            setIsLoading(false)
           }
         }
       } catch (err) {
-        toast.show(err?.message, {type: ToastTypes.danger})
-      } finally {
-        setIsLoading(false)
+        if (err?.status === 409) {
+          Alert.alert(t('texts.wordIsInDictionary'), '', [
+            {
+              text: t('buttons.cancel'),
+              onPress: () => {},
+              style: 'cancel'
+            },
+            {
+              text: t('buttons.confirm'),
+              onPress: () => {
+                onAttachWord(topicItem)
+              }
+            }
+          ])
+        } else {
+          toast.show(err?.message, {type: ToastTypes.danger})
+        }
       }
+    }
+  }
+
+  const onAttachWord = async topicItem => {
+    setIsLoading(true)
+    try {
+      const response = await attachWordRequest({
+        wordId: 2886,
+        topicId: topicItem.id
+      })
+      if (response.status === 200) {
+        onSuccessCreated(topicItem?.id)
+      }
+    } catch (err) {
+      toast.show(err?.message, {type: ToastTypes.danger})
     }
   }
 
@@ -160,6 +195,8 @@ const useWordForm = ({currentWord, topicItem}) => {
       }
     } catch (err) {
       toast.show(err?.message, {type: ToastTypes.danger})
+    } finally {
+      setIsLoading(false)
     }
   }
   const onChangeInput = ({value, name, isOnlyNumber = false}) => {
@@ -176,6 +213,24 @@ const useWordForm = ({currentWord, topicItem}) => {
     let values = items?.map(item => item.value)
     setFieldValue([name], values)
     setIsFormChanged({...isFormChanged, [name]: true})
+  }
+  const onGetTranslation = async word => {
+    const data = {
+      text: word,
+      sourceLang: TranslateOptions.sourceLang,
+      targetLang: TranslateOptions.targetLang
+    }
+    try {
+      setIsTranslationLoading(true)
+      const response = await wordTranslateGenerateRequest(data)
+      if (response.status === 200) {
+        setFieldValue('wordTranslate', response.data.translatedText)
+      }
+    } catch (err) {
+      toast.show(err?.message, {type: ToastTypes.danger})
+    } finally {
+      setIsTranslationLoading(false)
+    }
   }
   return {
     values,
@@ -194,7 +249,9 @@ const useWordForm = ({currentWord, topicItem}) => {
     onChangeMultiInput,
     isDisabledBtn,
     onChangeAddVoice,
-    addVoice
+    addVoice,
+    onGetTranslation,
+    isTranslationLoading
   }
 }
 export {useWordForm}

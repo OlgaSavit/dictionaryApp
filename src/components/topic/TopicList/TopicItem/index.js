@@ -88,6 +88,7 @@ const TopicItem = props => {
     }
     return <></>
   }
+  console.log('item', item)
   return (
     <SwipeComponent renderRightActions={renderRightActions}>
       <TouchableOpacity
@@ -111,6 +112,10 @@ const TopicItem = props => {
           <Text style={styles.countText}>/</Text>
           <Text style={[styles.countText, styles.countTextDone]}>
             {item?.wordsDoneCount}
+          </Text>
+          <Text style={styles.countText}>/</Text>
+          <Text style={[styles.countText, styles.countTextOrange]}>
+            {item?.wordKnowTranslateCount}
           </Text>
         </View>
       </TouchableOpacity>

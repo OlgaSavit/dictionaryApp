@@ -7,6 +7,7 @@ import {useTranslation} from 'react-i18next'
 import {TouchableOpacity, View, Text} from 'react-native'
 import {useNavigation, useRoute} from '@react-navigation/native'
 import routerNameList from '@/navigation/routerNameList'
+import HomeScreen from '@/screens/Home'
 
 const tabBarList = [
   {
@@ -14,6 +15,13 @@ const tabBarList = [
     route: routerNameList.home,
     icon: 'users',
     screens: [routerNameList.home],
+    indicator: false
+  },
+  {
+    name: 'tabBar.myTopic',
+    route: routerNameList.myTopicList,
+    icon: 'users',
+    screens: [routerNameList.myTopicList],
     indicator: false
   },
   {

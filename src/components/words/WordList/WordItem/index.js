@@ -73,8 +73,9 @@ const WordItem = props => {
       setIsLoadingChangeStatus(false)
     }
   }
-  const removeTopic = async () => {
+  const removeWord = async () => {
     setIsRemoveLoading(true)
+
     try {
       const response = await deleteWordByIdRequest(item?.id)
       if (response?.status === 200) {
@@ -96,7 +97,7 @@ const WordItem = props => {
       {
         text: t('buttons.confirm'),
         onPress: () => {
-          removeTopic()
+          removeWord()
         }
       }
     ])

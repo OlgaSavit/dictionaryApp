@@ -16,6 +16,7 @@ const routerNameList = {
   topicForm: 'TopicFormScreen',
   wordForm: 'WordFormScreen',
   tasks: 'TasksScreen',
-  tasksForm: 'TaskFormScreen'
+  tasksForm: 'TaskFormScreen',
+  myTopicList: 'MyTopicListScreen'
 }
 export default routerNameList

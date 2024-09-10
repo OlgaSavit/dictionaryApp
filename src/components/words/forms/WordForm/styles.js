@@ -38,5 +38,19 @@ export const stylessheet = theme =>
     },
     label: {
       fontSize: 14
+    },
+    wrapperInputBtn: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+    wrapperInputWithBtn: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+    indicatorWrapper: {
+      paddingRight: 10
+    },
+    wrapperDropDown: {
+      zIndex: 9
     }
   })

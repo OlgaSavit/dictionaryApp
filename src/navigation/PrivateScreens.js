@@ -13,6 +13,7 @@ import TopicListScreen from '@/screens/topics/TopicListScreen'
 import TopicViewScreen from '@/screens/topics/TopicViewScreen'
 import TopicFormScreen from '@/screens/topics/TopicFormScreen'
 import WordFormScreen from '@/screens/words/WordFormScreen'
+import MyTopicListScreen from '@/screens/topics/MyTopicListScreen'
 
 // <-- SCREENS END -->
 
@@ -67,6 +68,11 @@ const PrivateScreens = ({navigation}) => {
         name={routerNameList?.tasksForm}
         options={{headerShown: false}}
         component={TaskFormScreen}
+      />
+      <Stack.Screen
+        name={routerNameList?.myTopicList}
+        options={{headerShown: false}}
+        component={MyTopicListScreen}
       />
     </Stack.Navigator>
   )

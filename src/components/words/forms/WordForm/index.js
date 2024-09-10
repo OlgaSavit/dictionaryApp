@@ -1,6 +1,6 @@
 import React from 'react'
 import {stylessheet} from './styles'
-import {Text, View} from 'react-native'
+import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native'
 import {useTranslation} from 'react-i18next'
 import {Formik} from 'formik'
 import Input from '@/components/Input'
@@ -9,6 +9,7 @@ import {useSelector} from 'react-redux'
 import DropDown from '@/components/DropDown'
 import {useWordForm} from '@/components/words/forms/WordForm/useWordForm'
 import SwitchComponent from '@/components/SwitchComponent'
+import Icon from '@/components/Icon'
 
 const initialValues = {
   topicItem: null,
@@ -37,8 +38,11 @@ const WordForm = props => {
     onChangeAddVoice,
     goToScreen,
     onLoadTopicList,
-    topicList
+    topicList,
+    onGetTranslation,
+    isTranslationLoading
   } = useWordForm({currentWord, topicItem})
+
   return (
     <View style={styles.mainWrapper}>
       <Formik onSubmit={handleSubmit}>
@@ -61,7 +65,7 @@ const WordForm = props => {
                 }}
               />
             </View>
-            <View style={styles.wrapperInput}>
+            <View style={[styles.wrapperInput]}>
               <Input
                 errorText={
                   dataErrors?.wordTranslate
@@ -79,8 +83,24 @@ const WordForm = props => {
                 onChangeText={e => {
                   onChangeInput({value: e, name: 'wordTranslate'})
                 }}
+                inputBtn={
+                  <TouchableOpacity
+                    disabled={!values.word?.length}
+                    onPress={() => {
+                      onGetTranslation(values.word)
+                    }}>
+                    {isTranslationLoading ? (
+                      <View style={styles.indicatorWrapper}>
+                        {<ActivityIndicator />}
+                      </View>
+                    ) : (
+                      <Icon name={'google-translate'}></Icon>
+                    )}
+                  </TouchableOpacity>
+                }
               />
             </View>
+
             <View style={styles.wrapperInput}>
               <Input
                 errorText={
@@ -111,7 +131,7 @@ const WordForm = props => {
                 items={[{label: langDirect, value: langDirect}]}
               />
             </View>
-            <View style={styles.wrapperInput}>
+            <View style={styles.wrapperDropDown}>
               <DropDown
                 multiple={true}
                 placeholder={t('fields.topicList')}

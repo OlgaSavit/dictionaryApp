@@ -11,7 +11,7 @@ import Icon from '@/components/Icon'
 import Colors from '@/constants/theme'
 import routerNameList from '@/navigation/routerNameList'
 import TopicList from '@/components/topic/TopicList'
-import {useTopicList} from '@/screens/topics/TopicListScreen/useTopicList'
+import {useTopicList} from '@/hook/useTopicList'
 import LoadingView from '@/components/LoadingView'
 
 const TopicListScreen = () => {
