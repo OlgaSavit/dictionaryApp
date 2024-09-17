@@ -19,7 +19,8 @@ const initialProps = {
   textContentType: 'name',
   keyboardType: 'default',
   isPhone: false,
-  errorText: ''
+  errorText: '',
+  inputBtn: null
 }
 
 const Input = props => {
@@ -37,6 +38,7 @@ const Input = props => {
     isPhone,
     innerRef,
     errorText,
+    inputBtn,
     ...rest
   } = {
     ...initialProps,
@@ -76,6 +78,7 @@ const Input = props => {
         ref={innerRef}
         {...rest}
       />
+      {inputBtn && inputBtn}
       {isPassword && (
         <TouchableOpacity
           style={styles.togglePasswordIcon}

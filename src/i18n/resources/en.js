@@ -14,7 +14,18 @@ export default {
     language: 'Language',
     nightMode: 'Night Mode',
     confirmLogout: 'Confirm Logout',
-    myTopics: 'My Topics'
+    myTopics: 'My Topics',
+    allTopics: 'All topics',
+    loading: 'Loading',
+    words: 'Words',
+    removeTopic: 'Remove topic',
+    search: 'Search',
+    selectedItems: 'Selected topics: {{count}}',
+    successEdit: 'Changes saved successfully',
+    removeWord: 'Remove word',
+    wordIsInDictionary:
+      'This word is in your dictionary, attach it to this dictionary?',
+    dictionary: 'Словник'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {
@@ -24,7 +35,12 @@ export default {
     rePassword: 'Repeat your password',
     confirmPassword: 'Confirm Password',
     title: 'Title',
-    description: 'Description'
+    description: 'Description',
+    order: 'Order',
+    word: 'Word',
+    wordTranslate: 'Translation',
+    wordPhonetic: 'Transcription',
+    topicList: 'Topics'
   },
   validationErrors: {
     emailIncorrect: 'The value "Email" is invalid',
@@ -34,9 +50,37 @@ export default {
     passwordsNotMatch: 'Passwords do not match'
   },
   tabBar: {
-    home: 'My topics',
+    home: 'Home',
+    myTopic: 'My topics',
     topic: 'Topics',
     savedTopic: 'Saved Topic',
     settings: '...'
+  },
+  topic: {
+    createTopic: 'Create Topic',
+    successCreateTopic: 'Topic successfully created'
+  },
+  wordsMode: {
+    default: 'Standard',
+    word: 'Word',
+    translation: 'Translation'
+  },
+  words: {
+    createWord: 'Create Word',
+    editWord: 'Edit Word',
+    successCreate: 'Word successfully created'
+  },
+  resultsView: {
+    results: 'Results',
+    myResults: 'My results',
+    totalWords: 'Total my words',
+    testedWords: 'Tested words',
+    doneWords: 'Words Done',
+    translatedWords: 'Words Translate',
+    writeWords: 'Words wrote',
+    topUsers: 'Top {{count}} users',
+    user: 'User',
+    done: 'Done',
+    tested: 'Tested'
   }
 }

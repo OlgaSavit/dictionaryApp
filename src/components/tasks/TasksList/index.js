@@ -1,9 +1,10 @@
 import React from 'react'
 import {stylessheet} from './styles'
-import {View, FlatList} from 'react-native'
+import {View} from 'react-native'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import TaskItem from '@/components/tasks/TasksList/TasksItem'
+import {FlatList} from 'react-native-gesture-handler'
 
 const initialProps = {
   list: []

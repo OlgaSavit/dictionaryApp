@@ -3,7 +3,8 @@ import {createSlice} from '@reduxjs/toolkit'
 export const globalSlice = createSlice({
   name: 'global',
   initialState: {
-    routeName: null
+    routeName: null,
+    langDirect: 'en-uk'
   },
   reducers: {
     setRouteName: (state, action) => {

@@ -376,6 +376,14 @@
     "@babel/helper-skip-transparent-expression-wrappers" "^7.20.0"
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
 
+"@babel/plugin-proposal-private-methods@^7.18.6":
+  "integrity" "sha512-nutsvktDItsNn4rpGItSNV2sz1XwS+nfU0Rg8aCx3W3NOKVzdMjJRu0O5OkgDp3ZGICSTbgRpxZoWsxoKRvbeA=="
+  "resolved" "https://registry.npmjs.org/@babel/plugin-proposal-private-methods/-/plugin-proposal-private-methods-7.18.6.tgz"
+  "version" "7.18.6"
+  dependencies:
+    "@babel/helper-create-class-features-plugin" "^7.18.6"
+    "@babel/helper-plugin-utils" "^7.18.6"
+
 "@babel/plugin-proposal-private-property-in-object@7.21.0-placeholder-for-preset-env.2":
   "integrity" "sha512-SOSkfJDddaM7mak6cPEpswyTRnuRltl429hMraQEglW+OkovnCzsiszTmsrlY//qLFjCpQDFRvjdm2wA5pPm9w=="
   "resolved" "https://registry.npmjs.org/@babel/plugin-proposal-private-property-in-object/-/plugin-proposal-private-property-in-object-7.21.0-placeholder-for-preset-env.2.tgz"
@@ -1566,6 +1574,11 @@
   "version" "1.22.3"
   dependencies:
     "merge-options" "^3.0.4"
+
+"@react-native-community/blur@^4.4.0":
+  "integrity" "sha512-P+xdT2LIq1ewOsF3zx7C0nu4dj7nxl2NVTsMXEzRDjM3bWMdrrEbTRA7uwPV5ngn7/BXIommBPlT/JW4SAedrw=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/blur/-/blur-4.4.0.tgz"
+  "version" "4.4.0"
 
 "@react-native-community/cli-clean@11.3.7":
   "integrity" "sha512-twtsv54ohcRyWVzPXL3F9VHGb4Qhn3slqqRs3wEuRzjR7cTmV2TIO2b1VhaqF4HlCgNd+cGuirvLtK2JJyaxMg=="
@@ -6266,15 +6279,25 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   "version" "18.2.0"
 
+"react-native-blurhash@^2.0.2":
+  "integrity" "sha512-qUakbrKgvHynV/clCWh/Zj3p/s+/ED3eyoLFPgSlyrYmnZTtKC/9925l/NvF8ydIhOQpe7zgdEzFwbhpXlvQiQ=="
+  "resolved" "https://registry.npmjs.org/react-native-blurhash/-/react-native-blurhash-2.0.2.tgz"
+  "version" "2.0.2"
+
+"react-native-dropdown-picker@^5.4.6":
+  "integrity" "sha512-T1XBHbE++M6aRU3wFYw3MvcOuabhWZ29RK/Ivdls2r1ZkZ62iEBZknLUPeVLMX3x6iUxj4Zgr3X2DGlEGXeHsA=="
+  "resolved" "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.6.tgz"
+  "version" "5.4.6"
+
 "react-native-flipper@^0.212.0", "react-native-flipper@>=0.100.0":
   "integrity" "sha512-bDRfIgE3v/jjEEdnvGP0T6maDD+bXhDAQ/SZUYTKd/CQ6YIU1c0EF+e0urU62LNMv6XEFQKz226McdddyVhYZA=="
   "resolved" "https://registry.npmjs.org/react-native-flipper/-/react-native-flipper-0.212.0.tgz"
   "version" "0.212.0"
 
-"react-native-gesture-handler@^2.13.1", "react-native-gesture-handler@>=1.10.1":
-  "integrity" "sha512-cmMGW8k86o/xgVTBZZOPohvR5re4Vh65PUxH4HbBBJAYTog4aN4wTVTUlnoky01HuSN8/X4h3tI/K3XLPoDnsg=="
-  "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.15.0.tgz"
-  "version" "2.15.0"
+"react-native-gesture-handler@^2.16.0", "react-native-gesture-handler@>=1.10.1":
+  "integrity" "sha512-1hFkx7RIfeJSyTQQ0Nkv4icFVZ5+XjQkd47OgZMBFzoB7ecL+nFSz8KLi3OCWOhq+nbHpSPlSG5VF3CQNCJpWA=="
+  "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.16.0.tgz"
+  "version" "2.16.0"
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     "hoist-non-react-statics" "^3.3.0"
@@ -6334,6 +6357,11 @@
   "resolved" "https://registry.npmjs.org/react-native-simple-default-props/-/react-native-simple-default-props-1.0.0.tgz"
   "version" "1.0.0"
 
+"react-native-sound@^0.11.2":
+  "integrity" "sha512-LmGc8lgOK3qecYMVQpyHvww/C+wgT6sWeMpVbOe4NCRGC2yKd4fo4U0KBUo9PO7AqKESO3I/2GZg1/C0+bwiiA=="
+  "resolved" "https://registry.npmjs.org/react-native-sound/-/react-native-sound-0.11.2.tgz"
+  "version" "0.11.2"
+
 "react-native-splash-screen@^3.3.0":
   "integrity" "sha512-rGjt6HkoSXxMqH4SQUJ1gnPQlPJV8+J47+4yhgTIan4bVvAwJhEeJH7wWt9hXSdH4+VfwTS0GTaflj1Tw83IhA=="
   "resolved" "https://registry.npmjs.org/react-native-splash-screen/-/react-native-splash-screen-3.3.0.tgz"
@@ -6352,7 +6380,7 @@
   "resolved" "https://registry.npmjs.org/react-native-toast-notifications/-/react-native-toast-notifications-3.4.0.tgz"
   "version" "3.4.0"
 
-"react-native@*", "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@>=0.47.1", "react-native@>=0.57.0", "react-native@>=0.59", "react-native@>=0.63.0", "react-native@>=0.70.0", "react-native@>0.62.0", "react-native@0.72.5":
+"react-native@*", "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@>=0.47.1", "react-native@>=0.57.0", "react-native@>=0.59", "react-native@>=0.60.0-rc.0 <1.0.x", "react-native@>=0.63.0", "react-native@>=0.70.0", "react-native@>=0.8.0", "react-native@>0.62.0", "react-native@0.72.5":
   "integrity" "sha512-oIewslu5DBwOmo7x5rdzZlZXCqDIna0R4dUwVpfmVteORYLr4yaZo5wQnMeR+H7x54GaMhmgeqp0ZpULtulJFg=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.72.5.tgz"
   "version" "0.72.5"
@@ -6428,7 +6456,7 @@
     "react-shallow-renderer" "^16.15.0"
     "scheduler" "^0.23.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.2.0", "react@>= 16.8.0", "react@>=16.8", "react@>=16.8.0", "react@>=17.0.0", "react@>=18.1.0", "react@18.2.0":
+"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.2.0", "react@>= 16.8.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.8.1", "react@>=17.0.0", "react@>=18.1.0", "react@18.2.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

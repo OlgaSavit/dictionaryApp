@@ -38,7 +38,7 @@ http.interceptors.response.use(
   response => response,
   async error => {
     const {config, response} = error
-    if (response?.status === 422) {
+    if (response?.status === 401) {
       dispatch(setAuthStatus(false))
     }
     return Promise.reject({
