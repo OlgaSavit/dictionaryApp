@@ -16,21 +16,22 @@ import WordList from '@/components/words/WordList'
 
 const TopicViewScreen = () => {
   const {theme} = useSelector(store => store.theme || {})
+  const {currentTopic} = useSelector(store => store.topic || {})
   const {userInfo} = useSelector(store => store.user || {})
   const {t} = useTranslation()
   const styles = stylessheet(theme)
   const navigation = useNavigation()
-  const {topicItem, isLoading, wordMode, onChangeMode, onUpdateWordsByTopic} =
+  const {isLoading, wordMode, onChangeMode, onUpdateWordsByTopic} =
     useWordsListByTopic()
   const renderRightBtn = useMemo(() => {
-    if (userInfo?.id === topicItem?.userId) {
+    if (userInfo?.id === currentTopic?.userId) {
       return (
         <View style={styles.wrapperRightBtns}>
           <View style={styles.wrapperAddIcon}>
             <CustomButton
               onPress={() => {
                 navigation.navigate(routerNameList?.wordForm, {
-                  topicItem: topicItem
+                  topicItem: currentTopic
                 })
               }}
               btnType={ButtonTypes.roundBtn}>
@@ -44,9 +45,7 @@ const TopicViewScreen = () => {
           <View style={styles.wrapperAddIconNormal}>
             <CustomButton
               onPress={() => {
-                navigation.navigate(routerNameList?.lern, {
-                  list: topicItem?.words
-                })
+                navigation.navigate(routerNameList?.lern)
               }}
               btnType={ButtonTypes.roundBtn}>
               <Icon
@@ -60,21 +59,21 @@ const TopicViewScreen = () => {
       )
     }
     return null
-  }, [topicItem])
+  }, [currentTopic])
   return (
     <Layout bottomBarShow={true} scrollType={scrollTypes.view}>
       <View style={styles.mainWrapper}>
         <TopNavigation
           customRightBtn={renderRightBtn}
           isShowLogo={false}
-          title={topicItem?.title}
+          title={currentTopic?.title}
         />
         {isLoading ? (
           <LoadingView />
         ) : (
           <WordList
-            list={topicItem?.words}
-            topicItem={topicItem}
+            list={currentTopic?.words}
+            topicItem={currentTopic}
             wordMode={wordMode}
             onChangeMode={onChangeMode}
             onUpdateWordsByTopic={onUpdateWordsByTopic}

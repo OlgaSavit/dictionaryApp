@@ -8,12 +8,13 @@ export const createSound = name => {
       return
     }
     // if loaded successfully
-    console.log(
-      'duration in seconds: ' +
-        sound.getDuration() +
-        'number of channels: ' +
-        sound.getNumberOfChannels()
-    )
+    // console.log(
+    //   name +
+    //     'duration in seconds: ' +
+    //     sound.getDuration() +
+    //     'number of channels: ' +
+    //     sound.getNumberOfChannels()
+    // )
   })
   return sound
 }

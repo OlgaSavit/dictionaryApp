@@ -26,7 +26,12 @@ export default {
     wordIsInDictionary:
       'Це слово є у вашому словнику, приєднати його до цього словника?',
     dictionary: 'Словник',
-    learnWords: 'Вивчення слів'
+    learnWords: 'Вивчення слів',
+    checkWords: 'Перевірка слів',
+    isCorrect: 'Вірно',
+    isInCorrect: 'Не вірно',
+    check: 'Перевірити',
+    selectAnswer: 'Вибрати відповідь'
   },
   buttons: {
     logout: 'Вихід',

@@ -13,7 +13,6 @@ import {
 import {useToast} from 'react-native-toast-notifications'
 import Icon from '@/components/Icon'
 import Colors from '@/constants/theme'
-import {createSound, playSound} from '@/utils/playSound'
 import SoundBtn from '@/components/Sound'
 import SwipeComponent from '@/components/SwipeComponent'
 import routerNameList from '@/navigation/routerNameList'
@@ -40,13 +39,6 @@ const WordItem = props => {
   const [isLoadingChangeStatus, setIsLoadingChangeStatus] = useState(false)
   const [isRemoveLoading, setIsRemoveLoading] = useState(false)
   const toast = useToast()
-  const [playing, setPlaying] = useState()
-  const audio = useMemo(() => {
-    if (item?.voice) {
-      return createSound(item.voice)
-    }
-    return null
-  }, [item.voice])
   useEffect(() => {
     setCurrentWordStattus(item?.status)
   }, [item?.status])

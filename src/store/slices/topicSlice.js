@@ -1,10 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {getAllTopicRequest} from '@/api/requests/topic'
+import {getAllTopicRequest, getWordsByTopicRequest} from '@/api/requests/topic'
 export const topicSlice = createSlice({
   name: 'topic',
   initialState: {
     allTopicList: [],
-    allTopicListMeta: null
+    allTopicListMeta: null,
+    currentTopic: null
   },
   reducers: {
     setAllTopicListAction: (state, action) => {
@@ -14,6 +15,9 @@ export const topicSlice = createSlice({
     appendAllTopicLisAction: (state, action) => {
       state.allTopicList = [...state.allTopicList, ...action.payload.data]
       state.allTopicListMeta = action.payload.meta
+    },
+    setCurrentTopicAction: (state, action) => {
+      state.currentTopic = action.payload.data
     }
   }
 })
@@ -50,5 +54,24 @@ export const appendAllTopicList = data => async dispatch => {
     throw e
   }
 }
-export const {setAllTopicListAction, appendAllTopicLisAction} =
-  topicSlice.actions
+export const getCurrentTopic = data => async dispatch => {
+  try {
+    return getWordsByTopicRequest(data)
+      .then(response => {
+        if (response.status === 200) {
+          dispatch(setCurrentTopicAction(response.data))
+        }
+        return response
+      })
+      .catch(e => {
+        return e
+      })
+  } catch (e) {
+    throw e
+  }
+}
+export const {
+  setAllTopicListAction,
+  appendAllTopicLisAction,
+  setCurrentTopicAction
+} = topicSlice.actions

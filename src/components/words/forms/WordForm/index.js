@@ -146,7 +146,7 @@ const WordForm = props => {
             <View style={styles.voiceBlock}>
               <Text style={styles.label}>Add voice</Text>
               <SwitchComponent
-                isOn={values.voice}
+                isOn={values.voice ? true : false}
                 onChange={val => {
                   onChangeAddVoice(val)
                 }}

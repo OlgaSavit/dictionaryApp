@@ -1,15 +1,16 @@
 import {View, Text, TouchableOpacity} from 'react-native'
-import {useRoute} from '@react-navigation/native'
 import LearnCard from '@/components/learn/LearnCard'
 import {useMemo, useState} from 'react'
 import {stylessheet} from './styles'
 import {useSelector} from 'react-redux'
 
-const LearnView = () => {
+const initialProps = {
+  list: []
+}
+const LearnView = props => {
+  const {list} = {...initialProps, ...props}
   const {theme} = useSelector(store => store.theme || {})
   const styles = stylessheet(theme)
-  const router = useRoute()
-  const {list} = router?.params || {}
   const [activeInd, setActiveInd] = useState(0)
   const onPressNext = current => {
     if (current + 1 < list?.length) {
@@ -25,9 +26,8 @@ const LearnView = () => {
     return activeInd === 0
   }, [activeInd])
   const isDisabledNext = useMemo(() => {
-    return activeInd === list.length - 1
-  }, [activeInd])
-  console.log('list', list)
+    return activeInd === list?.length - 1
+  }, [activeInd, list])
   return (
     <View style={{flex: 1}}>
       <LearnCard item={list[activeInd]} />

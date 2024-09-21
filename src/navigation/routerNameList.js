@@ -18,6 +18,7 @@ const routerNameList = {
   tasks: 'TasksScreen',
   tasksForm: 'TaskFormScreen',
   myTopicList: 'MyTopicListScreen',
-  lern: 'LernScreen'
+  lern: 'LernScreen',
+  checkWord: 'CheckWordScreen'
 }
 export default routerNameList

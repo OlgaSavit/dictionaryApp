@@ -26,7 +26,12 @@ export default {
     wordIsInDictionary:
       'This word is in your dictionary, attach it to this dictionary?',
     dictionary: 'Словник',
-    learnWords: 'Learn Words'
+    learnWords: 'Learn Words',
+    checkWords: 'Check words',
+    isCorrect: 'Correct',
+    isInCorrect: 'Incorrect',
+    check: 'Check',
+    selectAnswer: 'Select Answer'
   },
   buttons: {logout: 'Logout', confirm: 'Confirm', cancel: 'Cancel'},
   fields: {

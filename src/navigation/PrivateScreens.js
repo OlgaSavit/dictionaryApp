@@ -15,6 +15,7 @@ import TopicFormScreen from '@/screens/topics/TopicFormScreen'
 import WordFormScreen from '@/screens/words/WordFormScreen'
 import MyTopicListScreen from '@/screens/topics/MyTopicListScreen'
 import LearnScreen from '@/screens/learn/LearnScreen'
+import CheckScreen from '@/screens/learn/CheckScreen'
 
 // <-- SCREENS END -->
 
@@ -79,6 +80,11 @@ const PrivateScreens = ({navigation}) => {
         name={routerNameList?.lern}
         options={{headerShown: false}}
         component={LearnScreen}
+      />
+      <Stack.Screen
+        name={routerNameList?.checkWord}
+        options={{headerShown: false}}
+        component={CheckScreen}
       />
     </Stack.Navigator>
   )

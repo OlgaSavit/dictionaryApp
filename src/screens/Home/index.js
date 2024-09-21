@@ -26,7 +26,7 @@ const HomeScreen = ({navigation}) => {
     <Layout bottomBarShow={true}>
       <View style={{paddingHorizontal: 16}}>
         <TopNavigation title={t('texts.dictionary')} showBack={false} />
-        <MyResultsView statistic={userInfo.statistic} />
+        <MyResultsView statistic={userInfo?.statistic} />
         <TopUsersResultsView list={topUsersList} />
       </View>
     </Layout>
