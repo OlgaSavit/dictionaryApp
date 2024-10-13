@@ -1,6 +1,5 @@
 import Layout from '@/components/Layout'
-import {TouchableOpacity, View, Image, Text} from 'react-native'
-import Input from '@/components/Input'
+import {TouchableOpacity, View, Image} from 'react-native'
 import {stylessheet} from './styles'
 import {useTranslation} from 'react-i18next'
 import TopNavigation from '@/components/navigation/TopNavigation'
@@ -8,7 +7,6 @@ import TopNavigation from '@/components/navigation/TopNavigation'
 import googleImg from '@/assets/images/social/google.png'
 import appleImg from '@/assets/images/social/apple.png'
 import {useSelector} from 'react-redux'
-import SignInForm from '@/components/auth/signInForm'
 import SignUpForm from '@/components/auth/signUpForm'
 
 const socialAuthOptionsList = [

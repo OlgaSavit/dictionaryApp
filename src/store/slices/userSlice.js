@@ -1,6 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {getAllTopicRequest} from '@/api/requests/topic'
-import {setAllTopicListAction} from '@/store/slices/topicSlice'
 import {getTopUsersRequest, getUserInfoRequest} from '@/api/requests/user'
 
 export const userSlice = createSlice({

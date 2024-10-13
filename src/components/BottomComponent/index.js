@@ -1,18 +1,18 @@
-import React, {useMemo} from 'react';
-import Icon from '../../components/Icon';
-import {stylessheet} from './styles';
-import Colors from '../../constants/theme';
-import {useSelector} from 'react-redux';
-import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import React from 'react'
+import Icon from '../../components/Icon'
+import {stylessheet} from './styles'
+import Colors from '../../constants/theme'
+import {useSelector} from 'react-redux'
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet'
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native'
 const initialProps = {
   children: null,
   bottomSheetRef: null,
   setIsOpenBottomModal: () => {},
   isOpenBottomModal: false,
   title: '',
-  showLeftIcon: true,
-};
+  showLeftIcon: true
+}
 const BottomComponent = props => {
   const {
     bottomSheetRef,
@@ -20,14 +20,14 @@ const BottomComponent = props => {
     isOpenBottomModal,
     children,
     title,
-    showLeftIcon,
+    showLeftIcon
   } = {
     ...initialProps,
-    ...props,
-  };
-  const {theme} = useSelector(store => store.theme);
-  const styles = stylessheet(theme);
-  const handleClosePress = () => bottomSheetRef.current.close();
+    ...props
+  }
+  const {theme} = useSelector(store => store.theme)
+  const styles = stylessheet(theme)
+  const handleClosePress = () => bottomSheetRef.current.close()
   return (
     <>
       {isOpenBottomModal && (
@@ -43,7 +43,7 @@ const BottomComponent = props => {
             enablePanDownToClose={true}
             handleIndicatorStyle={styles.handleIndicatorStyle}
             onClose={() => {
-              setIsOpenBottomModal(false);
+              setIsOpenBottomModal(false)
             }}>
             <BottomSheetView style={styles.bottomSheetView}>
               <View style={styles.wrapperTopBlock}>
@@ -78,6 +78,6 @@ const BottomComponent = props => {
         </>
       )}
     </>
-  );
-};
-export default BottomComponent;
+  )
+}
+export default BottomComponent

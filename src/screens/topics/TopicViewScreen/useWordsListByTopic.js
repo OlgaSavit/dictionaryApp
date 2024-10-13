@@ -1,5 +1,4 @@
-import {useCallback, useEffect, useState} from 'react'
-import {getWordsByTopicRequest} from '@/api/requests/topic'
+import {useCallback, useState} from 'react'
 import {ToastTypes, WordModeTypes} from '@/constants/general'
 import {useToast} from 'react-native-toast-notifications'
 import {useFocusEffect, useRoute} from '@react-navigation/native'

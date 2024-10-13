@@ -4,7 +4,6 @@ import TopNavigation from '@/components/navigation/TopNavigation'
 import React from 'react'
 import {useTranslation} from 'react-i18next'
 import CheckView from '@/components/check/CheckView'
-import {useSelector} from 'react-redux'
 
 const CheckScreen = () => {
   const {t} = useTranslation()

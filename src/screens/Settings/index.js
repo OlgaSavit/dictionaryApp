@@ -43,7 +43,7 @@ const Settings = ({navigation}) => {
     ]
   }, [language])
   const goToScreen = path => {
-    navigation.navigate(path)
+    navigation?.navigate(path)
   }
   const renderItem = item => {
     if (item?.link) {
@@ -100,7 +100,7 @@ const Settings = ({navigation}) => {
         text: t('buttons.confirm'),
         onPress: () => {
           dispatch(setUserInfo(null))
-          navigation.reset({
+          navigation?.reset({
             index: 0,
             routes: [
               {
