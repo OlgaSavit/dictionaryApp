@@ -1,31 +1,32 @@
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from "react-native";
+
 export const stylessheet = () =>
   StyleSheet.create({
     title: {
       fontSize: 20,
-      fontWeight: 600
+      fontWeight: 600,
     },
     wrapperBox: {
       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center'
+      alignItems: "center",
+      justifyContent: "center",
     },
     wrapperTable: {
-      width: '100%',
+      width: "100%",
       gap: 10,
-      marginTop: 20
+      marginTop: 20,
     },
     wrapperRow: {
-      flexDirection: 'row',
-      gap: 20
+      flexDirection: "row",
+      gap: 20,
     },
     wrapperCol: {
-      flex: 1
+      flex: 1,
     },
     txt: {
-      fontSize: 14
+      fontSize: 14,
     },
     txtBold: {
-      fontWeight: 600
-    }
-  })
+      fontWeight: 600,
+    },
+  });

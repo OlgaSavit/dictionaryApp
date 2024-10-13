@@ -1,33 +1,34 @@
-import React from 'react'
-import Icon from '../../components/Icon'
-import {stylessheet} from './styles'
-import Colors from '../../constants/theme'
-import {useSelector} from 'react-redux'
-import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet'
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import Colors from "../../constants/theme";
+import { useSelector } from "react-redux";
+import Icon from "../../components/Icon";
+import { stylessheet } from "./styles";
+import React from "react";
+
 const initialProps = {
   children: null,
   bottomSheetRef: null,
   setIsOpenBottomModal: () => {},
   isOpenBottomModal: false,
-  title: '',
-  showLeftIcon: true
-}
-const BottomComponent = props => {
+  title: "",
+  showLeftIcon: true,
+};
+const BottomComponent = (props) => {
   const {
     bottomSheetRef,
     setIsOpenBottomModal,
     isOpenBottomModal,
     children,
     title,
-    showLeftIcon
+    showLeftIcon,
   } = {
     ...initialProps,
-    ...props
-  }
-  const {theme} = useSelector(store => store.theme)
-  const styles = stylessheet(theme)
-  const handleClosePress = () => bottomSheetRef.current.close()
+    ...props,
+  };
+  const { theme } = useSelector((store) => store.theme);
+  const styles = stylessheet(theme);
+  const handleClosePress = () => bottomSheetRef.current.close();
   return (
     <>
       {isOpenBottomModal && (
@@ -43,8 +44,9 @@ const BottomComponent = props => {
             enablePanDownToClose={true}
             handleIndicatorStyle={styles.handleIndicatorStyle}
             onClose={() => {
-              setIsOpenBottomModal(false)
-            }}>
+              setIsOpenBottomModal(false);
+            }}
+          >
             <BottomSheetView style={styles.bottomSheetView}>
               <View style={styles.wrapperTopBlock}>
                 <View style={styles.wrapperFlex}>
@@ -53,7 +55,7 @@ const BottomComponent = props => {
                       <Icon
                         color={Colors[theme].colors.dark}
                         size={20}
-                        name={'warning'}
+                        name={"warning"}
                       />
                     </View>
                   )}
@@ -62,9 +64,10 @@ const BottomComponent = props => {
                 </View>
                 <TouchableOpacity
                   onPress={handleClosePress}
-                  style={styles.wrapperCloseBtn}>
+                  style={styles.wrapperCloseBtn}
+                >
                   <Icon
-                    name={'close'}
+                    name={"close"}
                     size={14}
                     color={Colors[theme].colors.dark_300}
                   />
@@ -78,6 +81,6 @@ const BottomComponent = props => {
         </>
       )}
     </>
-  )
-}
-export default BottomComponent
+  );
+};
+export default BottomComponent;

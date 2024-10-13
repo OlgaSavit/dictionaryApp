@@ -1,30 +1,30 @@
-import i18n from '@/i18n'
-import {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import i18n from "@/i18n";
 
 export const Localization = () => {
-  const dispatch = useDispatch()
-  const {language} = useSelector(state => state.language)
+  const dispatch = useDispatch();
+  const { language } = useSelector((state) => state.language);
 
   useEffect(() => {
-    i18n.changeLanguage(language)
-    requireLocale(language)
+    i18n.changeLanguage(language);
+    requireLocale(language);
     // moment.locale(language)
-  }, [language])
+  }, [language]);
 
-  return null
-}
+  return null;
+};
 
-export const requireLocale = lng => {
+export const requireLocale = (lng) => {
   switch (lng) {
-    case 'ua':
+    case "ua":
       //   require('moment/locale/sv')
-      break
-    case 'ru':
+      break;
+    case "ru":
       // require('moment');
-      break
+      break;
     default:
-      break
+      break;
     // this is will be en
   }
-}
+};

@@ -1,35 +1,35 @@
-import {View, Text, TouchableOpacity} from 'react-native'
-import LearnCard from '@/components/learn/LearnCard'
-import {useMemo, useState} from 'react'
-import {stylessheet} from './styles'
-import {useSelector} from 'react-redux'
+import { View, Text, TouchableOpacity } from "react-native";
+import LearnCard from "@/components/learn/LearnCard";
+import { useSelector } from "react-redux";
+import { useMemo, useState } from "react";
+import { stylessheet } from "./styles";
 
 const initialProps = {
-  list: []
-}
-const LearnView = props => {
-  const {list} = {...initialProps, ...props}
-  const {theme} = useSelector(store => store.theme || {})
-  const styles = stylessheet(theme)
-  const [activeInd, setActiveInd] = useState(0)
-  const onPressNext = current => {
+  list: [],
+};
+const LearnView = (props) => {
+  const { list } = { ...initialProps, ...props };
+  const { theme } = useSelector((store) => store.theme || {});
+  const styles = stylessheet(theme);
+  const [activeInd, setActiveInd] = useState(0);
+  const onPressNext = (current) => {
     if (current + 1 < list?.length) {
-      setActiveInd(current + 1)
+      setActiveInd(current + 1);
     }
-  }
-  const onPressPrev = current => {
+  };
+  const onPressPrev = (current) => {
     if (current > 0) {
-      setActiveInd(current - 1)
+      setActiveInd(current - 1);
     }
-  }
+  };
   const isDisabledPrev = useMemo(() => {
-    return activeInd === 0
-  }, [activeInd])
+    return activeInd === 0;
+  }, [activeInd]);
   const isDisabledNext = useMemo(() => {
-    return activeInd === list?.length - 1
-  }, [activeInd, list])
+    return activeInd === list?.length - 1;
+  }, [activeInd, list]);
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <LearnCard item={list[activeInd]} />
       <View style={styles.wrapperBtns}>
         <TouchableOpacity
@@ -40,8 +40,9 @@ const LearnView = props => {
               : styles.wrapperBtn
           }
           onPress={() => {
-            onPressPrev(activeInd)
-          }}>
+            onPressPrev(activeInd);
+          }}
+        >
           <Text style={styles.wrapperBtnTxt}>Prev</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -52,12 +53,13 @@ const LearnView = props => {
               : styles.wrapperBtn
           }
           onPress={() => {
-            onPressNext(activeInd)
-          }}>
+            onPressNext(activeInd);
+          }}
+        >
           <Text style={styles.wrapperBtnTxt}>Next</Text>
         </TouchableOpacity>
       </View>
     </View>
-  )
-}
-export default LearnView
+  );
+};
+export default LearnView;

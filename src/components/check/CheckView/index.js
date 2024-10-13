@@ -1,13 +1,14 @@
-import {View, Text, TouchableOpacity} from 'react-native'
-import {stylessheet} from './styles'
-import {useSelector} from 'react-redux'
-import {useCheckWords} from '@/components/check/CheckView/useCheckWords'
-import CheckCard from '@/components/check/LearnCard'
-import {useTranslation} from 'react-i18next'
+import { useCheckWords } from "@/components/check/CheckView/useCheckWords";
+import { View, Text, TouchableOpacity } from "react-native";
+import CheckCard from "@/components/check/LearnCard";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { stylessheet } from "./styles";
+
 const CheckView = () => {
-  const {t} = useTranslation()
-  const {theme} = useSelector(store => store.theme || {})
-  const styles = stylessheet(theme)
+  const { t } = useTranslation();
+  const { theme } = useSelector((store) => store.theme || {});
+  const styles = stylessheet(theme);
   const {
     optionsList,
     onPressNext,
@@ -19,20 +20,20 @@ const CheckView = () => {
     onSelectAnswer,
     selectedAnswer,
     onCheckAnswer,
-    isCorrect
-  } = useCheckWords()
+    isCorrect,
+  } = useCheckWords();
 
   const getRenderAnswerBlock = () => {
     if (isCorrect) {
-      return <Text style={styles.textCorrect}>{t('texts.isCorrect')}</Text>
+      return <Text style={styles.textCorrect}>{t("texts.isCorrect")}</Text>;
     }
     if (isCorrect === false) {
-      return <Text style={styles.textError}>{t('texts.isInCorrect')}</Text>
+      return <Text style={styles.textError}>{t("texts.isInCorrect")}</Text>;
     }
-    return <></>
-  }
+    return <></>;
+  };
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <CheckCard
         item={currentWord}
         optionsList={optionsList}
@@ -50,15 +51,17 @@ const CheckView = () => {
                 : styles.wrapperBtn
             }
             onPress={() => {
-              onPressPrev(activeInd)
-            }}>
+              onPressPrev(activeInd);
+            }}
+          >
             <Text style={styles.wrapperBtnTxt}>Prev</Text>
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!selectedAnswer}
             style={(styles.wrapperBtn, styles.wrapperBtnCheck)}
-            onPress={onCheckAnswer}>
-            <Text style={styles.wrapperBtnTxt}>{t('texts.check')}</Text>
+            onPress={onCheckAnswer}
+          >
+            <Text style={styles.wrapperBtnTxt}>{t("texts.check")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             disabled={isDisabledNext}
@@ -68,13 +71,14 @@ const CheckView = () => {
                 : styles.wrapperBtn
             }
             onPress={() => {
-              onPressNext(activeInd)
-            }}>
+              onPressNext(activeInd);
+            }}
+          >
             <Text style={styles.wrapperBtnTxt}>Next</Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
-  )
-}
-export default CheckView
+  );
+};
+export default CheckView;

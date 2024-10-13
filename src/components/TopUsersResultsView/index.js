@@ -1,13 +1,14 @@
-import {View, Text} from 'react-native'
-import {useTranslation} from 'react-i18next'
-import {stylessheet} from './styles'
+import { useTranslation } from "react-i18next";
+import { View, Text } from "react-native";
+import { stylessheet } from "./styles";
+
 const initialProps = {
-  list: []
-}
-const TopUsersResultsView = props => {
-  const {t} = useTranslation()
-  const styles = stylessheet()
-  const {list} = {...initialProps, ...props}
+  list: [],
+};
+const TopUsersResultsView = (props) => {
+  const { t } = useTranslation();
+  const styles = stylessheet();
+  const { list } = { ...initialProps, ...props };
   return (
     <View style={styles.wrapperBox}>
       <Text style={styles.title}>Top 10 users:</Text>
@@ -19,17 +20,17 @@ const TopUsersResultsView = props => {
           </View>
           <View style={styles.wrapperCol}>
             <Text style={[styles.txt, styles.txtBold]}>
-              {t('resultsView.user')}
+              {t("resultsView.user")}
             </Text>
           </View>
           <View style={styles.wrapperCol}>
             <Text style={[styles.txt, styles.txtBold]}>
-              {t('resultsView.done')}
+              {t("resultsView.done")}
             </Text>
           </View>
           <View style={styles.wrapperCol}>
             <Text style={[styles.txt, styles.txtBold]}>
-              {t('resultsView.tested')}
+              {t("resultsView.tested")}
             </Text>
           </View>
         </View>
@@ -49,10 +50,10 @@ const TopUsersResultsView = props => {
                 <Text style={[styles.txt]}>{item?.statistic.words}</Text>
               </View>
             </View>
-          )
+          );
         })}
       </View>
     </View>
-  )
-}
-export default TopUsersResultsView
+  );
+};
+export default TopUsersResultsView;

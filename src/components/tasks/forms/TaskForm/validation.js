@@ -1,9 +1,9 @@
-import * as Yup from 'yup'
+import * as Yup from "yup";
 
 const getValidationRules = () => {
   return Yup.object().shape({
-    title: Yup.string().required('validationErrors.requiredField')
-  })
-}
+    title: Yup.string().required("validationErrors.requiredField"),
+  });
+};
 
-export {getValidationRules}
+export { getValidationRules };

@@ -1,14 +1,15 @@
-import {stylessheet} from './styles'
-import {useSelector} from 'react-redux'
-import {Text, TouchableOpacity, View} from 'react-native'
+import { Text, TouchableOpacity, View } from "react-native";
+import { useSelector } from "react-redux";
+import { stylessheet } from "./styles";
+import { stylessheet } from "./styles";
 
 export const ButtonTypes = {
-  default: 'default',
-  transparent: 'transparent',
-  outline: 'outline',
-  link: 'link',
-  roundBtn: 'roundBtn'
-}
+  default: "default",
+  transparent: "transparent",
+  outline: "outline",
+  link: "link",
+  roundBtn: "roundBtn",
+};
 const initialProps = {
   onPress: null,
   disabled: false,
@@ -17,10 +18,10 @@ const initialProps = {
   flexGrow: false,
   styleText: {},
   btnType: ButtonTypes.default,
-  borderColor: null
-}
-const CustomButton = props => {
-  const {theme} = useSelector(store => store.theme)
+  borderColor: null,
+};
+const CustomButton = (props) => {
+  const { theme } = useSelector((store) => store.theme);
   const {
     children,
     onPress,
@@ -33,9 +34,9 @@ const CustomButton = props => {
     ...rest
   } = {
     ...initialProps,
-    ...props
-  }
-  const styles = stylessheet(theme)
+    ...props,
+  };
+  const styles = stylessheet(theme);
 
   const buttonStyles = [
     styles.container,
@@ -47,8 +48,8 @@ const CustomButton = props => {
     disabled && btnType === ButtonTypes.default && styles.containerDisabled,
     disabled &&
       btnType !== ButtonTypes.default &&
-      styles.containerDisabledOutline
-  ]
+      styles.containerDisabledOutline,
+  ];
 
   const buttonTextStyles = [
     styles.buttonText,
@@ -67,8 +68,8 @@ const CustomButton = props => {
     btnType === ButtonTypes.default && styles.defaultTextStyle,
     btnType === ButtonTypes.default && disabled && styles.buttonTextDisabled,
     styleText,
-    props?.styleButton ? {...props?.styleButton} : {}
-  ]
+    props?.styleButton ? { ...props?.styleButton } : {},
+  ];
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -79,13 +80,14 @@ const CustomButton = props => {
           : mainStyleContainer
       }
       style={buttonStyles}
-      {...rest}>
+      {...rest}
+    >
       {btnType === ButtonTypes.roundBtn ? (
         <View>{children}</View>
       ) : (
         <Text style={buttonTextStyles}>{children}</Text>
       )}
     </TouchableOpacity>
-  )
-}
-export default CustomButton
+  );
+};
+export default CustomButton;

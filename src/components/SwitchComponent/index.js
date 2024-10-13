@@ -1,22 +1,23 @@
-import {stylessheet} from './styles';
-import Colors from '../../constants/theme';
-import {View, Text} from 'react-native';
-import {useSelector} from 'react-redux';
-import ToggleSwitch from 'toggle-switch-react-native';
+import ToggleSwitch from "toggle-switch-react-native";
+import Colors from "../../constants/theme";
+import { View, Text } from "react-native";
+import { useSelector } from "react-redux";
+import { stylessheet } from "./styles";
+
 const initialProps = {
   isOn: false,
   styleContainer: null,
-  label: '',
+  label: "",
   onChange: () => {},
 };
-const SwitchComponent = props => {
-  const {isOn, onChange, styleContainer, label} = {
+const SwitchComponent = (props) => {
+  const { isOn, onChange, styleContainer, label } = {
     ...initialProps,
     ...props,
   };
-  const {theme} = useSelector(store => store.theme);
+  const { theme } = useSelector((store) => store.theme);
   const styles = stylessheet(theme);
-  const onSwitch = val => {
+  const onSwitch = (val) => {
     onChange(val);
   };
 
@@ -29,10 +30,10 @@ const SwitchComponent = props => {
         offColor={Colors[theme].colors.dark_30}
         trackOnStyle={styles.track}
         trackOffStyle={styles.track}
-        thumbOffStyle={{backgroundColor: Colors[theme].colors.gray_100}}
+        thumbOffStyle={{ backgroundColor: Colors[theme].colors.gray_100 }}
         thumbOnStyle={styles.thumbStyle}
         size="medium"
-        onToggle={val => onSwitch(val)}
+        onToggle={(val) => onSwitch(val)}
       />
     </View>
   );

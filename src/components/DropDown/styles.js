@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native'
-import Colors from '@/constants/theme'
+import { StyleSheet } from "react-native";
+import Colors from "@/constants/theme";
 
-export const stylessheet = theme =>
+export const stylessheet = (theme) =>
   StyleSheet.create({
     wrapperDropDown: {
-      zIndex: 9999
-    }
-  })
+      zIndex: 9999,
+    },
+  });

@@ -1,12 +1,13 @@
-import Sound from 'react-native-sound'
+import Sound from "react-native-sound";
 
-export const createSound = name => {
-  Sound.setCategory('Playback')
-  const sound = new Sound(name, null, error => {
+export const createSound = (name) => {
+  Sound.setCategory("Playback");
+  const sound = new Sound(name, null, (error) => {
     if (error) {
-      console.log('failed to load the sound', error)
-      return
+      console.log("failed to load the sound", error);
+      return;
     }
+
     // if loaded successfully
     // console.log(
     //   name +
@@ -15,6 +16,6 @@ export const createSound = name => {
     //     'number of channels: ' +
     //     sound.getNumberOfChannels()
     // )
-  })
-  return sound
-}
+  });
+  return sound;
+};

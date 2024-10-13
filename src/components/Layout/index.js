@@ -1,20 +1,21 @@
-import React, {useMemo} from 'react'
-import {stylessheet} from './styles'
-import {useSelector} from 'react-redux'
-import TabBarComponent from '../../components/TabBar'
-import Colors, {themeTypes} from '../../constants/theme'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {
   Platform,
   StatusBar,
   View,
   KeyboardAvoidingView,
-  ScrollView
-} from 'react-native'
+  ScrollView,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Colors, { themeTypes } from "../../constants/theme";
+import TabBarComponent from "../../components/TabBar";
+import { useSelector } from "react-redux";
+import { stylessheet } from "./styles";
+import React, { useMemo } from "react";
+
 export const scrollTypes = {
-  scrollView: 'scrollView',
-  view: 'view'
-}
+  scrollView: "scrollView",
+  view: "view",
+};
 const initialProps = {
   styleContainer: {},
   statusBarTheme: null,
@@ -25,10 +26,10 @@ const initialProps = {
   scrollType: scrollTypes.scrollView,
   notification: null,
   bottomSheetComponent: null,
-  bottomSheetComponentBg: false
-}
+  bottomSheetComponentBg: false,
+};
 
-const Layout = props => {
+const Layout = (props) => {
   const {
     children,
     styleContainer,
@@ -41,28 +42,29 @@ const Layout = props => {
     scrollType,
     notification,
     bottomSheetComponent,
-    bottomSheetComponentBg
+    bottomSheetComponentBg,
   } = {
     ...initialProps,
-    ...props
-  }
-  const {theme} = useSelector(store => store.theme || {})
+    ...props,
+  };
+  const { theme } = useSelector((store) => store.theme || {});
 
-  const insets = useSafeAreaInsets()
+  const insets = useSafeAreaInsets();
 
-  const styles = stylessheet(theme)
+  const styles = stylessheet(theme);
   const barTheme = useMemo(() => {
-    if (typeof statusBarTheme !== 'undefined' && !!statusBarTheme) {
-      return statusBarTheme
+    if (typeof statusBarTheme !== "undefined" && !!statusBarTheme) {
+      return statusBarTheme;
     }
-    return theme
-  }, [statusBarTheme, theme])
+    return theme;
+  }, [statusBarTheme, theme]);
   const renderScrollComponent = () => {
     return scrollType === scrollTypes.scrollView ? (
       <ScrollView
         refreshControl={refreshControl}
         contentContainerStyle={[styles.scrollViewStyles, styleScrollView]}
-        {...scrollOptions}>
+        {...scrollOptions}
+      >
         {children}
       </ScrollView>
     ) : (
@@ -70,24 +72,25 @@ const Layout = props => {
         style={styles.flexStyle}
         refreshControl={refreshControl}
         contentContainerStyle={[styles.scrollViewStyles, styleScrollView]}
-        {...scrollOptions}>
+        {...scrollOptions}
+      >
         {children}
       </View>
-    )
-  }
+    );
+  };
 
   return (
     <>
       <StatusBar
         animated={true}
         backgroundColor={
-          Platform.OS === 'android'
-            ? 'transparent'
+          Platform.OS === "android"
+            ? "transparent"
             : Colors[barTheme]?.colors.appBackground
         }
-        translucent={Platform.OS === 'android'}
+        translucent={Platform.OS === "android"}
         barStyle={
-          barTheme !== themeTypes.dark ? 'dark-content' : 'light-content'
+          barTheme !== themeTypes.dark ? "dark-content" : "light-content"
         }
       />
       <View
@@ -95,15 +98,17 @@ const Layout = props => {
           styles.layoutContainer,
           {
             paddingTop: insets.top || StatusBar.currentHeight,
-            paddingBottom: insets.bottom
+            paddingBottom: insets.bottom,
           },
           bottomSheetComponentBg && styles.bottomSheetComponentBg,
-          styleContainer
-        ]}>
+          styleContainer,
+        ]}
+      >
         {notification}
         <KeyboardAvoidingView
           style={styles.keyboardStyles}
-          behavior={Platform.OS === 'ios' ? 'padding' : ''}>
+          behavior={Platform.OS === "ios" ? "padding" : ""}
+        >
           {fixedTopComponent}
           {renderScrollComponent()}
           {bottomBarShow && <TabBarComponent />}
@@ -111,6 +116,6 @@ const Layout = props => {
         </KeyboardAvoidingView>
       </View>
     </>
-  )
-}
-export default Layout
+  );
+};
+export default Layout;

@@ -1,26 +1,26 @@
-import React from 'react'
-import {stylessheet} from './styles'
-import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native'
-import {useTranslation} from 'react-i18next'
-import {Formik} from 'formik'
-import Input from '@/components/Input'
-import CustomButton from '@/components/Button'
-import {useSelector} from 'react-redux'
-import DropDown from '@/components/DropDown'
-import {useWordForm} from '@/components/words/forms/WordForm/useWordForm'
-import SwitchComponent from '@/components/SwitchComponent'
-import Icon from '@/components/Icon'
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { useWordForm } from "@/components/words/forms/WordForm/useWordForm";
+import SwitchComponent from "@/components/SwitchComponent";
+import CustomButton from "@/components/Button";
+import { useTranslation } from "react-i18next";
+import DropDown from "@/components/DropDown";
+import { useSelector } from "react-redux";
+import Input from "@/components/Input";
+import { stylessheet } from "./styles";
+import Icon from "@/components/Icon";
+import { Formik } from "formik";
+import React from "react";
 
 const initialValues = {
   topicItem: null,
-  currentWord: null
-}
+  currentWord: null,
+};
 
-const WordForm = props => {
-  const {topicItem, currentWord} = {...initialValues, ...props}
-  const {theme} = useSelector(store => store.theme || {})
-  const {t} = useTranslation()
-  const styles = stylessheet(theme)
+const WordForm = (props) => {
+  const { topicItem, currentWord } = { ...initialValues, ...props };
+  const { theme } = useSelector((store) => store.theme || {});
+  const { t } = useTranslation();
+  const styles = stylessheet(theme);
   const {
     values,
     dataErrors,
@@ -39,8 +39,8 @@ const WordForm = props => {
     onLoadTopicList,
     topicList,
     onGetTranslation,
-    isTranslationLoading
-  } = useWordForm({currentWord, topicItem})
+    isTranslationLoading,
+  } = useWordForm({ currentWord, topicItem });
 
   return (
     <View style={styles.mainWrapper}>
@@ -55,12 +55,12 @@ const WordForm = props => {
                 isError={
                   (!!errors?.word && isFormChanged.word) || dataErrors?.word
                 }
-                testID={'word'}
-                name={'word'}
-                label={`${t('fields.word')}*`}
+                testID={"word"}
+                name={"word"}
+                label={`${t("fields.word")}*`}
                 value={values.word}
-                onChangeText={e => {
-                  onChangeInput({value: e, name: 'word'})
+                onChangeText={(e) => {
+                  onChangeInput({ value: e, name: "word" });
                 }}
               />
             </View>
@@ -75,25 +75,26 @@ const WordForm = props => {
                   (!!errors?.wordTranslate && isFormChanged.wordTranslate) ||
                   dataErrors?.wordTranslate
                 }
-                testID={'wordTranslate'}
-                name={'wordTranslate'}
-                label={`${t('fields.wordTranslate')}*`}
+                testID={"wordTranslate"}
+                name={"wordTranslate"}
+                label={`${t("fields.wordTranslate")}*`}
                 value={values.wordTranslate}
-                onChangeText={e => {
-                  onChangeInput({value: e, name: 'wordTranslate'})
+                onChangeText={(e) => {
+                  onChangeInput({ value: e, name: "wordTranslate" });
                 }}
                 inputBtn={
                   <TouchableOpacity
                     disabled={!values.word?.length}
                     onPress={() => {
-                      onGetTranslation(values.word)
-                    }}>
+                      onGetTranslation(values.word);
+                    }}
+                  >
                     {isTranslationLoading ? (
                       <View style={styles.indicatorWrapper}>
                         {<ActivityIndicator />}
                       </View>
                     ) : (
-                      <Icon name={'google-translate'}></Icon>
+                      <Icon name={"google-translate"} />
                     )}
                   </TouchableOpacity>
                 }
@@ -111,12 +112,12 @@ const WordForm = props => {
                   (!!errors?.wordPhonetic && isFormChanged.wordPhonetic) ||
                   dataErrors?.wordPhonetic
                 }
-                testID={'wordPhonetic'}
-                name={'wordPhonetic'}
-                label={`${t('fields.wordPhonetic')}`}
+                testID={"wordPhonetic"}
+                name={"wordPhonetic"}
+                label={`${t("fields.wordPhonetic")}`}
                 value={values.wordPhonetic}
-                onChangeText={e => {
-                  onChangeInput({value: e, name: 'wordPhonetic'})
+                onChangeText={(e) => {
+                  onChangeInput({ value: e, name: "wordPhonetic" });
                 }}
               />
             </View>
@@ -124,19 +125,19 @@ const WordForm = props => {
               <DropDown
                 disabled={true}
                 selectedValue={values.langDirect}
-                onSelectValue={val => {
-                  onChangeInput({value: val?.value, name: 'langDirect'})
+                onSelectValue={(val) => {
+                  onChangeInput({ value: val?.value, name: "langDirect" });
                 }}
-                items={[{label: langDirect, value: langDirect}]}
+                items={[{ label: langDirect, value: langDirect }]}
               />
             </View>
             <View style={styles.wrapperDropDown}>
               <DropDown
                 multiple={true}
-                placeholder={t('fields.topicList')}
+                placeholder={t("fields.topicList")}
                 selectedValue={values.topicIds}
-                onSelectValue={val => {
-                  onChangeMultiInput({items: val, name: 'topicIds'})
+                onSelectValue={(val) => {
+                  onChangeMultiInput({ items: val, name: "topicIds" });
                 }}
                 searchable={true}
                 onFetchList={onAddLoadTopicToList}
@@ -147,20 +148,21 @@ const WordForm = props => {
               <Text style={styles.label}>Add voice</Text>
               <SwitchComponent
                 isOn={values.voice ? true : false}
-                onChange={val => {
-                  onChangeAddVoice(val)
+                onChange={(val) => {
+                  onChangeAddVoice(val);
                 }}
               />
             </View>
           </View>
           <CustomButton
             disabled={isDisabledBtn()}
-            onPress={() => handleSubmit(values)}>
+            onPress={() => handleSubmit(values)}
+          >
             <Text>Save</Text>
           </CustomButton>
         </>
       </Formik>
     </View>
-  )
-}
-export default WordForm
+  );
+};
+export default WordForm;

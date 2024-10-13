@@ -1,42 +1,42 @@
-import {useCallback, useEffect, useState} from 'react'
-import {ToastTypes, WordStatusList} from '@/constants/general'
-import {userChangeWordStatusRequest} from '@/api/requests/word'
-import {useToast} from 'react-native-toast-notifications'
+import { userChangeWordStatusRequest } from "@/api/requests/word";
+import { ToastTypes, WordStatusList } from "@/constants/general";
+import { useToast } from "react-native-toast-notifications";
+import { useCallback, useEffect, useState } from "react";
 
 const useWordStatus = (word, onActionByStatusChange) => {
-  const [currentWordStatus, setCurrentWordStattus] = useState(word?.status)
-  const [isLoadingChangeStatus, setIsLoadingChangeStatus] = useState(false)
-  const toast = useToast()
+  const [currentWordStatus, setCurrentWordStattus] = useState(word?.status);
+  const [isLoadingChangeStatus, setIsLoadingChangeStatus] = useState(false);
+  const toast = useToast();
   useEffect(() => {
-    setCurrentWordStattus(word?.status)
-  }, [word])
+    setCurrentWordStattus(word?.status);
+  }, [word]);
   const onChangeWordStatus = useCallback(
-    word => {
+    (word) => {
       const statusId = WordStatusList.findIndex(
-        item => item.value === currentWordStatus
-      )
+        (item) => item.value === currentWordStatus
+      );
       const newStatusId =
-        statusId + 1 <= WordStatusList?.length - 1 ? statusId + 1 : 0
-      const newStatusVal = WordStatusList[newStatusId]?.value
-      onChangeStatusAction({wordId: word?.id, status: newStatusVal})
-      console.log('w', word)
+        statusId + 1 <= WordStatusList?.length - 1 ? statusId + 1 : 0;
+      const newStatusVal = WordStatusList[newStatusId]?.value;
+      onChangeStatusAction({ wordId: word?.id, status: newStatusVal });
+      console.log("w", word);
     },
     [currentWordStatus, word]
-  )
-  const onChangeStatusAction = async ({wordId, status}) => {
-    setIsLoadingChangeStatus(true)
+  );
+  const onChangeStatusAction = async ({ wordId, status }) => {
+    setIsLoadingChangeStatus(true);
     try {
-      const response = await userChangeWordStatusRequest({wordId, status})
+      const response = await userChangeWordStatusRequest({ wordId, status });
       if (response.status === 200) {
-        setCurrentWordStattus(status)
-        onActionByStatusChange(status)
+        setCurrentWordStattus(status);
+        onActionByStatusChange(status);
       }
     } catch (err) {
-      toast.show(err?.message, {type: ToastTypes.danger})
+      toast.show(err?.message, { type: ToastTypes.danger });
     } finally {
-      setIsLoadingChangeStatus(false)
+      setIsLoadingChangeStatus(false);
     }
-  }
-  return {isLoadingChangeStatus, onChangeWordStatus, currentWordStatus}
-}
-export {useWordStatus}
+  };
+  return { isLoadingChangeStatus, onChangeWordStatus, currentWordStatus };
+};
+export { useWordStatus };
