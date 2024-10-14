@@ -8,10 +8,12 @@ import WordList from "@/components/words/WordList";
 import LoadingView from "@/components/LoadingView";
 import Colors from "@/constants/theme";
 import { stylessheet } from "./styles";
-import React, { useMemo } from "react";
-import Icon from "@/components/Icon";
+
+
 import { View } from "react-native";
 
+import Icon from "@/components/Icon";
+import React, { useMemo } from "react";
 const TopicViewScreen = () => {
   const { theme } = useSelector((store) => store.theme || {});
   const { currentTopic } = useSelector((store) => store.topic || {});
