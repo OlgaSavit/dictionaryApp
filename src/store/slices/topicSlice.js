@@ -1,7 +1,7 @@
 import {
   getAllTopicRequest,
   getWordsByTopicRequest,
-} from '@/api/requests/topic';
+} from "@/api/requests/topic";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const topicSlice = createSlice({
