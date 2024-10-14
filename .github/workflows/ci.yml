@@ -4,7 +4,7 @@ on:
   pull_request:
     type:
       - opened
-      - -synchronize
+      - synchronize
     push:
       branches:
         - main
