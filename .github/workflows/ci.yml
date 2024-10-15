@@ -23,5 +23,19 @@ jobs:
       - name: Run ESLint
         run: yarn prettier --check ./src
 
+  test:
+    needs: lint
+    name: Test code
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: yarn install
+
       - name: Run Test
         run: vitest run --coverage
+
+
