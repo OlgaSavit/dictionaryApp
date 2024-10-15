@@ -15,4 +15,4 @@ const getFirstLetter = (string) => {
     return null;
   }
 };
-export { onInputOnlyNumber, extractWordId, getRandomElements ,getFirstLetter};
+export { onInputOnlyNumber, extractWordId, getRandomElements, getFirstLetter };
