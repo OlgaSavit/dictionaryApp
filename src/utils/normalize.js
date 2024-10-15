@@ -8,4 +8,11 @@ function extractWordId(message) {
 function getRandomElements(arr, num) {
   return arr.sort(() => 0.5 - Math.random()).slice(0, num);
 }
-export { onInputOnlyNumber, extractWordId, getRandomElements };
+const getFirstLetter = (string) => {
+  if (typeof string === "string" && string.length > 0) {
+    return string.charAt(0).toUpperCase();
+  } else {
+    return null;
+  }
+};
+export { onInputOnlyNumber, extractWordId, getRandomElements ,getFirstLetter};

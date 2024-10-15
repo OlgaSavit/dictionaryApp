@@ -22,3 +22,6 @@ jobs:
 
       - name: Run ESLint
         run: yarn prettier --check ./src
+
+      - name: Run Test
+        run: vitest run --coverage
