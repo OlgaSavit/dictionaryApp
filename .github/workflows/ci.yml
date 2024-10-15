@@ -24,6 +24,7 @@ jobs:
         run: yarn prettier --check ./src
 
   test:
+    needs: lint
     name: Test code
 
     runs-on: ubuntu-latest
