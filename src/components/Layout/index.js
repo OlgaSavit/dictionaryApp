@@ -1,19 +1,20 @@
-import React, {useMemo} from 'react';
-import {stylessheet} from './styles';
-import {useSelector} from 'react-redux';
-import TabBarComponent from '../../components/TabBar';
-import Colors, {themeTypes} from '../../constants/theme';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
   Platform,
   StatusBar,
   View,
   KeyboardAvoidingView,
   ScrollView,
-} from 'react-native';
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Colors, { themeTypes } from "../../constants/theme";
+import TabBarComponent from "../../components/TabBar";
+import { useSelector } from "react-redux";
+import { stylessheet } from "./styles";
+import React, { useMemo } from "react";
+
 export const scrollTypes = {
-  scrollView: 'scrollView',
-  view: 'view',
+  scrollView: "scrollView",
+  view: "view",
 };
 const initialProps = {
   styleContainer: {},
@@ -28,7 +29,7 @@ const initialProps = {
   bottomSheetComponentBg: false,
 };
 
-const Layout = props => {
+const Layout = (props) => {
   const {
     children,
     styleContainer,
@@ -46,13 +47,13 @@ const Layout = props => {
     ...initialProps,
     ...props,
   };
-  const {theme} = useSelector(store => store.theme || {});
+  const { theme } = useSelector((store) => store.theme || {});
 
   const insets = useSafeAreaInsets();
 
   const styles = stylessheet(theme);
   const barTheme = useMemo(() => {
-    if (typeof statusBarTheme !== 'undefined' && !!statusBarTheme) {
+    if (typeof statusBarTheme !== "undefined" && !!statusBarTheme) {
       return statusBarTheme;
     }
     return theme;
@@ -62,7 +63,8 @@ const Layout = props => {
       <ScrollView
         refreshControl={refreshControl}
         contentContainerStyle={[styles.scrollViewStyles, styleScrollView]}
-        {...scrollOptions}>
+        {...scrollOptions}
+      >
         {children}
       </ScrollView>
     ) : (
@@ -70,7 +72,8 @@ const Layout = props => {
         style={styles.flexStyle}
         refreshControl={refreshControl}
         contentContainerStyle={[styles.scrollViewStyles, styleScrollView]}
-        {...scrollOptions}>
+        {...scrollOptions}
+      >
         {children}
       </View>
     );
@@ -81,13 +84,13 @@ const Layout = props => {
       <StatusBar
         animated={true}
         backgroundColor={
-          Platform.OS === 'android'
-            ? 'transparent'
+          Platform.OS === "android"
+            ? "transparent"
             : Colors[barTheme]?.colors.appBackground
         }
-        translucent={Platform.OS === 'android'}
+        translucent={Platform.OS === "android"}
         barStyle={
-          barTheme !== themeTypes.dark ? 'dark-content' : 'light-content'
+          barTheme !== themeTypes.dark ? "dark-content" : "light-content"
         }
       />
       <View
@@ -99,11 +102,13 @@ const Layout = props => {
           },
           bottomSheetComponentBg && styles.bottomSheetComponentBg,
           styleContainer,
-        ]}>
+        ]}
+      >
         {notification}
         <KeyboardAvoidingView
           style={styles.keyboardStyles}
-          behavior={Platform.OS === 'ios' ? 'padding' : ''}>
+          behavior={Platform.OS === "ios" ? "padding" : ""}
+        >
           {fixedTopComponent}
           {renderScrollComponent()}
           {bottomBarShow && <TabBarComponent />}

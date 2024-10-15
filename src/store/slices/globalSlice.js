@@ -1,16 +1,17 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const globalSlice = createSlice({
-  name: 'global',
+  name: "global",
   initialState: {
-    routeName: null
+    routeName: null,
+    langDirect: "en-uk",
   },
   reducers: {
     setRouteName: (state, action) => {
-      state.routeName = action.payload
-    }
-  }
-})
+      state.routeName = action.payload;
+    },
+  },
+});
 
-export const {setRouteName} = globalSlice.actions
-export default globalSlice.reducer
+export const { setRouteName } = globalSlice.actions;
+export default globalSlice.reducer;

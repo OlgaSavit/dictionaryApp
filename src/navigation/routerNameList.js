@@ -1,17 +1,24 @@
 const routerNameList = {
   //service
-  uiKit: 'UiKitScreen',
+  uiKit: "UiKitScreen",
 
   //public
-  home: 'HomeScreen',
-  authView: 'AuthViewScreen',
-  signIn: 'SignInScreen',
-  signUp: 'SignUpScreen',
-  settings: 'SettingsViewScreen',
-  language: 'LanguageScreen',
+  home: "HomeScreen",
+  authView: "AuthViewScreen",
+  signIn: "SignInScreen",
+  signUp: "SignUpScreen",
+  settings: "SettingsViewScreen",
+  language: "LanguageScreen",
 
   //private
-  tasks: 'TasksScreen',
-  tasksForm: 'TaskFormScreen'
-}
-export default routerNameList
+  topicList: "TopicListScreen",
+  topicView: "TopicViewScreen",
+  topicForm: "TopicFormScreen",
+  wordForm: "WordFormScreen",
+  tasks: "TasksScreen",
+  tasksForm: "TaskFormScreen",
+  myTopicList: "MyTopicListScreen",
+  lern: "LernScreen",
+  checkWord: "CheckWordScreen",
+};
+export default routerNameList;

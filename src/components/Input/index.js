@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react'
-import {stylessheet} from './styles'
-import {Text, TextInput, TouchableOpacity, View} from 'react-native'
-import Colors from '@/constants/theme'
-import Icon from '@/components/Icon'
-import {useTranslation} from 'react-i18next'
-import theme from '@/constants/theme'
-import {useSelector} from 'react-redux'
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import Colors from "@/constants/theme";
+import { stylessheet } from "./styles";
+import theme from "@/constants/theme";
+import Icon from "@/components/Icon";
+
 const initialProps = {
-  label: '',
+  label: "",
   name: null,
   disabled: false,
   style: {},
@@ -16,13 +17,14 @@ const initialProps = {
   isError: false,
   isPassword: false,
   multiline: false,
-  textContentType: 'name',
-  keyboardType: 'default',
+  textContentType: "name",
+  keyboardType: "default",
   isPhone: false,
-  errorText: ''
-}
+  errorText: "",
+  inputBtn: null,
+};
 
-const Input = props => {
+const Input = (props) => {
   const {
     label,
     name,
@@ -37,60 +39,63 @@ const Input = props => {
     isPhone,
     innerRef,
     errorText,
+    inputBtn,
     ...rest
   } = {
     ...initialProps,
-    ...props
-  }
-  const {theme} = useSelector(store => store.theme || {})
-  const {t} = useTranslation()
-  const styles = stylessheet(theme)
-  const [hidePass, setHidePass] = useState(isPassword)
-  const [isFocus, setIsFocus] = useState(false)
-  let inputContent
+    ...props,
+  };
+  const { theme } = useSelector((store) => store.theme || {});
+  const { t } = useTranslation();
+  const styles = stylessheet(theme);
+  const [hidePass, setHidePass] = useState(isPassword);
+  const [isFocus, setIsFocus] = useState(false);
+  let inputContent;
   const renderWrapperInputStyle = () => {
     if (isError) {
-      return [styles.wrapperInput, styles.wrapperInputError, wrapperStyle]
+      return [styles.wrapperInput, styles.wrapperInputError, wrapperStyle];
     }
     if (isFocus) {
-      return [styles.wrapperInput, styles.wrapperInputFocus, wrapperStyle]
+      return [styles.wrapperInput, styles.wrapperInputFocus, wrapperStyle];
     }
-    return [styles.wrapperInput, wrapperStyle]
-  }
+    return [styles.wrapperInput, wrapperStyle];
+  };
   inputContent = (
     <>
       <TextInput
         onBlur={() => {
-          setIsFocus(false)
+          setIsFocus(false);
         }}
         onFocus={() => {
-          setIsFocus(true)
+          setIsFocus(true);
         }}
         secureTextEntry={hidePass}
-        textContentType={isPassword ? 'password' : textContentType}
+        textContentType={isPassword ? "password" : textContentType}
         style={[styles.input, style]}
         editable={!disabled}
         placeholderTextColor={Colors[theme]?.colors.gray}
         multiline={multiline}
-        textAlignVertical={multiline ? 'top' : 'center'}
+        textAlignVertical={multiline ? "top" : "center"}
         ref={innerRef}
         {...rest}
       />
+      {inputBtn && inputBtn}
       {isPassword && (
         <TouchableOpacity
           style={styles.togglePasswordIcon}
           onPress={() => {
-            setHidePass(!hidePass)
-          }}>
+            setHidePass(!hidePass);
+          }}
+        >
           <Icon
             size={20}
             color={Colors[theme]?.colors.gray}
-            name={hidePass ? 'open-no' : 'open-yes'}
+            name={hidePass ? "open-no" : "open-yes"}
           />
         </TouchableOpacity>
       )}
     </>
-  )
+  );
   return (
     <View>
       {label && <Text style={styles.label}>{label}</Text>}
@@ -99,7 +104,8 @@ const Input = props => {
           disabled
             ? [...renderWrapperInputStyle(), styles.wrapperInputDisabled]
             : renderWrapperInputStyle()
-        }>
+        }
+      >
         {inputContent}
       </View>
       {isError && errorText && (
@@ -108,6 +114,6 @@ const Input = props => {
         </Text>
       )}
     </View>
-  )
-}
-export default Input
+  );
+};
+export default Input;
