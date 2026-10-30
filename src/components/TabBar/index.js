@@ -1,68 +1,68 @@
-import {useMemo} from 'react'
-import Icon from '../../components/Icon'
-import {stylessheet} from './styles'
-import Colors from '../../constants/theme'
-import {useSelector} from 'react-redux'
-import {useTranslation} from 'react-i18next'
-import {TouchableOpacity, View, Text} from 'react-native'
-import {useNavigation, useRoute} from '@react-navigation/native'
-import routerNameList from '@/navigation/routerNameList'
-import HomeScreen from '@/screens/Home'
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { TouchableOpacity, View, Text } from "react-native";
+import routerNameList from "@/navigation/routerNameList";
+import { useTranslation } from "react-i18next";
+import Colors from "../../constants/theme";
+import { useSelector } from "react-redux";
+import Icon from "../../components/Icon";
+import HomeScreen from "@/screens/Home";
+import { stylessheet } from "./styles";
+import { useMemo } from "react";
 
 const tabBarList = [
   {
-    name: 'tabBar.home',
+    name: "tabBar.home",
     route: routerNameList.home,
-    icon: 'users',
+    icon: "users",
     screens: [routerNameList.home],
-    indicator: false
+    indicator: false,
   },
   {
-    name: 'tabBar.myTopic',
+    name: "tabBar.myTopic",
     route: routerNameList.myTopicList,
-    icon: 'users',
+    icon: "users",
     screens: [routerNameList.myTopicList],
-    indicator: false
+    indicator: false,
   },
   {
-    name: 'tabBar.topic',
+    name: "tabBar.topic",
     route: routerNameList.topicList,
-    icon: 'list',
+    icon: "list",
     screens: [routerNameList.topicList],
-    indicator: false
+    indicator: false,
   },
   {
-    name: 'tabBar.savedTopic',
-    route: '',
-    icon: 'star-outline',
+    name: "tabBar.savedTopic",
+    route: "",
+    icon: "star-outline",
     screens: [],
-    indicator: false
+    indicator: false,
   },
   {
-    name: 'tabBar.settings',
+    name: "tabBar.settings",
     route: routerNameList.settings,
-    icon: 'settings',
+    icon: "settings",
     screens: [routerNameList.settings],
-    indicator: false
-  }
-]
-const initialProps = {}
-const TabBarComponent = props => {
-  const route = useRoute()
-  const navigation = useNavigation()
-  const {t} = useTranslation()
-  const {theme} = useSelector(store => store.theme)
-  const {language} = useSelector(state => state.language)
-  const styles = stylessheet(theme)
+    indicator: false,
+  },
+];
+const initialProps = {};
+const TabBarComponent = (props) => {
+  const route = useRoute();
+  const navigation = useNavigation();
+  const { t } = useTranslation();
+  const { theme } = useSelector((store) => store.theme);
+  const { language } = useSelector((state) => state.language);
+  const styles = stylessheet(theme);
   const currentRoute = useMemo(() => {
-    return route.name
-  }, [route])
-  const goPage = path => {
-    navigation.navigate(path)
-  }
+    return route.name;
+  }, [route]);
+  const goPage = (path) => {
+    navigation.navigate(path);
+  };
   const list = useMemo(() => {
-    return tabBarList
-  }, [])
+    return tabBarList;
+  }, []);
 
   return (
     <View style={styles.tabsContainer}>
@@ -71,10 +71,11 @@ const TabBarComponent = props => {
           return (
             <TouchableOpacity
               onPress={() => {
-                item?.route && goPage(item.route)
+                item?.route && goPage(item.route);
               }}
               style={styles.wrapperItem}
-              key={ind}>
+              key={ind}
+            >
               <View style={styles.parentWrapper}>
                 <Icon
                   color={
@@ -97,15 +98,16 @@ const TabBarComponent = props => {
                   item.screens.includes(currentRoute)
                     ? [styles.label, styles.labelActive]
                     : styles.label
-                }>
+                }
+              >
                 {t(item.name)}
               </Text>
             </TouchableOpacity>
-          )
+          );
         })}
       </View>
       <View style={styles.tabsOverlay} />
     </View>
-  )
-}
-export default TabBarComponent
+  );
+};
+export default TabBarComponent;

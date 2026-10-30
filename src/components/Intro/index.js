@@ -1,9 +1,9 @@
-import {View, Text} from 'react-native';
+import { View, Text } from "react-native";
 
 const Intro = () => {
   return (
     <View>
-      <Text testID={'testText'}>33test</Text>
+      <Text testID={"testText"}>33test</Text>
     </View>
   );
 };

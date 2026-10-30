@@ -1,18 +1,18 @@
-import React from 'react'
-import {stylessheet} from './styles'
-import {Text, TouchableOpacity, View} from 'react-native'
-import {useTranslation} from 'react-i18next'
-import {Formik} from 'formik'
-import Input from '@/components/Input'
-import CustomButton from '@/components/Button'
-import {useSignUp} from './useSignUp'
-import {useSelector} from 'react-redux'
-import routerNameList from '@/navigation/routerNameList'
+import { Text, TouchableOpacity, View } from "react-native";
+import routerNameList from "@/navigation/routerNameList";
+import CustomButton from "@/components/Button";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { useSignUp } from "./useSignUp";
+import Input from "@/components/Input";
+import { stylessheet } from "./styles";
+import { Formik } from "formik";
+import React from "react";
 
-const SignUpForm = props => {
-  const {theme} = useSelector(store => store.theme || {})
-  const {t} = useTranslation()
-  const styles = stylessheet(theme)
+const SignUpForm = (props) => {
+  const { theme } = useSelector((store) => store.theme || {});
+  const { t } = useTranslation();
+  const styles = stylessheet(theme);
   const {
     values,
     dataErrors,
@@ -22,8 +22,8 @@ const SignUpForm = props => {
     isLoading,
     handleSubmit,
     onChangeInput,
-    goToScreen
-  } = useSignUp()
+    goToScreen,
+  } = useSignUp();
   return (
     <View style={styles.mainWrapper}>
       <Formik onSubmit={handleSubmit}>
@@ -40,12 +40,12 @@ const SignUpForm = props => {
                   (!!errors?.username && isFormChanged.username) ||
                   dataErrors?.username
                 }
-                testID={'username'}
-                name={'username'}
-                label={`${t('fields.username')}*`}
+                testID={"username"}
+                name={"username"}
+                label={`${t("fields.username")}*`}
                 value={values.username}
-                onChangeText={e => {
-                  onChangeInput({value: e, name: 'username'})
+                onChangeText={(e) => {
+                  onChangeInput({ value: e, name: "username" });
                 }}
               />
             </View>
@@ -57,12 +57,12 @@ const SignUpForm = props => {
                 isError={
                   (!!errors?.email && isFormChanged.email) || dataErrors?.email
                 }
-                testID={'email'}
-                name={'email'}
-                label={`${t('fields.email')}*`}
+                testID={"email"}
+                name={"email"}
+                label={`${t("fields.email")}*`}
                 value={values.email}
-                onChangeText={e => {
-                  onChangeInput({value: e, name: 'email'})
+                onChangeText={(e) => {
+                  onChangeInput({ value: e, name: "email" });
                 }}
               />
             </View>
@@ -74,19 +74,19 @@ const SignUpForm = props => {
                     dataErrors?.password
                       ? dataErrors?.password
                       : t(errors?.password?.message, {
-                          count: errors?.password?.count
+                          count: errors?.password?.count,
                         })
                   }
                   isError={
                     (!!errors?.password && isFormChanged.password) ||
                     dataErrors?.password
                   }
-                  testID={'password'}
-                  name={'password'}
-                  label={`${t('fields.password')}*`}
+                  testID={"password"}
+                  name={"password"}
+                  label={`${t("fields.password")}*`}
                   value={values.password}
-                  onChangeText={e => {
-                    onChangeInput({value: e, name: 'password'})
+                  onChangeText={(e) => {
+                    onChangeInput({ value: e, name: "password" });
                   }}
                 />
               </View>
@@ -103,12 +103,12 @@ const SignUpForm = props => {
                       isFormChanged.confirm_password) ||
                     dataErrors.confirm_password
                   }
-                  testID={'confirm_password'}
-                  name={'confirm_password'}
-                  label={`${t('fields.confirmPassword')}*`}
+                  testID={"confirm_password"}
+                  name={"confirm_password"}
+                  label={`${t("fields.confirmPassword")}*`}
                   value={values.confirm_password}
-                  onChangeText={e => {
-                    onChangeInput({value: e, name: 'confirm_password'})
+                  onChangeText={(e) => {
+                    onChangeInput({ value: e, name: "confirm_password" });
                   }}
                 />
               </View>
@@ -117,20 +117,22 @@ const SignUpForm = props => {
           <CustomButton
             styleContainer={styles.submitBtn}
             disabled={!isValidForm || isLoading}
-            onPress={() => handleSubmit(values)}>
-            <Text>{t('auth.signUpLabel')}</Text>
+            onPress={() => handleSubmit(values)}
+          >
+            <Text>{t("auth.signUpLabel")}</Text>
           </CustomButton>
           <View style={styles.wrapperLinkBtn}>
             <TouchableOpacity
               onPress={() => {
-                goToScreen(routerNameList?.signIn)
-              }}>
-              <Text style={styles.linkBtn}>{t('auth.signInLabel')}</Text>
+                goToScreen(routerNameList?.signIn);
+              }}
+            >
+              <Text style={styles.linkBtn}>{t("auth.signInLabel")}</Text>
             </TouchableOpacity>
           </View>
         </>
       </Formik>
     </View>
-  )
-}
-export default SignUpForm
+  );
+};
+export default SignUpForm;

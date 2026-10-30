@@ -1,33 +1,34 @@
-import {StyleSheet} from 'react-native'
-import Colors from '@/constants/theme'
-import theme from '@/constants/theme'
-export const stylessheet = theme =>
+import { StyleSheet } from "react-native";
+import Colors from "@/constants/theme";
+import theme from "@/constants/theme";
+
+export const stylessheet = (theme) =>
   StyleSheet.create({
     mainWrapper: {
       flex: 1,
-      marginTop: 12
+      marginTop: 12,
     },
-    wrapperContent: {gap: 12, flex: 1},
+    wrapperContent: { gap: 12, flex: 1 },
     wrapperPasswordSection: {
-      gap: 12
+      gap: 12,
     },
     inputStyle: {
-      maxHeight: 40
+      maxHeight: 40,
     },
     wrapperLinkBtn: {
       marginBottom: 16,
-      flexDirection: 'row',
-      justifyContent: 'flex-end'
+      flexDirection: "row",
+      justifyContent: "flex-end",
     },
     wrapperBottomBlock: {
-      alignItems: 'center'
+      alignItems: "center",
     },
     linkBtn: {
-      textDecorationLine: 'underline',
-      color: Colors[theme].colors.DBDTextColor
+      textDecorationLine: "underline",
+      color: Colors[theme].colors.DBDTextColor,
     },
     errorText: {
       fontSize: 10,
-      color: Colors[theme]?.colors.red
-    }
-  })
+      color: Colors[theme]?.colors.red,
+    },
+  });

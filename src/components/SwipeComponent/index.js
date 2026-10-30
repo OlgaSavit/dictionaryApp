@@ -1,16 +1,17 @@
-import {View} from 'react-native'
-import {Swipeable} from 'react-native-gesture-handler'
+import { Swipeable } from "react-native-gesture-handler";
+import { View } from "react-native";
+
 const initialProps = {
   children: null,
-  renderRightActions: () => {}
-}
+  renderRightActions: () => {},
+};
 
-const SwipeComponent = props => {
-  const {renderRightActions, children} = {...initialProps, ...props}
+const SwipeComponent = (props) => {
+  const { renderRightActions, children } = { ...initialProps, ...props };
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <View>{children}</View>
     </Swipeable>
-  )
-}
-export default SwipeComponent
+  );
+};
+export default SwipeComponent;

@@ -1,25 +1,26 @@
-import {StyleSheet} from 'react-native'
-import Colors from '@/constants/theme'
-export const stylessheet = theme =>
+import { StyleSheet } from "react-native";
+import Colors from "@/constants/theme";
+
+export const stylessheet = (theme) =>
   StyleSheet.create({
     wrapperInput: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
       borderWidth: 1,
       borderColor: Colors[theme]?.colors.gray,
-      backgroundColor: Colors[theme]?.colors.appBackground
+      backgroundColor: Colors[theme]?.colors.appBackground,
     },
     wrapperInputDisabled: {
-      opacity: 0.5
+      opacity: 0.5,
     },
     wrapperInputError: {
-      borderColor: Colors[theme]?.colors.red
+      borderColor: Colors[theme]?.colors.red,
     },
     label: {
       fontSize: 12,
       marginBottom: 4,
-      color: Colors[theme].colors.dark
+      color: Colors[theme].colors.dark,
     },
     input: {
       flex: 1,
@@ -27,27 +28,27 @@ export const stylessheet = theme =>
       paddingHorizontal: 12,
       maxHeight: 40,
       backgroundColor: Colors[theme]?.colors.appBackground,
-      color: Colors[theme]?.colors.dark
+      color: Colors[theme]?.colors.dark,
     },
     wrapperInputFocus: {
-      borderColor: Colors[theme]?.colors.dark
+      borderColor: Colors[theme]?.colors.dark,
     },
     togglePasswordIcon: {
       paddingRight: 10,
       paddingLeft: 5,
-      backgroundColor: Colors[theme]?.colors.appBackground
+      backgroundColor: Colors[theme]?.colors.appBackground,
     },
     textInputStyle: {
       fontSize: 14,
-      color: Colors[theme]?.colors.dark
+      color: Colors[theme]?.colors.dark,
     },
     textInputStyleError: {
-      color: Colors[theme]?.colors.red
+      color: Colors[theme]?.colors.red,
     },
     errorText: {
       fontSize: 10,
       color: Colors[theme]?.colors.red,
       lineHeight: 14,
-      marginTop: 2
-    }
-  })
+      marginTop: 2,
+    },
+  });

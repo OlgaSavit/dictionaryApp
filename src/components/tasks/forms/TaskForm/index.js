@@ -1,22 +1,22 @@
-import React from 'react'
-import {stylessheet} from './styles'
-import {Text, TouchableOpacity, View} from 'react-native'
-import {useTranslation} from 'react-i18next'
-import {Formik} from 'formik'
-import Input from '@/components/Input'
-import CustomButton from '@/components/Button'
-import {useTaskForm} from './useTaskForm'
-import {useSelector} from 'react-redux'
+import { Text, TouchableOpacity, View } from "react-native";
+import CustomButton from "@/components/Button";
+import { useTranslation } from "react-i18next";
+import { useTaskForm } from "./useTaskForm";
+import { useSelector } from "react-redux";
+import Input from "@/components/Input";
+import { stylessheet } from "./styles";
+import { Formik } from "formik";
+import React from "react";
 
 const initialValues = {
-  currentTask: null
-}
+  currentTask: null,
+};
 
-const TaskForm = props => {
-  const {currentTask} = {...initialValues, ...props}
-  const {theme} = useSelector(store => store.theme || {})
-  const {t} = useTranslation()
-  const styles = stylessheet(theme)
+const TaskForm = (props) => {
+  const { currentTask } = { ...initialValues, ...props };
+  const { theme } = useSelector((store) => store.theme || {});
+  const { t } = useTranslation();
+  const styles = stylessheet(theme);
   const {
     values,
     dataErrors,
@@ -26,8 +26,8 @@ const TaskForm = props => {
     isLoading,
     handleSubmit,
     onChangeInput,
-    goToScreen
-  } = useTaskForm({currentTask})
+    goToScreen,
+  } = useTaskForm({ currentTask });
   return (
     <View style={styles.mainWrapper}>
       <Formik onSubmit={handleSubmit}>
@@ -41,12 +41,12 @@ const TaskForm = props => {
                 isError={
                   (!!errors?.title && isFormChanged.title) || dataErrors?.title
                 }
-                testID={'title'}
-                name={'title'}
-                label={`${t('fields.title')}*`}
+                testID={"title"}
+                name={"title"}
+                label={`${t("fields.title")}*`}
                 value={values.title}
-                onChangeText={e => {
-                  onChangeInput({value: e, name: 'title'})
+                onChangeText={(e) => {
+                  onChangeInput({ value: e, name: "title" });
                 }}
               />
             </View>
@@ -61,26 +61,27 @@ const TaskForm = props => {
                   (!!errors?.description && isFormChanged.description) ||
                   dataErrors?.description
                 }
-                testID={'description'}
-                name={'description'}
-                label={`${t('fields.description')}*`}
+                testID={"description"}
+                name={"description"}
+                label={`${t("fields.description")}*`}
                 value={values.description}
-                onChangeText={e => {
-                  onChangeInput({value: e, name: 'description'})
+                onChangeText={(e) => {
+                  onChangeInput({ value: e, name: "description" });
                 }}
-                style={{minHeight: 100}}
+                style={{ minHeight: 100 }}
                 multiline
               />
             </View>
           </View>
           <CustomButton
             disabled={!isValidForm || isLoading}
-            onPress={() => handleSubmit(values)}>
+            onPress={() => handleSubmit(values)}
+          >
             <Text>Save</Text>
           </CustomButton>
         </>
       </Formik>
     </View>
-  )
-}
-export default TaskForm
+  );
+};
+export default TaskForm;

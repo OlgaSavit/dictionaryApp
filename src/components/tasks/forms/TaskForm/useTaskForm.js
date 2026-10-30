@@ -1,64 +1,65 @@
-import {useDispatch} from 'react-redux'
-import {useNavigation} from '@react-navigation/native'
-import {useEffect, useState} from 'react'
-import {useFormik} from 'formik'
-import {getValidationRules} from './validation'
-import routerNameList from '@/navigation/routerNameList'
-import {useTranslation} from 'react-i18next'
-import {useToast} from 'react-native-toast-notifications'
+import { useToast } from "react-native-toast-notifications";
+import routerNameList from "@/navigation/routerNameList";
+import { useNavigation } from "@react-navigation/native";
+import { getValidationRules } from "./validation";
+import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import { useFormik } from "formik";
 
-const useTaskForm = ({currentTask}) => {
-  const toast = useToast()
-  const {t} = useTranslation()
-  const dispatch = useDispatch()
-  const navigation = useNavigation()
+const useTaskForm = ({ currentTask }) => {
+  const toast = useToast();
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const formikInitialValues = {
-    title: currentTask ? currentTask?.title : '',
-    description: currentTask ? currentTask?.description : ''
-  }
+    title: currentTask ? currentTask?.title : "",
+    description: currentTask ? currentTask?.description : "",
+  };
   const [isFormChanged, setIsFormChanged] = useState({
     title: false,
-    description: false
-  })
-  const [isLoading, setIsLoading] = useState(false)
-  const [dataErrors, setDataErrors] = useState({})
-  const [isValidForm, setIsValidForm] = useState(false)
-  const {isValid, values, setFieldValue, validateForm, errors, setErrors} =
+    description: false,
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [dataErrors, setDataErrors] = useState({});
+  const [isValidForm, setIsValidForm] = useState(false);
+  const { isValid, values, setFieldValue, validateForm, errors, setErrors } =
     useFormik({
       initialValues: formikInitialValues,
-      validationSchema: getValidationRules()
-    })
+      validationSchema: getValidationRules(),
+    });
   useEffect(() => {
-    validateForm(values)
-    setIsValidForm(isValid)
-  }, [values, errors, isValid])
-  const goToScreen = path => {
+    validateForm(values);
+    setIsValidForm(isValid);
+  }, [values, errors, isValid]);
+  const goToScreen = (path) => {
     if (path) {
-      navigation.navigate(path)
+      navigation.navigate(path);
     }
-  }
-  const handleSubmit = async values => {
+  };
+  const handleSubmit = async (values) => {
     if (isValid) {
       const data = {
         title: values.title,
-        description: values.description
-      }
+        description: values.description,
+      };
       try {
-        setIsLoading(true)
+        setIsLoading(true);
         //TODO add api
-        toast.show('Success login')
+        toast.show("Success login");
       } catch (err) {
-        setDataErrors(err)
+        setDataErrors(err);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
     }
-  }
-  const onChangeInput = ({value, name}) => {
-    setDataErrors({...dataErrors, [name]: null})
-    setFieldValue([name], value)
-    setIsFormChanged({...isFormChanged, [name]: true})
-  }
+  };
+  const onChangeInput = ({ value, name }) => {
+    setDataErrors({ ...dataErrors, [name]: null });
+    setFieldValue([name], value);
+    setIsFormChanged({ ...isFormChanged, [name]: true });
+  };
   return {
     values,
     dataErrors,
@@ -68,7 +69,7 @@ const useTaskForm = ({currentTask}) => {
     handleSubmit,
     onChangeInput,
     goToScreen,
-    isLoading
-  }
-}
-export {useTaskForm}
+    isLoading,
+  };
+};
+export { useTaskForm };
