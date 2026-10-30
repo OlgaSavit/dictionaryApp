@@ -7,7 +7,6 @@ export const stylessheet = (theme, active) =>
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      width: '100%',
       gap: 16
     },
     styles: {

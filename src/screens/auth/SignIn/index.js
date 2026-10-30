@@ -1,6 +1,5 @@
 import Layout from '@/components/Layout'
-import {TouchableOpacity, View, Image, Text} from 'react-native'
-import Input from '@/components/Input'
+import {TouchableOpacity, View, Image} from 'react-native'
 import {stylessheet} from './styles'
 import {useTranslation} from 'react-i18next'
 import TopNavigation from '@/components/navigation/TopNavigation'

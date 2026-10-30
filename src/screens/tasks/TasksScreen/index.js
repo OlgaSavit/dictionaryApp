@@ -72,7 +72,7 @@ const TasksScreen = () => {
           isShowLogo={false}
           title={t('texts.tasks')}
         />
-        {/*<TasksList list={mocDataList} />*/}
+        <TasksList list={mocDataList} />
       </View>
     </Layout>
   )

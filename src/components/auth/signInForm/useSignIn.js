@@ -9,6 +9,7 @@ import {useToast} from 'react-native-toast-notifications'
 import {userLoginRequest} from '@/api/requests/auth'
 import {setAuthStatus, setUserToken} from '@/store/slices/authSlice'
 import {ToastTypes} from '@/constants/general'
+import {getUserInfo} from '@/store/slices/userSlice'
 
 const useSignIn = () => {
   const toast = useToast()
@@ -54,6 +55,7 @@ const useSignIn = () => {
             toast.show('Success login', {type: ToastTypes.success})
             dispatch(setUserToken(resp?.data?.token))
             dispatch(setAuthStatus(true))
+            dispatch(getUserInfo())
             navigation.reset({
               index: 0,
               routes: [
